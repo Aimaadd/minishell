@@ -6,18 +6,19 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:10:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/13 10:50:21 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/05/13 15:01:52 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
+#include "../libft/libft.h"
 
 // Need to implement functions that reads the input from the user then check if 
 //the input is valid
 // temporary function to exit the shell
 void	exit_shell(char *input)
 {
-	if (strcmp(input, "exit") == 0)
+	if (ft_strncmp(input, "exit", 4) == 0)
 	{
 		printf("Exiting minishell\n");
 		exit(0);
