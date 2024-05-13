@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/05/13 15:07:22 by abentaye         ###   ########.fr        #
+#    Updated: 2024/05/13 15:42:37 by abentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ W = "\033[0m"
 Y = "\033[33m"
 G = "\033[32m"
 R = "\033[31m"
+O = "\033[38;5;214m"
 
 NAME = minishell
 CC = cc
@@ -30,9 +31,9 @@ OBJS= $(SRCS:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	@echo $(Y)"Compiling libft"
+	@echo $(O)"[INFO]" $(W)"Compiling libft"
 	@make -C $(LIBFT)
-	@echo $(B)"Compiling $(NAME)..." $(W)
+	@echo $(O)"[INFO]" $(W)"Compiling $(NAME)..." $(W)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFTA) -lreadline
 	@echo $(G)"[INFO]" $(W)"Compilation done"
 
