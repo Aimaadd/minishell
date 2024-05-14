@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/05/13 15:07:22 by abentaye         ###   ########.fr        #
+#    Updated: 2024/05/14 10:46:08 by mmeerber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ LIBFT = ./libft/
 LIBFTA = ./libft/libft.a
 SRCS =  ./src/main.c \
         ./src/prompt.c \
+		./src/echo.c \
 
 OBJS= $(SRCS:.c=.o)
 
