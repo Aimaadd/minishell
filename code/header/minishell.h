@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/15 13:47:18 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:29:56 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ typedef struct s_cmd
 // prompt.c
 char *catch_input(char *prompt);
 int prompt(void);
-void	echo(char *str, int fd, int flag);
+void	ft_echo(char *str, int parametre, int fd);
 
 #endif
