@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/13 14:54:37 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:38:20 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef struct s_input
 	struct s_input	*next;
 	struct s_input	*prev;
 }					t_input;
+
+typedef struct s_cmd
+{
+	char **str;
+	int	type;
+}
 
 
 // prompt.c
