@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/14 10:40:23 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:59:59 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	main(int ac, char **ag, char **envp)
 {
-	prompt();
+	create_copy_env(envp);
 	return (0);
 }

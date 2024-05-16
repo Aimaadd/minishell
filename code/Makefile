@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/05/15 13:46:12 by mmeerber         ###   ########.fr        #
+#    Updated: 2024/05/16 14:03:42 by mmeerber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,14 @@ O = "\033[38;5;214m"
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra #-Werror
 RM = rm -f
 LIBFT = ./libft/
 LIBFTA = ./libft/libft.a
 SRCS =  ./src/main.c \
         ./src/prompt.c \
 		./src/echo.c \
+		./src/copy_env.c \
 
 OBJS= $(SRCS:.c=.o)
 
