@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/15 13:41:08 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:22:05 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,17 @@
 # include <signal.h>
 # include "../libft/libft.h"
 
+typedef struct	s_list
+{
+	char			*content;
+	struct s_list	*next;
+	struct s_list	*prev;
+}				t_list;
+
 typedef struct s_input
 {
-	char	*input;
+	t_list	*list;
 	int		index;
-	struct s_input	*next;
-	struct s_input	*prev;
 }					t_input;
 
 typedef struct s_cmd
@@ -36,6 +41,8 @@ typedef struct s_cmd
 	int	type;
 }				t_cmd;
 
+// input.c
+t_input *input_to_list(char *input, t_input *entry);
 
 // prompt.c
 char *catch_input(char *prompt);
