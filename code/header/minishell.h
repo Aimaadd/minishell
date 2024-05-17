@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/16 13:59:02 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:41:27 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,9 @@ typedef struct s_env
 	struct s_env	*next;
 } t_env;
 
-
-// prompt.c
 char *catch_input(char *prompt);
-int prompt(void);
+int prompt(t_env *env);
 void	ft_echo(char *str, int parametre, int fd);
-void	create_copy_env(char **env);
+t_env	*create_copy_env(char **env);
 
 #endif
