@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:10:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/13 15:18:00 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:24:04 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ char	*catch_input(char *prompt)
 	return (input);
 }
 // This function is going to launch the prompt and wait for the user to input a command
-int prompt(void)
+int prompt(t_env *env)
 {
 	char *input;
+	t_input	test;
 	
 	while (1)
 	{
@@ -46,6 +47,10 @@ int prompt(void)
 			break;
 		exit_shell(input);
 		printf("You entered: %s\n", input);
+		test.index = 0;
+		test.copy_env = env;
+		test.list->content = "echo";
+		test.list->type = 0;
 	}
 	return (0);
 }
