@@ -6,13 +6,13 @@
 /*   By: mmeerber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:46:57 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/05/16 17:06:14 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:14:19 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-t_env	*new_element(char *content)
+t_env	*create_element(char *content)
 {
 	t_env	*new;
 	char	**tab;
@@ -29,9 +29,19 @@ t_env	*new_element(char *content)
 	return (new);
 }
 
-void	add_element(t_env *env, char *content)
+int		add_element(t_env *copy_env, char *content)
 {
+	t_env	*new;
+	t_env	*last;
 
+	new = create_element(content);
+	if (!new)
+		return (1);
+	if (copy_env == NULL)
+		copy_env = new;
+	while (copy_env->next != NULL)
+		last = last->next;
+	last->next = new;
 }
 
 void	create_copy_env(char **env)
@@ -40,9 +50,10 @@ void	create_copy_env(char **env)
 	t_env	*copy_env;
 
 	x = 0;
+	copy_env = NULL;
 	while (env[x])
 	{
-		copy_env = new_element(env[x]);
+		copy_env = create_element(env[x]);
 		//printf("%s = %s\n", copy_env->variable, copy_env->value);
 		x++;
 	}
