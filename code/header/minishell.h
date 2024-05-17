@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/17 16:41:27 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:39:27 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,25 @@
 # include <signal.h>
 # include "../libft/libft.h"
 
+# define BINARY 0
+# define PARAMETER 1
+# define ARGUMENT 2
+# define REDIRECTION 3
+# define PIPE 4
+
+typedef struct	s_list
+{
+	char			*content;
+	int 			type;
+	struct s_list	*next;
+	struct s_list	*prev;
+}				t_list;
+
 typedef struct s_input
 {
-	char	*input;
+	t_list	*list;
 	int		index;
-	struct s_input	*next;
-	struct s_input	*prev;
 }					t_input;
-
-typedef struct s_cmd
-{
-	char **str;
-	int	type;
-}				t_cmd;
 
 typedef struct s_env
 {
@@ -42,7 +48,8 @@ typedef struct s_env
 	char *value;
 	struct s_env	*next;
 } t_env;
-
+// input.c
+t_input *input_to_list(char *input, t_input *entry);
 char *catch_input(char *prompt);
 int prompt(t_env *env);
 void	ft_echo(char *str, int parametre, int fd);
