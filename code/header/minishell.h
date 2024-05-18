@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/17 16:34:13 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/05/19 00:59:46 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@
 # include <signal.h>
 # include "../libft/libft.h"
 
-# define BINARY 0
-# define PARAMETER 1
-# define ARGUMENT 2
-# define REDIRECTION 3
-# define PIPE 4
+enum	type
+{
+	BINARY = 1,
+	PARAMETER = 2,
+	ARGUMENT = 3,
+	REDIRECTION = 4,
+	PIPE = 5,
+};
 
 typedef struct	s_list
 {
@@ -42,12 +45,11 @@ typedef struct s_input
 	int		index;
 }					t_input;
 
-
 // input.c
-t_input *input_to_list(char *input, t_input *entry);
+t_input	*input_to_list(char *input, t_input *entry);
 
 // prompt.c
-char *catch_input(char *prompt);
-int prompt(void);
+char	*catch_input(char *prompt);
+int		prompt(void);
 
 #endif
