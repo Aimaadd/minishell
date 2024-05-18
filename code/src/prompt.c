@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:10:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/17 17:24:04 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:54:55 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,6 @@ int prompt(t_env *env)
 			break;
 		exit_shell(input);
 		printf("You entered: %s\n", input);
-		test.index = 0;
-		test.copy_env = env;
-		test.list->content = "echo";
-		test.list->type = 0;
 	}
 	return (0);
 }

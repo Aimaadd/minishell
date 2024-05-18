@@ -6,7 +6,7 @@
 /*   By: mmeerber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:46:57 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/05/17 11:49:58 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/05/18 15:20:57 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ t_env	*create_element(char *content)
 	if (!tab)
 		return (NULL);
 	value = getenv(tab[0]);
+	printf("%s = %s\n", tab[0], value);
 	new->variable = tab[0];
-	new->value = tab[1];
+	new->value = value;
 	new->next = NULL;
 	return (new);
 }
@@ -63,4 +64,5 @@ t_env	*create_copy_env(char **env)
 		add_element(&copy_env, env[x]);
 		x++;
 	}
+	return (copy_env);
 }

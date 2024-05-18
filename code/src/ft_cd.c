@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: mmeerber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/18 15:15:46 by mmeerber         ###   ########.fr       */
+/*   Created: 2024/05/18 14:29:50 by mmeerber          #+#    #+#             */
+/*   Updated: 2024/05/18 15:13:00 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-int	main(int ac, char **ag, char **envp)
+void	ft_cd(char *path, t_env *env)
 {
-	t_env	*env_copy;
-	env_copy = create_copy_env(envp);
-	ft_cd("test", env_copy);
-	return (0);
+	int		check;
+	char	*home;
+
+	home = ft_getenv(env, "HOME");
+	printf("result = %s\n", home);
+	if (!path)
+	{
+		if (chdir(home) == -1)
+			perror("");
+		return ;
+	}
+	if (chdir(path) == -1)
+		perror("");
 }
