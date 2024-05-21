@@ -6,7 +6,7 @@
 /*   By: mmeerber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:20:25 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/05/20 19:12:28 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:34:54 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ void	update_value_env(char *value, char *variable, t_env *env)
 {
 	int len;
 	int	x;
-
 	t_env	*tmp;
+
+	tmp = env;
 	while (tmp)
 	{
 		len = check_size(tmp->variable, variable);
-		printf("value : %s, variable %s\n", value, variable);
 		x = ft_strncmp(tmp->variable, variable, len);
 		if (x == 0)
 			break;
