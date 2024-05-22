@@ -64,7 +64,7 @@ char	*ft_getenv(t_env *env, char *name_var);
 void	ft_cd(char *path, t_env *env);
 t_input	*input_to_list(char *input, t_input *entry);
 void	update_value_env(char *value, char *variable, t_env *env);
-
+void	ft_pwd();
 // prompt.c
 char	*catch_input(char *prompt);
 

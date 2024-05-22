@@ -16,7 +16,6 @@ int	main(int ac, char **ag, char **envp)
 {
 	t_env	*env_copy;
 	env_copy = create_copy_env(envp);
-	ft_cd(ag[1], env_copy);
-	printf("%s\n", ft_getenv(env_copy, "PWD"));
+	ft_pwd();
 	return (0);
 }

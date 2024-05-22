@@ -29,6 +29,7 @@ SRCS =  ./src/main.c \
 		./src/copy_env.c \
 		./src/env_utils.c \
 		./src/ft_cd.c \
+		./src/ft_pwd.c \
 
 OBJS= $(SRCS:.c=.o)
 
