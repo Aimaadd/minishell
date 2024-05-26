@@ -30,6 +30,8 @@ SRCS =  ./src/main.c \
 		./src/env_utils.c \
 		./src/ft_cd.c \
 		./src/ft_pwd.c \
+		./src/ft_export.c \
+		./src/ft_unset.c \
 
 OBJS= $(SRCS:.c=.o)
 

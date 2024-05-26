@@ -24,7 +24,10 @@ t_env	*create_element(char *content)
 	tab = ft_split(content, '=');
 	if (!tab)
 		return (NULL);
-	value = getenv(tab[0]);
+	if (getenv(tab[0]))
+		value = getenv(tab[0]);
+	else
+		value = tab[1];
 	new->variable = tab[0];
 	new->value = value;
 	new->next = NULL;

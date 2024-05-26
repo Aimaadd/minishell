@@ -16,6 +16,6 @@ int	main(int ac, char **ag, char **envp)
 {
 	t_env	*env_copy;
 	env_copy = create_copy_env(envp);
-	ft_pwd();
+	ft_unset(NULL, &env_copy);
 	return (0);
 }

@@ -29,7 +29,7 @@ void	ft_cd(char *path, t_env *env)
 		update_value_env(pwd, "OLDPWD", env);
 		return ;
 	}
-	if (ft_strncmp(path, "-", 1) == 0)
+	if (ft_strncmp(path, "-", ft_strlen(path) == 0)
 	{
 		if (chdir(old_pwd) == -1)
 			perror("");
@@ -37,6 +37,8 @@ void	ft_cd(char *path, t_env *env)
 		update_value_env(pwd, "OLDPWD", env);
 		return ;
 	}
+	else
+		perror("");
 	if (chdir(path) == -1)
 		perror("");
 	else
