@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/20 20:28:36 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:21:43 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,22 @@ typedef struct s_list
 typedef struct s_input
 {
 	t_list	*list;
+	char	*line;
 	int		index;
 }					t_input;
 
 // input.c
-t_list	*input_to_list(char *input, t_input *entry);
+t_list	*input_to_list(t_input *entry);
+void	filling_loop(t_input *entry);
 
 // prompt.c
 char	*catch_input(char *prompt);
-int		prompt(void);
+char	*prompt(void);
+
+// lexer.c
+int		read_list(t_list *list);
+
+//init.c
+void	init_input(t_input *entry);
 
 #endif
