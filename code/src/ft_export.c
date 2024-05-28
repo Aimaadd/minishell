@@ -1,6 +1,6 @@
 #include "../header/minishell.h"
 
-void	swap(t_env *element)
+static void	swap(t_env *element)
 {
 	char	*tmp_variable;
 	char	*tmp_value;
@@ -13,7 +13,7 @@ void	swap(t_env *element)
 	element->next->value = tmp_value;
 }
 
-void	bubble_sort(t_env *env)
+static void	bubble_sort(t_env *env)
 {
 	int		swapped;
 	int		len;
@@ -42,7 +42,7 @@ void	bubble_sort(t_env *env)
 	}
 }
 
-void	print_element(t_env **copy_env)
+static void	print_element(t_env **copy_env)
 {
 	t_env *temp;
 
