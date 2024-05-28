@@ -33,6 +33,9 @@ SRCS =  ./src/main.c \
 		./src/ft_export.c \
 		./src/ft_unset.c \
 		./src/ft_env.c \
+		./src/init_input.c \
+		./src/input.c \
+		./src/lexer.c \
 
 OBJS= $(SRCS:.c=.o)
 

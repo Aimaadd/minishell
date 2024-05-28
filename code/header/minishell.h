@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/20 18:40:06 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:21:43 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <signal.h>
 # include "../libft/libft.h"
 
-enum	type
+enum	e_type
 {
 	BINARY = 1,
 	PARAMETER = 2,
@@ -38,10 +38,10 @@ typedef struct s_env
 	struct s_env	*next;
 } t_env;
 
-typedef struct	s_list
+typedef struct s_list
 {
 	char			*content;
-	int 			type;
+	int				type;
 	struct s_list	*next;
 	struct s_list	*prev;
 }				t_list;
@@ -50,6 +50,7 @@ typedef struct s_input
 {
 	t_list	*list;
 	t_env	*env;
+	char	*line;
 	int		index;
 }					t_input;
 
@@ -69,7 +70,18 @@ void	ft_export(char *input, t_env **copy_env);
 int		add_element(t_env **copy_env, char *content);
 void    ft_unset(char *variable, t_env **copy_env);
 void	ft_env(t_env *env);
+char	*catch_input(char *prompt);
+t_list	*input_to_list(t_input *entry);
+void	filling_loop(t_input *entry);
+
 // prompt.c
 char	*catch_input(char *prompt);
+char	*prompt(void);
+
+// lexer.c
+int		read_list(t_list *list);
+
+//init.c
+void	init_input(t_input *entry);
 
 #endif

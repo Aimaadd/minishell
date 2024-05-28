@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:10:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/18 13:54:55 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:21:24 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,28 @@ void	exit_shell(char *input)
 	}
 }
 
-// This function is going to catch the input from the user
-char	*catch_input(char *prompt)
+// // This function is going to catch the input from the user
+char	*catch_input(char *input)
 {
-	char	*input;
-
-	input = readline(prompt);
+	exit_shell(input);
 	if (!input)
 		return (NULL);
 	return (input);
 }
+
 // This function is going to launch the prompt and wait for the user to input a command
-int prompt(t_env *env)
+char	*prompt(void)
 {
-	char *input;
-	t_input	test;
-	
+	char	*input;
+
 	while (1)
 	{
 		input = readline("minishell$ ");
 		if (!input)
-			break;
-		exit_shell(input);
-		printf("You entered: %s\n", input);
+			break ;
+		catch_input(input);
+		if (!input)
+			continue ;
 	}
-	return (0);
+	return (input);
 }
