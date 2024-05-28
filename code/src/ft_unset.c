@@ -1,6 +1,6 @@
 #include "../header/minishell.h"
 
-void	delete_variable(char *variable, t_env *copy_env)
+static void	delete_variable(char *variable, t_env *copy_env)
 {
 	t_env	*tmp;
 	t_env	*variable_before;
