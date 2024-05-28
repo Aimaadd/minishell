@@ -68,6 +68,7 @@ void	ft_pwd();
 void	ft_export(char *input, t_env **copy_env);
 int		add_element(t_env **copy_env, char *content);
 void    ft_unset(char *variable, t_env **copy_env);
+void	ft_env(t_env *env);
 // prompt.c
 char	*catch_input(char *prompt);
 
