@@ -56,23 +56,38 @@ typedef struct s_input
 
 // input.c
 t_input *input_to_list(char *input, t_input *entry);
-char *catch_input(char *prompt);
-int prompt(t_env *env);
-int	check_size(char *s1, char *s2);
+void	filling_loop(t_input *entry);
+char	*catch_input(char *prompt);
+
+// ft_echo.c
 void	ft_echo(char *str, int parametre, int fd);
+
+// copy_env.c
 t_env	*create_copy_env(char **env);
+int		add_element(t_env **copy_env, char *content);
+
+// env_utils.c
 char	*ft_getenv(t_env *env, char *name_var);
+void	update_value_env(char *value, char *variable, t_env *env);
+int		check_size(char *s1, char *s2);
+
+// ft_cd.c
 void	ft_cd(char *path, t_env *env);
 t_input	*input_to_list(char *input, t_input *entry);
-void	update_value_env(char *value, char *variable, t_env *env);
+
+// ft_pwd.c
 void	ft_pwd();
+
+// ft_export.c
 void	ft_export(char *input, t_env **copy_env);
-int		add_element(t_env **copy_env, char *content);
+
+// ft_unset.c
 void    ft_unset(char *variable, t_env **copy_env);
+
+// ft_env.c
 void	ft_env(t_env *env);
 char	*catch_input(char *prompt);
 t_list	*input_to_list(t_input *entry);
-void	filling_loop(t_input *entry);
 
 // prompt.c
 char	*catch_input(char *prompt);
