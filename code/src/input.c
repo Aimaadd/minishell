@@ -6,21 +6,11 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/27 12:19:00 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/05/27 20:25:15 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
-
-void	print_list(t_list *list)
-{
-	while (list)
-	{
-		if (list->content)
-			printf("%s\n", list->content);
-		list = list->next;
-	}
-}
 
 // this function creates a new node to my list
 void	*new_node(t_list **list, char *content)
@@ -61,12 +51,4 @@ t_list	*input_to_list(t_input *entry)
 	}
 	free(splinput);
 	return (entry->list);
-}
-
-void	filling_loop(t_input *entry)
-{
-	while (entry->line)
-	{
-		input_to_list(entry);
-	}
 }
