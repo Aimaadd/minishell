@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/31 00:44:51 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:17:39 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_list	*ft_lstlast(t_list *head);
 
 // input.c
 t_list	*input_to_list(t_input *entry);
-void	filling_loop(t_input *entry);
 
 // prompt.c
 char	*catch_input(char *prompt);
@@ -61,7 +60,7 @@ char	*prompt(void);
 
 // lexer.c
 int		read_list(t_list *list);
-int		read_content(char *content);
+int		read_type(char *content);
 
 
 //init.c

@@ -6,14 +6,14 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/31 00:26:12 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:33:38 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
 //This function will read the content of a node and return the type of the content
-int	read_content(char *content)
+int	read_type(char *content)
 {
 	if (!ft_strncmp(content, "|", ft_strlen(content)))
 		return (PIPE);
@@ -33,8 +33,8 @@ int	read_list(t_list *list)
 {
 	while (list)
 	{	
-		list->type = read_content(list->content);
-		printf("content : %s type : %d\n",list->content, list->type);
+		list->type = read_type(list->content);
+		printf("content : %s | type : %d\n",list->content, list->type);
 		list = list->next;
 	}
 	return (0);
