@@ -55,7 +55,6 @@ typedef struct s_input
 }					t_input;
 
 // input.c
-t_input *input_to_list(char *input, t_input *entry);
 void	filling_loop(t_input *entry);
 char	*catch_input(char *prompt);
 
@@ -73,7 +72,6 @@ int		check_size(char *s1, char *s2);
 
 // ft_cd.c
 void	ft_cd(char *path, t_env *env);
-t_input	*input_to_list(char *input, t_input *entry);
 
 // ft_pwd.c
 void	ft_pwd();
