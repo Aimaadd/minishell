@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/27 12:21:43 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:17:39 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ typedef struct s_input
 	int		index;
 }					t_input;
 
+//init_input.c
+void	ft_lstadd_back(t_list **stack, t_list *new);
+t_list	*ft_lstnew(char *content);
+t_list	*ft_lstlast(t_list *head);
+
 // input.c
 void	filling_loop(t_input *entry);
 char	*catch_input(char *prompt);
@@ -93,6 +98,8 @@ char	*prompt(void);
 
 // lexer.c
 int		read_list(t_list *list);
+int		read_type(char *content);
+
 
 //init.c
 void	init_input(t_input *entry);
