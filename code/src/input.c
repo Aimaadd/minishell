@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/31 15:33:24 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:50:22 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ t_list	*input_to_list(t_input *entry)
 	char	**splinput;
 	int		i;
 	
+	// PARSE THE INPUT AND ADD IT TO THE LIST
 	splinput = ft_split(entry->line, ' ');
 	i = 0;
-	// PARSE THE INPUT AND ADD IT TO THE LIST
 	while (splinput[i])
 	{
 		ft_lstadd_back(&entry->list, ft_lstnew(splinput[i]));
