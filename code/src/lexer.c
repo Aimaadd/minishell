@@ -6,13 +6,14 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/31 15:33:38 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:24:54 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-//This function will read the content of a node and return the type of the content
+// This function will read the content of a node and return the type of 
+// the content
 int	read_type(char *content)
 {
 	if (!ft_strncmp(content, "|", ft_strlen(content)))

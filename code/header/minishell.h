@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/31 15:17:39 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:46:02 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char	*prompt(void);
 int		read_list(t_list *list);
 int		read_type(char *content);
 
+//parse_input.c
+char    **ft_strsplit(char const *s, char *delim);
 
 //init.c
 void	init_input(t_input *entry);

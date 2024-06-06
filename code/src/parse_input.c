@@ -6,21 +6,11 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:40:08 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/01 21:06:09 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:32:20 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
-
-//from a char *line and i have to return a char **splinput in order to splinput.
-
-// char    **parse_input(char *line)
-// {
-// 	char **str;
-	
-// 	str = between_quotes(line);
-// 	return ()
-// }
 
 //This function will see if there is a pipe or redirection in the input
 int	pipe_or_redirection(char *line)
@@ -39,18 +29,6 @@ int	pipe_or_redirection(char *line)
 	return (0);
 }
 
-//This function will split whats before and after the pipe or redirection into
-// three strings and return the one in the middle
-static void copy_chars(char *str, char *line, int *i, int *j)
-{
-	while (line[*i] != '|' && line[*i] != '>' && line[*i] != '<' && line[*i])
-	{
-		str[*j] = line[*i];
-		(*i)++;
-		(*j)++;
-	}
-}
-
 char **split_pipe_redir(char *line)
 {
 	char **result;
@@ -61,7 +39,7 @@ char **split_pipe_redir(char *line)
 		return (printf("fail\n"), NULL);
 	result = (char**)ft_calloc(4, sizeof(char*));
 	start = line;
-	end = ft_strpbrk(line, "|><");
+	end = ft_strpbrk(line, "|><$");
 	if (!result || !end)
 	{
 		if (result)
@@ -107,36 +85,72 @@ char *between_quotes(char *line)
 	return (str);
 }
 
-// int main (int argc, char **argv)
-// {
-//     char *test;
-
-//     test = "test\"un truc bizarre";
-//     between_quotes(argv[1]);
-//     // print the split string
-//     printf("%s\n", split_pipe_redir(argv[1]));
-//     printf("%s\n", argv[1]);
-// }
-
-int main (int argc, char **argv)
+static char    *ft_strchr_multi(const char *s, const char *delim)
 {
-	char **split_result;
-	int i;
+    while (*s)
+    {
+        if (ft_strchr(delim, *s))
+            return ((char *)s);
+        s++;
+    }
+    return (NULL);
+}
 
-	i = 0;
-	split_result = split_pipe_redir(argv[1]);
+static int	ft_count_elem(char const *s, char *delim)
+{
+    int	count;
+    int	i;
 
-	if (split_result)
-	{
-		while (split_result[i])
-		{
-			ft_putstr_fd(split_result[i], 1);
-			ft_putchar_fd('\n', 1);
-			free(split_result[i]);
-			i++;
-		}
-		free(split_result);
-	}
+    i = 0;
+    count = 0;
+    while (s[i])
+    {
+        if (ft_strchr(delim, s[i]))
+            count++;
+        else if (i == 0 || ft_strchr(delim, s[i - 1]))
+            count++;
+        i++;
+    }
+    return (count);
+}
 
-	return 0;
+static void	fill_tab(char **tab, char const *s, char *delim, int *i)
+{
+    char	*temp;
+    int		j;
+
+    j = 0;
+    while (s[*i])
+    {
+        while (ft_strchr(delim, s[*i]) && s[*i])
+        {
+            char *delim_str = ft_substr(s, *i, 1);
+            tab[j++] = delim_str;
+            (*i)++;
+        }
+        if (s[*i])
+        {
+            temp = ft_strchr_multi(&s[*i], delim);
+            if (temp)
+                tab[j] = ft_substr(s, *i, temp - &s[*i]);
+            else
+                tab[j] = ft_substr(s, *i, ft_strlen(&s[*i]));
+            while (s[*i] && !ft_strchr(delim, s[*i]))
+                (*i)++;
+            j++;
+        }
+    }
+    tab[j] = NULL;
+}
+
+char	**ft_strsplit(char const *s, char *delim)
+{
+    char	**tab;
+    int		i;
+
+    if (!s || !(tab = malloc(sizeof(char *) * (ft_count_elem(s, delim) + 1))))
+        return (NULL);
+    i = 0;
+    fill_tab(tab, s, delim, &i);
+    return (tab);
 }
