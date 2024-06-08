@@ -36,6 +36,7 @@ SRCS =  ./src/main.c \
 		./src/init_input.c \
 		./src/input.c \
 		./src/lexer.c \
+		./src/execute.c \
 
 OBJS= $(SRCS:.c=.o)
 

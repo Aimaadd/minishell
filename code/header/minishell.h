@@ -29,6 +29,8 @@ enum	e_type
 	ARGUMENT = 3,
 	REDIRECTION = 4,
 	PIPE = 5,
+	OUTFILE = 6,
+	INFILE = 7,
 };
 
 typedef struct s_env
@@ -54,6 +56,12 @@ typedef struct s_input
 	int		index;
 }					t_input;
 
+typedef struct s_cmd
+{
+	char **env_copy;
+	char **args;
+}	t_cmd;
+
 //init_input.c
 void	ft_lstadd_back(t_list **stack, t_list *new);
 t_list	*ft_lstnew(char *content);
@@ -74,6 +82,8 @@ int		add_element(t_env **copy_env, char *content);
 char	*ft_getenv(t_env *env, char *name_var);
 void	update_value_env(char *value, char *variable, t_env *env);
 int		check_size(char *s1, char *s2);
+char	**conv_tab_env(t_env *env_copy);
+void	print_env(t_env *env);
 
 // ft_cd.c
 void	ft_cd(char *path, t_env *env);
@@ -104,4 +114,6 @@ int		read_type(char *content);
 //init.c
 void	init_input(t_input *entry);
 
+// execute.c
+void	execute(t_input *entry, t_env *env_copy);
 #endif

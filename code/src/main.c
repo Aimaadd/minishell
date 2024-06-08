@@ -20,6 +20,7 @@ int	main(int ac, char **ag, char **envp)
 	t_list  *tmp;
 
 	init_input(&entry);
+	env_copy = create_copy_env(envp);
 	while (1)
 	{
 		entry.line = readline("minishell$ ");
@@ -27,7 +28,8 @@ int	main(int ac, char **ag, char **envp)
 			break ;
 		input_to_list(&entry);
 		tmp = entry.list;
-		read_list(tmp);
+		//read_list(tmp);
+		execute(&entry, env_copy);
 		while (entry.list)
 		{
 			free(entry.list->content);

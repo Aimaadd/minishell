@@ -12,6 +12,19 @@
 
 #include "../header/minishell.h"
 
+void	print_env(t_env *env)
+{
+	t_env *tmp;
+
+	tmp = env;
+	while (tmp)
+	{
+		printf("%s\n", tmp->variable);
+		tmp = tmp->next;
+	}
+	return ;
+}
+
 int		check_size(char *s1, char *s2)
 {
 	int x;
@@ -65,4 +78,29 @@ void	update_value_env(char *value, char *variable, t_env *env)
 	}
 	tmp->value = value;
 	return ;
+}
+
+char **conv_tab_env(t_env *env_copy)
+{
+	char **tab_env;
+	t_env	*tmp;
+	int	x;
+
+	x = 0;
+	tmp = env_copy;
+	while (tmp)
+	{
+		x++;
+		tmp = tmp->next;
+	}
+	tab_env = malloc(sizeof(char *) * (x + 1));
+	tmp = env_copy;
+	x = 0;
+	while (tmp)
+	{
+		tab_env[x] = ft_strjoin(tmp->variable, tmp->value);
+		x++;
+		tmp = tmp->next;
+	}
+	return (tab_env);
 }
