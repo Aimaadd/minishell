@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/31 15:17:39 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:38:54 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,9 @@ t_list	*input_to_list(t_input *entry);
 // prompt.c
 char	*catch_input(char *prompt);
 char	*prompt(void);
+
+// prompt_handling.c
+char	*prompt_handler(void);
 
 // lexer.c
 int		read_list(t_list *list);

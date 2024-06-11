@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/24 23:13:49 by abentaye          #+#    #+#              #
-#    Updated: 2024/06/01 08:52:52 by abentaye         ###   ########.fr        #
+#    Updated: 2024/06/10 11:37:38 by abentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ _SRCS = ft_memset.c \
 	ft_putendl_fd.c \
 	ft_putnbr_fd.c \
 	ft_strpbrk.c \
+	ft_isspace.c \
 
 SRCS = $(addprefix $(SRCSDIR), $(_SRCS))
 OBJS = $(SRCS:.c=.o)

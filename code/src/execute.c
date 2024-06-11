@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
+/*   Updated: 2024/06/11 11:36:34 by abentaye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/minishell.h"
 
 /*int	add_parametre(t_list *input, t_cmd *command)
@@ -80,7 +92,8 @@ static void run_cmd(t_cmd *cmd, t_env *env_copy)
 	cmd->args[0] = find_binary(cmd->args[0], path);
 	if (!cmd->args[0])
 		return ;
-	execve(cmd->args[0], cmd->args, cmd->env_copy);
+	if (execve(cmd->args[0], cmd->args, cmd->env_copy))
+		perror("execve");
 }
 
 static int	get_entry(t_input *entry, t_env *env_copy, t_cmd *cmd)
@@ -117,6 +130,8 @@ void	execute(t_input *entry, t_env *env_copy)
 	t_list	*input;
 
 	cmd = malloc(sizeof(t_cmd));
+	if (!cmd)
+		return ;
 	init_cmd(cmd);
 	get_entry(entry, env_copy, cmd);
 	//print_args(cmd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmeerber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:20:25 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/05/21 15:34:54 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/06/10 10:45:56 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		check_size(char *s1, char *s2)
 char	*ft_getenv(t_env *env, char *name_var)
 {
 	t_env	*temp;
-	char	*value;
+	// char	*value;
 	int		check;
 	int		len;
 

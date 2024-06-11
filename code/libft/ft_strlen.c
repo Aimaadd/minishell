@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:20:59 by abentaye          #+#    #+#             */
-/*   Updated: 2023/04/26 17:25:03 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/10 16:14:06 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str && str[i])
 		i++;
 	return (i);
 }
