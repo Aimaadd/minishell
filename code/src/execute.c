@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/11 11:36:34 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/12 11:41:08 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ static char *find_binary(char *binary, char *path)
 static void run_cmd(t_cmd *cmd, t_env *env_copy)
 {
 	char *path;
-	int	x = 0;
 
 	path = ft_getenv(env_copy, "PATH");
 	if (!path)
