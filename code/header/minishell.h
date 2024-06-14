@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/10 15:38:54 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:52:37 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ typedef struct s_cmd
 	char **env_copy;
 	char **args;
 }	t_cmd;
+
+// execute.c
+void	run_cmd(t_cmd *cmd, t_env *env_copy);
 
 //init_input.c
 void	ft_lstadd_back(t_list **stack, t_list *new);

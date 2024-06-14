@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/12 11:41:08 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:52:00 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static char *find_binary(char *binary, char *path)
 	return (NULL);
 }
 
-static void run_cmd(t_cmd *cmd, t_env *env_copy)
+void run_cmd(t_cmd *cmd, t_env *env_copy)
 {
 	char *path;
 
