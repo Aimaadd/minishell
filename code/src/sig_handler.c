@@ -1,24 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt_handling.c                                  :+:      :+:    :+:   */
+/*   sig_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/10 12:54:11 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/14 16:43:33 by abentaye         ###   ########.fr       */
+/*   Created: 2024/06/14 11:16:36 by abentaye          #+#    #+#             */
+/*   Updated: 2024/06/14 16:17:11 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-char *prompt_handler(void)
+void	signal_handler(int signum)
 {
-    char *line;
-    
-    line = readline("minishell$ ");
-    if (line && line[0] == '\0')
-        write(1, "bomboclaat\n", 11);
+	if (signum == SIGINT)
+	{	
+		write(1, "get cancer\n", 11);
+		exit(1);
+	}
+	else if (signum == SIGQUIT)
+	{
+		write(1, "get cancer\n", 11);
+		exit(1);
+	}
+	else
+	{
+		write(1, "get cancer\n", 11);
+		exit(1);
+	}
+}
 
-    return (line);
+void init_signal(void)
+{
+	// sigset_t	set;
+	// sigemptyset(&set);
+	signal(SIGQUIT, signal_handler);
+	signal(SIGINT, signal_handler);
+	signal(SIGTSTP, signal_handler);
+	
 }

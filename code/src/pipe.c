@@ -18,7 +18,11 @@
 
 //need a function to check all the fds
 
-int	main(int argc, char **argv)
+int	check_if_fd(void)
+{
+		
+
+pid_t	set_fork(void)
 {
   pid_t pid;
 
@@ -30,4 +34,10 @@ int	main(int argc, char **argv)
   }
 // if (pid == 0)
     printf("child pid = 0 : %d\n", getpid());
+}
+
+void	exec_pipe(void)
+{
+	int	fd[2];
+
 }
