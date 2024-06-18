@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/06/11 11:24:08 by abentaye         ###   ########.fr        #
+#    Updated: 2024/06/18 10:47:20 by abentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS =  ./src/main.c \
 		./src/lexer.c \
 		./src/execute.c \
 		./src/prompt_handling.c \
+		./src/sig_handler.c \
 
 OBJS= $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/12 15:52:37 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/18 10:47:03 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,8 @@ void	init_input(t_input *entry);
 
 // execute.c
 void	execute(t_input *entry, t_env *env_copy);
+
+//sig_handler.c
+void	init_signal(void);
+
 #endif

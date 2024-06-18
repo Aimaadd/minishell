@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 11:16:36 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/14 16:17:11 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/18 10:45:57 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	signal_handler(int signum)
 
 void init_signal(void)
 {
-	// sigset_t	set;
-	// sigemptyset(&set);
+	sigset_t	set;
+	sigemptyset(&set);
 	signal(SIGQUIT, signal_handler);
 	signal(SIGINT, signal_handler);
 	signal(SIGTSTP, signal_handler);
