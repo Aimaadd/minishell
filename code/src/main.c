@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/02 17:16:38 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:28:53 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int ac, char **ag, char **envp)
 	t_input	entry;
 
 	init_input(&entry);
-	init_signal(&entry, env_copy);
+	init_signal();
 	env_copy = create_copy_env(envp);
 	minishell_loop(&entry, env_copy);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/03 13:55:25 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:59:52 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,21 @@ int	read_list(t_list *list)
 		printf("content : %s | type : %d\n",list->content, list->type);
 		list = list->next;
 	}
-	return (0);
+	return (pipe_counter);
 }
 
-int is_parameter(const char *str)
+int	is_parameter(const char *str)
 {
+    int	i;
+
     if (str[0] == '-' && str[1])
     {
-        for (int i = 1; str[i]; i++)
+        i = 1;
+        while (str[i])
         {
             if (str[i] == ' ')
                 return (1);
+            i++;
         }
         return (0);
     }
