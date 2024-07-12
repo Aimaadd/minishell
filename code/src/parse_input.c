@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:40:08 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/11 19:47:45 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:03:01 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ int	pipe_or_redirection(char *line)
 
 //This function will split whats before and after the pipe or redirection into
 // three strings and return the one in the middle
-static void copy_chars(char *str, char *line, int *i, int *j)
-{
-    while (line[*i] != '|' && line[*i] != '>' && line[*i] != '<' && line[*i])
-    {
-        str[*j] = line[*i];
-        (*i)++;
-        (*j)++;
-    }
-}
+// static void copy_chars(char *str, char *line, int *i, int *j)
+// {
+//     while (line[*i] != '|' && line[*i] != '>' && line[*i] != '<' && line[*i])
+//     {
+//         str[*j] = line[*i];
+//         (*i)++;
+//         (*j)++;
+//     }
+// }
 
 char **split_pipe_redir(char *line)
 {

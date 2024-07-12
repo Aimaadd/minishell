@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/17 11:29:36 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:02:46 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	fork_exec(t_cmd *cmd, t_env *env_copy)
 {
 	pid_t	pid;
 	int		status;
+	(void)env_copy;
 
 	pid = fork();
 	if (pid == -1)
@@ -147,7 +148,7 @@ static int	get_entry(t_input *entry, t_env *env_copy, t_cmd *cmd)
 void	execute(t_input *entry, t_env *env_copy)
 {
 	t_cmd	*cmd;
-	t_list	*input;
+	// t_list	*input;
 
 	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
