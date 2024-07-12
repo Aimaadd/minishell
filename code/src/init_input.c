@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:23:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/12 18:58:51 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:29:08 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_input(t_input *entry)
 	entry = (t_input *) malloc(sizeof(t_input));
 	if (!entry)
 		return ;
+	entry->line = NULL;
 	entry->index = 0;
 	entry->list = NULL;
 }

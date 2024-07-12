@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/07/12 15:28:50 by abentaye         ###   ########.fr        #
+#    Updated: 2024/07/12 20:13:17 by abentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,11 @@ O = "\033[38;5;214m"
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -f
+READLIB = $(HOME)/.brew/opt/readline/lib
+READINCL = $(HOME)/.brew/opt/readline/include
+LINKER = -L$(LIBFT) -lft -L$(READLIB) -I$(READINCL) -lreadline
 LIBFT = ./libft/
 LIBFTA = ./libft/libft.a
 SRCS =  ./src/main.c \
@@ -49,7 +52,7 @@ $(NAME) : $(OBJS)
 	@echo $(O)"[INFO]" $(W)"Compiling libft"
 	@make -C $(LIBFT)
 	@echo $(O)"[INFO]" $(W)"Compiling $(NAME)..." $(W)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFTA) -lreadline
+	@$(CC) $(CFLAGS) $(LINKER) -o $(NAME) $(OBJS) $(LIBFTA)
 	@echo $(G)"[INFO]" $(W)"Compilation done"
 
 $(OBJS): %.o: %.c

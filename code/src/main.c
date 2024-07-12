@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/12 18:58:38 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/12 20:13:02 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,28 @@
 
 void	minishell_loop(t_input *entry, t_env *env_copy)
 {
-	(void)env_copy;
-
-	init_input(entry);
+	t_list	*tmp;
+	char *temp;
 	while (1)
 	{
-		entry->line = prompt_handler();
-		printf("entry -> line = %s\n", entry->line);
+		prompt_handler(entry);
+		printf("entry->line : %s \n", entry->line);
+		temp = entry->line;
+		free (entry->line);
+		entry->line = temp;
+		if (!entry->line)
+			continue ;
 		input_to_list(entry);
-		while (entry->list)
-		{
-			// printf("tmp printing = %s\n", tmp->content);
-			entry->list = entry->list->next;
-		}
-		if (!entry->list)
-		{
-			printf("noob \n");
-			return ;
-		}
-		if (entry->list)
-			// read_list(entry->list);
+		tmp = entry->list;
+		read_list(entry->list);
 		execute(entry, env_copy);
 		free(entry->line);
 		while (entry->list)
 		{
+			tmp = entry->list;
 			entry->list = entry->list->next;
+			free(tmp->content);
+			free(tmp);
 		}
 	}
 }
@@ -47,13 +44,14 @@ int	main(int ac, char **ag, char **envp)
 {
 	t_env	*env_copy;
 	env_copy = create_copy_env(envp);
-	t_input	entry;
+	t_input	*entry;
 
+	entry = NULL;
 	(void)ac;
 	(void)ag;
-	init_input(&entry);
+	init_input(entry);
 	init_signal();
 	env_copy = create_copy_env(envp);
-	minishell_loop(&entry, env_copy);
+	minishell_loop(entry, env_copy);
 	return (0);
 }

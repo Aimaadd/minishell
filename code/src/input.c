@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/12 18:48:28 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/12 19:04:35 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_list	*input_to_list(t_input *entry)
 	{
 		new = ft_lstnew(splinput[i]);
 		printf("new -> content = %s\n", new->content);
-		ft_lstadd_back(&entry->list, new);
+		ft_lstadd_back(entry->list, new);
 		i++;
 	}
 	read_list(entry->list);

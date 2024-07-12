@@ -6,19 +6,17 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:54:11 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/12 17:33:06 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/12 20:12:13 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-char	*prompt_handler(void)
+void	prompt_handler(t_input *entry)
 {
-	char	*line;
-
-	line = readline("minishell$ ");
-	add_history(line);
-	if (line == NULL)
+	entry->line = readline("minishell$ ");
+	printf("TESO OU?");
+	add_history(entry->line);
+	if (entry->line == NULL)
 		exit(1);
-	return (line);
 }
