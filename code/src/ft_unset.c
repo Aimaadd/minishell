@@ -7,7 +7,8 @@ static void	delete_variable(char *variable, t_env *copy_env)
 	t_env	*variable_after;
 	int		len;
 	int		check;
-
+	
+	variable_after = 0;
 	tmp = copy_env;
 	while (tmp)
 	{

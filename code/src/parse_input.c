@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:40:08 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/10 16:44:34 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:03:01 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ int	pipe_or_redirection(char *line)
 
 //This function will split whats before and after the pipe or redirection into
 // three strings and return the one in the middle
-static void copy_chars(char *str, char *line, int *i, int *j)
-{
-    while (line[*i] != '|' && line[*i] != '>' && line[*i] != '<' && line[*i])
-    {
-        str[*j] = line[*i];
-        (*i)++;
-        (*j)++;
-    }
-}
+// static void copy_chars(char *str, char *line, int *i, int *j)
+// {
+//     while (line[*i] != '|' && line[*i] != '>' && line[*i] != '<' && line[*i])
+//     {
+//         str[*j] = line[*i];
+//         (*i)++;
+//         (*j)++;
+//     }
+// }
 
 char **split_pipe_redir(char *line)
 {
@@ -92,3 +92,36 @@ char *between_quotes(char *line)
     return (str);
 }
 
+char *to_expand(t_list *input)
+{
+    char *str;
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    str = malloc(sizeof(char) * (ft_strlen(input->content) + 1));
+    if (!str)
+        return (NULL);
+    while (input->content[i])
+    {
+        if (input->content[i] == '$')
+        {
+            i++;
+            while (input->content[i] && input->content[i] != ' ')
+            {
+                str[j] = input->content[i];
+                i++;
+                j++;
+            }
+        }
+        else
+        {
+            str[j] = input->content[i];
+            i++;
+            j++;
+        }
+    }
+    str[j] = '\0';
+    return str;
+}

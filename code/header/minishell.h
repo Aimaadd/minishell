@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/09 16:30:04 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/11 19:30:52 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ enum	e_type
 	OUTFILE = 6,
 	INFILE = 7,
 	FOLDER = 8,
-	file = 9
+	ENV = 9
 };
 
 typedef struct s_env
@@ -78,6 +78,12 @@ int	analyzing_list(t_list *list);
 // input.c
 void	free_list(t_list *list);
 char	*catch_input(char *prompt);
+
+// parse_input.c
+int		pipe_or_redirection(char *line);
+char	**split_pipe_redir(char *line);
+char	*between_quotes(char *line);
+char	*to_expand(t_list *input);
 
 // ft_echo.c
 void	ft_echo(char *str, int parametre, int fd);

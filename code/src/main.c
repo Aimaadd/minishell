@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/10 15:28:53 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/12 14:00:42 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	minishell_loop(t_input *entry, t_env *env_copy)
 
 int	main(int ac, char **ag, char **envp)
 {
+	(void)ac;
+	(void)ag;
 	t_env	*env_copy;
 	env_copy = create_copy_env(envp);
 	t_input	entry;
