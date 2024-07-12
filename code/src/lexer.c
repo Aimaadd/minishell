@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/03 14:59:52 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/11 19:30:37 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	read_type(char *content)
 		return (PIPE);
 	else if (!ft_strncmp(content, ">", ft_strlen(content)))
 		return (REDIRECTION);
+    else if (!ft_strncmp(content, "$", 1))
+        return (ENV);
 	else if (!is_parameter(content))
 		return (PARAMETER);
 	else if (!ft_strncmp(content, " ", ft_strlen(content)))
@@ -40,6 +42,11 @@ int	read_list(t_list *list)
 		list->type = read_type(list->content);
         if (list->type == PIPE)
             printf("amount of pipes : %d\n", pipe_counter++);
+        if (list->type == ENV)
+        {
+            to_expand(list);
+            printf("content : %s , type : %d\n", list->content, list->type);
+        }
 		printf("content : %s | type : %d\n",list->content, list->type);
 		list = list->next;
 	}

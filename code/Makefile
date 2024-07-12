@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/06/27 09:26:29 by abentaye         ###   ########.fr        #
+#    Updated: 2024/07/12 13:59:50 by abentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ O = "\033[38;5;214m"
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -fsanitize=address -g #-Werror
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 LIBFT = ./libft/
 LIBFTA = ./libft/libft.a
@@ -39,6 +39,7 @@ SRCS =  ./src/main.c \
 		./src/execute.c \
 		./src/prompt_handling.c \
 		./src/sig_handler.c \
+		./src/parse_input.c \
 
 OBJS= $(SRCS:.c=.o)
 
