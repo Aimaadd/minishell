@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/11 14:42:32 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/12 18:48:28 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,19 @@ t_list	*input_to_list(t_input *entry)
 {
 	char	**splinput;
 	int		i;
-	
+	t_list	*new;
+
 	splinput = ft_split(entry->line, ' ');
 	i = 0;
 	// PARSE THE INPUT AND ADD IT TO THE LIST
 	while (splinput[i])
 	{
-		ft_lstadd_back(&entry->list, ft_lstnew(splinput[i]));
+		new = ft_lstnew(splinput[i]);
+		printf("new -> content = %s\n", new->content);
+		ft_lstadd_back(&entry->list, new);
 		i++;
 	}
+	read_list(entry->list);
 	free(splinput);
 	return (entry->list);
 }
