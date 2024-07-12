@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:40:08 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/01 08:58:58 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/10 16:44:34 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,36 +92,3 @@ char *between_quotes(char *line)
     return (str);
 }
 
-// int main (int argc, char **argv)
-// {
-//     char *test;
-
-//     test = "test\"un truc bizarre";
-//     between_quotes(argv[1]);
-//     // print the split string
-//     printf("%s\n", split_pipe_redir(argv[1]));
-//     printf("%s\n", argv[1]);
-// }
-
-int main (int argc, char **argv)
-{
-    char **split_result;
-    int i;
-
-    i = 0;
-    split_result = split_pipe_redir(argv[1]);
-
-    if (split_result)
-    {
-        while (split_result[i])
-        {
-            ft_putstr_fd(split_result[i], 1);
-            ft_putchar_fd('\n', 1);
-            free(split_result[i]);
-            i++;
-        }
-        free(split_result);
-    }
-
-    return 0;
-}

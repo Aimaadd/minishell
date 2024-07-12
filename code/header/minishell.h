@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/31 15:17:39 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:30:04 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ enum	e_type
 	PIPE = 5,
 	OUTFILE = 6,
 	INFILE = 7,
+	FOLDER = 8,
+	file = 9
 };
 
 typedef struct s_env
@@ -62,13 +64,19 @@ typedef struct s_cmd
 	char **args;
 }	t_cmd;
 
+//main.c 
+void	minishell_loop(t_input *entry, t_env *env_copy);
+// execute.c
+void	run_cmd(t_cmd *cmd, t_env *env_copy);
+
 //init_input.c
 void	ft_lstadd_back(t_list **stack, t_list *new);
 t_list	*ft_lstnew(char *content);
 t_list	*ft_lstlast(t_list *head);
+int	analyzing_list(t_list *list);
 
 // input.c
-void	filling_loop(t_input *entry);
+void	free_list(t_list *list);
 char	*catch_input(char *prompt);
 
 // ft_echo.c
@@ -106,14 +114,21 @@ t_list	*input_to_list(t_input *entry);
 char	*catch_input(char *prompt);
 char	*prompt(void);
 
+// prompt_handling.c
+char	*prompt_handler(void);
+
 // lexer.c
 int		read_list(t_list *list);
 int		read_type(char *content);
-
+int		is_parameter(const char *str);
 
 //init.c
 void	init_input(t_input *entry);
 
 // execute.c
 void	execute(t_input *entry, t_env *env_copy);
+
+// sig_handler.c
+void	init_signal(void);
+
 #endif

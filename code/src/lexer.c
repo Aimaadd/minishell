@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/31 15:33:38 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:59:52 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,51 @@
 //This function will read the content of a node and return the type of the content
 int	read_type(char *content)
 {
-	if (!ft_strncmp(content, "|", ft_strlen(content)))
+    if (!ft_strncmp(content, "|", ft_strlen(content)))
 		return (PIPE);
 	else if (!ft_strncmp(content, ">", ft_strlen(content)))
 		return (REDIRECTION);
-	else if (!ft_strncmp(content, "$", ft_strlen(content)))
+	else if (!is_parameter(content))
 		return (PARAMETER);
 	else if (!ft_strncmp(content, " ", ft_strlen(content)))
 		return (ARGUMENT);
+    else 
+        return (BINARY);
 	return (0);
 }
-
 
 // this function will read the content of the list and give the type of each
 // element in the list 
 int	read_list(t_list *list)
 {
+    int pipe_counter;
+
+    pipe_counter = 1;
 	while (list)
 	{	
 		list->type = read_type(list->content);
+        if (list->type == PIPE)
+            printf("amount of pipes : %d\n", pipe_counter++);
 		printf("content : %s | type : %d\n",list->content, list->type);
 		list = list->next;
 	}
-	return (0);
+	return (pipe_counter);
+}
+
+int	is_parameter(const char *str)
+{
+    int	i;
+
+    if (str[0] == '-' && str[1])
+    {
+        i = 1;
+        while (str[i])
+        {
+            if (str[i] == ' ')
+                return (1);
+            i++;
+        }
+        return (0);
+    }
+    return (1);
 }

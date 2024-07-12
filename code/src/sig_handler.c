@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   sig_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 13:32:50 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/10 16:07:48 by abentaye         ###   ########.fr       */
+/*   Created: 2024/06/14 11:16:36 by abentaye          #+#    #+#             */
+/*   Updated: 2024/07/09 16:37:47 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../header/minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	signal_handler(int signum)
 {
-	char	*s;
-	size_t	len1;
-	size_t	len2;
-	size_t	lentot;
+	if (signum == SIGINT)
+	{
+		write(1, "get cancer\n", 11);
+		exit(1);
+	}
+	else if (signum == SIGQUIT)
+		return ;
+	else
+		exit(1);
+}
 
-	if (!s1 || !s2)
-		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	lentot = len1 + len2;
-	s = malloc (sizeof(char) * (len1 + len2 + 1));
-	if (!s)
-		return (NULL);
-	ft_memcpy(s, s1, len1);
-	ft_memcpy(s + len1, s2, len2);
-	*(s + lentot) = '\0';
-	return (s);
+void init_signal(void)
+{
+	sigset_t	set;
+	sigemptyset(&set);
+	signal(SIGQUIT, signal_handler);
+	signal(SIGINT, signal_handler);
+	signal(SIGTSTP, signal_handler);
+	
 }

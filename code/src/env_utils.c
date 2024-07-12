@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmeerber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:20:25 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/05/21 15:34:54 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/06/12 11:02:55 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		check_size(char *s1, char *s2)
 char	*ft_getenv(t_env *env, char *name_var)
 {
 	t_env	*temp;
-	char	*value;
+	// char	*value;
 	int		check;
 	int		len;
 
@@ -80,27 +80,69 @@ void	update_value_env(char *value, char *variable, t_env *env)
 	return ;
 }
 
-char **conv_tab_env(t_env *env_copy)
-{
-	char **tab_env;
-	t_env	*tmp;
-	int	x;
+// char **conv_tab_env(t_env *env_copy)
+// {
+// 	char **tab_env;
+// 	t_env	*tmp;
+// 	int	x;
 
-	x = 0;
-	tmp = env_copy;
-	while (tmp)
-	{
-		x++;
-		tmp = tmp->next;
-	}
-	tab_env = malloc(sizeof(char *) * (x + 1));
-	tmp = env_copy;
-	x = 0;
-	while (tmp)
-	{
-		tab_env[x] = ft_strjoin(tmp->variable, tmp->value);
-		x++;
-		tmp = tmp->next;
-	}
-	return (tab_env);
+// 	x = 0;
+// 	tmp = env_copy;
+// 	while (tmp)
+// 	{
+// 		x++;
+// 		tmp = tmp->next;
+// 	}
+// 	tab_env = malloc(sizeof(char *) * (x + 1));
+// 	tmp = env_copy;
+// 	x = 0;
+// 	while (tmp)
+// 	{
+// 		tab_env[x] = ft_strjoin(tmp->variable, tmp->value);
+// 		x++;
+// 		tmp = tmp->next;
+// 	}
+// 	return (tab_env);
+// }
+
+static void	free_tab(char **tab)
+{
+    int	i;
+
+    i = 0;
+    while (tab[i])
+    {
+        free(tab[i]);
+        i++;
+    }
+    free(tab);
+}
+
+char	**conv_tab_env(t_env *env_copy)
+{
+    char	**tab_env;
+    t_env	*tmp;
+    int		x;
+
+    x = 0;
+    tmp = env_copy;
+    while (tmp)
+    {
+        x++;
+        tmp = tmp->next;
+    }
+    if (!(tab_env = malloc(sizeof(char *) * (x + 1))))
+        return (NULL);
+    x = 0;
+    tmp = env_copy;
+    while (tmp)
+    {
+        tab_env[x] = ft_strjoin(ft_strjoin(tmp->variable, "="), tmp->value);
+        if (!tab_env[x])
+            return (free_tab(tab_env), NULL);
+        x++;
+        tmp = tmp->next;
+    }
+    tab_env[x] = NULL;
+    return (tab_env);
 }

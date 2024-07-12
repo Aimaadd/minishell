@@ -1,34 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 13:32:50 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/10 16:07:48 by abentaye         ###   ########.fr       */
+/*   Created: 2024/06/12 15:45:40 by abentaye          #+#    #+#             */
+/*   Updated: 2024/06/13 10:24:26 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../header/minishell.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+//need a function to check all the fds
+
+int	check_if_fd(void)
 {
-	char	*s;
-	size_t	len1;
-	size_t	len2;
-	size_t	lentot;
+		
 
-	if (!s1 || !s2)
-		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	lentot = len1 + len2;
-	s = malloc (sizeof(char) * (len1 + len2 + 1));
-	if (!s)
-		return (NULL);
-	ft_memcpy(s, s1, len1);
-	ft_memcpy(s + len1, s2, len2);
-	*(s + lentot) = '\0';
-	return (s);
+pid_t	set_fork(void)
+{
+  pid_t pid;
+
+  pid = fork();
+  if (pid < 0)
+  {  
+    perror("Fork");
+    exit (1);
+  }
+// if (pid == 0)
+    printf("child pid = 0 : %d\n", getpid());
+}
+
+void	exec_pipe(void)
+{
+	int	fd[2];
+
 }

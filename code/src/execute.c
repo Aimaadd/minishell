@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
+/*   Updated: 2024/06/17 11:29:36 by abentaye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/minishell.h"
 
 /*int	add_parametre(t_list *input, t_cmd *command)
@@ -69,10 +81,29 @@ static char *find_binary(char *binary, char *path)
 	return (NULL);
 }
 
-static void run_cmd(t_cmd *cmd, t_env *env_copy)
+int	fork_exec(t_cmd *cmd, t_env *env_copy)
+{
+	pid_t	pid;
+	int		status;
+
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("fork");
+		return (1);
+	}
+	if (pid == 0)
+	{
+		execve(cmd->args[0], cmd->args, cmd->env_copy);
+		exit(0);
+	}
+	waitpid(pid, &status, 0);
+	return (0);
+}
+
+void run_cmd(t_cmd *cmd, t_env *env_copy)
 {
 	char *path;
-	int	x = 0;
 
 	path = ft_getenv(env_copy, "PATH");
 	if (!path)
@@ -80,7 +111,9 @@ static void run_cmd(t_cmd *cmd, t_env *env_copy)
 	cmd->args[0] = find_binary(cmd->args[0], path);
 	if (!cmd->args[0])
 		return ;
-	execve(cmd->args[0], cmd->args, cmd->env_copy);
+	fork_exec(cmd, env_copy);
+	// if (execve(cmd->args[0], cmd->args, cmd->env_copy))
+	// 	perror("execve");
 }
 
 static int	get_entry(t_input *entry, t_env *env_copy, t_cmd *cmd)
@@ -117,12 +150,10 @@ void	execute(t_input *entry, t_env *env_copy)
 	t_list	*input;
 
 	cmd = malloc(sizeof(t_cmd));
+	if (!cmd)
+		return ;
 	init_cmd(cmd);
 	get_entry(entry, env_copy, cmd);
-	//print_args(cmd);
-	/*entry->list->type = 1;
-	entry->list->next->type = 2;
-	input = entry->list;*/
 	run_cmd(cmd, env_copy);
 	free(cmd);
 }

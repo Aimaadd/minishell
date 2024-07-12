@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 13:32:50 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/10 16:07:48 by abentaye         ###   ########.fr       */
+/*   Created: 2024/06/10 11:37:10 by abentaye          #+#    #+#             */
+/*   Updated: 2024/06/10 11:37:18 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_isspace(char c)
 {
-	char	*s;
-	size_t	len1;
-	size_t	len2;
-	size_t	lentot;
-
-	if (!s1 || !s2)
-		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	lentot = len1 + len2;
-	s = malloc (sizeof(char) * (len1 + len2 + 1));
-	if (!s)
-		return (NULL);
-	ft_memcpy(s, s1, len1);
-	ft_memcpy(s + len1, s2, len2);
-	*(s + lentot) = '\0';
-	return (s);
+    if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
+        || c == '\r')
+        return (1);
+    return (0);
 }

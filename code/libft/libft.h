@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 21:58:26 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/01 08:55:56 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:38:35 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 char    *ft_strpbrk(const char *s1, const char *s2);
+int     ft_isspace(char c);
 
 #endif
