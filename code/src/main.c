@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/12 20:13:02 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/13 16:23:23 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,13 @@
 void	minishell_loop(t_input *entry, t_env *env_copy)
 {
 	t_list	*tmp;
-	char *temp;
+	char	*line = NULL;
+
 	while (1)
 	{
-		prompt_handler(entry);
-		printf("entry->line : %s \n", entry->line);
-		temp = entry->line;
-		free (entry->line);
-		entry->line = temp;
-		if (!entry->line)
-			continue ;
-		input_to_list(entry);
+		line = prompt_handler(line);
+		printf("line = %s", line);
+		input_to_list(entry, line);
 		tmp = entry->list;
 		read_list(entry->list);
 		execute(entry, env_copy);
@@ -43,13 +39,13 @@ void	minishell_loop(t_input *entry, t_env *env_copy)
 int	main(int ac, char **ag, char **envp)
 {
 	t_env	*env_copy;
-	env_copy = create_copy_env(envp);
 	t_input	*entry;
 
+	env_copy = create_copy_env(envp);
 	entry = NULL;
 	(void)ac;
 	(void)ag;
-	init_input(entry);
+	entry = init_input();
 	init_signal();
 	env_copy = create_copy_env(envp);
 	minishell_loop(entry, env_copy);

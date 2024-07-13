@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/07/12 20:13:17 by abentaye         ###   ########.fr        #
+#    Updated: 2024/07/13 15:29:56 by abentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ O = "\033[38;5;214m"
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 RM = rm -f
 READLIB = $(HOME)/.brew/opt/readline/lib
 READINCL = $(HOME)/.brew/opt/readline/include
