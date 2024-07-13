@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/13 16:24:07 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/13 18:09:49 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ typedef struct s_input
 
 typedef struct s_cmd
 {
-	char **env_copy;
-	char **args;
+	char 	**env_copy;
+	char 	**args;
+	int		size_list;
 }	t_cmd;
 
 //main.c 
@@ -136,5 +137,9 @@ void	execute(t_input *entry, t_env *env_copy);
 
 // sig_handler.c
 void	init_signal(void);
+
+// exec_utils.c
+int		get_size_list(t_list *list);
+void	create_args(t_cmd *cmd, t_list	*list);
 
 #endif
