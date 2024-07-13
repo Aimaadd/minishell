@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:23:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/13 16:25:54 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/13 19:52:26 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,27 @@
 
 t_input *init_input(void)
 {
-    t_input *entry = malloc(sizeof(t_input));
-    if (!entry)
-        return NULL;
-    entry->index = 0;
-    entry->line = NULL;
-    entry->env = NULL;
-    entry->list = NULL;
-    return entry;
+	t_input *entry = malloc(sizeof(t_input));
+	if (!entry)
+		return NULL;
+	entry->index = 0;
+	entry->line = NULL;
+	entry->env = NULL;
+	entry->list = NULL;
+	return entry;
 }
 
-t_list	*ft_lstnew(char *content)
+t_list *ft_lstnew(void *content)
 {
-	t_list	*new;
-
-	new = (t_list *) malloc(sizeof(*new));
-	if (!new)
-		return (NULL);
-	new->content = content;
-	new->type = 0;
-	new->next = NULL;
-	return (new);
+    t_list *new_node = (t_list *)malloc(sizeof(t_list));
+    if (!new_node)
+        return NULL;
+    new_node->content = content;
+    new_node->next = NULL;
+	new_node->type = 0;
+    return new_node;
 }
+
 
 // Function to return the last element of the list
 t_list *ft_lstlast(t_list *head)
@@ -52,20 +51,54 @@ t_list *ft_lstlast(t_list *head)
 	return (tmp);
 }
 
-void	ft_lstadd_back(t_list *stack, t_list *new)
+void ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*tmp;
+    t_list *current;
 
-	if (stack == NULL)
-		stack = new;
-	else
-	{
-		tmp = stack;
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-	new->next = NULL;
-	printf("Added element with content: %s\n", new->content);
+    if (!lst || !new)
+        return;
+
+    if (*lst == NULL)
+    {
+        *lst = new;
+    }
+    else
+    {
+        current = *lst;
+        while (current->next != NULL)
+        {
+            current = current->next;
+        }
+        current->next = new;
+    }
 }
+
+t_list *array_to_list(char **array)
+{
+    t_list *list = NULL;
+    t_list *new_node;
+    int i = 0;
+
+    while (array[i] != NULL)
+    {
+        new_node = ft_lstnew(array[i]);
+        if (!new_node)
+        {
+            // En cas d'erreur, libérer la mémoire allouée précédemment
+            t_list *current = list;
+            t_list *next;
+            while (current != NULL)
+            {
+                next = current->next;
+                free(current);
+                current = next;
+            }
+            return NULL;
+        }
+        ft_lstadd_back(&list, new_node);
+        i++;
+    }
+    return list;
+}
+
 
