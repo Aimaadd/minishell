@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/13 18:09:49 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/07/14 01:51:19 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,11 @@ void	minishell_loop(t_input *entry, t_env *env_copy);
 void	run_cmd(t_cmd *cmd, t_env *env_copy);
 
 //init_input.c
-void ft_lstadd_back(t_list *stack, t_list *new);
-t_list	*ft_lstnew(char *content);
+void ft_lstadd_back(t_list **lst, t_list *new);
+t_list *ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *head);
 int	analyzing_list(t_list *list);
+t_list *array_to_list(char **array);
 
 // input.c
 void	free_list(t_list *list);
@@ -115,7 +116,7 @@ void    ft_unset(char *variable, t_env **copy_env);
 // ft_env.c
 void	ft_env(t_env *env);
 char	*catch_input(char *prompt);
-t_list	*input_to_list(t_input *entry, char *line);
+t_list	*input_to_list(t_input *entry);
 
 // prompt.c
 char	*catch_input(char *prompt);
