@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/13 16:25:15 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/13 18:10:04 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 		return ;
 }*/
 
-void	init_cmd(t_cmd *cmd)
+/*void	init_cmd(t_cmd *cmd)
 {
 	cmd->env_copy = NULL;
 	cmd->args = NULL;
@@ -157,4 +157,38 @@ void	execute(t_input *entry, t_env *env_copy)
 	get_entry(entry, env_copy, cmd);
 	run_cmd(cmd, env_copy);
 	free(cmd);
+}*/
+
+void	init_cmd(t_cmd *cmd)
+{
+	cmd->env_copy = NULL;
+	cmd->args = NULL;
+	cmd->size_list = 0;
+}
+
+int		setup_cmd(t_cmd *cmd, t_input *entry, t_env *env_copy)
+{
+	cmd->env_copy = conv_tab_env(env_copy);
+	if (!cmd->env_copy)
+		return (1);
+	cmd->size_list = get_size_list(entry->list);	
+	printf("size list : %d\n", cmd->size_list);
+	cmd->args = malloc(sizeof(char *) * (cmd->size_list + 1));
+	if (!cmd->args)
+		return (1);
+	create_args(cmd, entry->list);
+	return (0);
+}
+
+void	execute(t_input *entry, t_env *env_copy)
+{
+	t_cmd	*cmd;
+
+	printf("execute function\n");
+	cmd = malloc(sizeof(t_cmd));
+	if (!cmd)
+		return ;
+	init_cmd(cmd);
+	if (setup_cmd(cmd, entry, env_copy) == 1)
+		return ;
 }
