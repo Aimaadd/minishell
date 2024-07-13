@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/11 19:30:52 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/13 16:24:07 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	minishell_loop(t_input *entry, t_env *env_copy);
 void	run_cmd(t_cmd *cmd, t_env *env_copy);
 
 //init_input.c
-void	ft_lstadd_back(t_list **stack, t_list *new);
+void ft_lstadd_back(t_list *stack, t_list *new);
 t_list	*ft_lstnew(char *content);
 t_list	*ft_lstlast(t_list *head);
 int	analyzing_list(t_list *list);
@@ -114,14 +114,14 @@ void    ft_unset(char *variable, t_env **copy_env);
 // ft_env.c
 void	ft_env(t_env *env);
 char	*catch_input(char *prompt);
-t_list	*input_to_list(t_input *entry);
+t_list	*input_to_list(t_input *entry, char *line);
 
 // prompt.c
 char	*catch_input(char *prompt);
 char	*prompt(void);
 
 // prompt_handling.c
-char	*prompt_handler(void);
+char	*prompt_handler(char *entry);
 
 // lexer.c
 int		read_list(t_list *list);
@@ -129,7 +129,7 @@ int		read_type(char *content);
 int		is_parameter(const char *str);
 
 //init.c
-void	init_input(t_input *entry);
+t_input	*init_input(void);
 
 // execute.c
 void	execute(t_input *entry, t_env *env_copy);

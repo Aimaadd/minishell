@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/11 14:42:32 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/13 16:24:01 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,28 @@ void	*new_node(t_list **list, char *content)
 }
 
 //this function will turn a str into a list
-t_list	*input_to_list(t_input *entry)
+t_list	*input_to_list(t_input *entry, char *line)
 {
 	char	**splinput;
-	int		i;
-	
-	splinput = ft_split(entry->line, ' ');
+	int		i = 0;
+	t_list	*new;
+
+	splinput = ft_split(line, ' ');
+	while (splinput[i])
+	{
+		printf("splinput = %s\n", splinput[i]);
+		i++;
+	}
 	i = 0;
 	// PARSE THE INPUT AND ADD IT TO THE LIST
 	while (splinput[i])
 	{
-		ft_lstadd_back(&entry->list, ft_lstnew(splinput[i]));
+		new = ft_lstnew(splinput[i]);
+		printf("new -> content = %s\n", new->content);
+		ft_lstadd_back(entry->list, new);
 		i++;
 	}
+	read_list(entry->list);
 	free(splinput);
 	return (entry->list);
 }
