@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/15 17:55:39 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/15 19:14:57 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,16 @@ void	minishell_loop(t_input *entry, t_env *env_copy)
 		if (read_list(entry->list) == ERROR_LOOP)
 			minishell_loop(entry, env_copy);
 		//in execute(entry, env_copy) : signal_assignement ($?)
-		execute(entry, env_copy);
+		entry->signal = execute(entry, env_copy);
 		free(entry->line);
 		while (entry->list)
 		{
 			tmp = entry->list;
 			entry->list = entry->list->next;
-			free(tmp->content);
+			while (tmp)
+			{
+				tmp = tmp->next;
+			}
 			free(tmp);
 		}
 	}
@@ -47,7 +50,7 @@ int	main(int ac, char **ag, char **envp)
 	(void)ac;
 	(void)ag;
 	entry = init_input();
-	sa.sa_handler = init_signal();
+	sa.sa_handler = init_signal(entry);
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	env_copy = create_copy_env(envp);

@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/15 17:54:27 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/15 19:10:04 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,12 @@ typedef struct s_input
 
 typedef struct s_cmd
 {
-	char	**env_copy;
-	char	**args;
+	t_env	*lst_env;
+	char 	**env_copy;
+	char 	**args;
+	int		size_list;
+	int		numbers_pipe;
 }	t_cmd;
-
 //main.c 
 void	minishell_loop(t_input *entry, t_env *env_copy);
 
@@ -134,10 +136,19 @@ int		is_parameter(const char *str);
 t_input	*init_input(void);
 
 // execute.c
-void	execute(t_input *entry, t_env *env_copy);
-int		run_cmd(t_cmd *cmd, t_env *env_copy);
+int		execute(t_input *entry, t_env *env_copy);
+int		setup_cmd(t_cmd *cmd, t_input *entry, t_env *env_copy);
+int		run_cmd(t_cmd *cmd);
+
+// exec_utils.c
+int		check_if_pipe(t_list *list);
+void	create_args(t_cmd *cmd, t_list	*list);
+int		get_size_list(t_list *list);
+
+// run_command.c
+int		simple_command(t_cmd *cmd);
 
 // sig_handler.c
-void	*init_signal(void);
+void	*init_signal(t_input *entry);
 
 #endif

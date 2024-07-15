@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/14 20:15:59 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/15 18:37:21 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,29 @@ void	print_args(t_cmd *cmd)
 	return ;
 }
 
-static char *find_binary(char *binary, char *path)
-{
-	int		x;
-	int		check;
-	char	*tmp;
-	char	**tab_path;
+// static char *find_binary(char *binary, char *path)
+// {
+// 	int		x;
+// 	int		check;
+// 	char	*tmp;
+// 	char	**tab_path;
 
-	binary = ft_strjoin("/", binary);
-	tab_path = ft_split(path, ':');
-	if (!tab_path)
-		return (NULL);
-	x = 0;
-	while (tab_path[x])
-	{
-		tmp = ft_strjoin(tab_path[x], binary);
-		check = access(tmp, X_OK);
-		if (check == 0)
-			return (tmp);
-		free(tmp);
-		x++;
-	}
-	return (NULL);
-}
+// 	binary = ft_strjoin("/", binary);
+// 	tab_path = ft_split(path, ':');
+// 	if (!tab_path)
+// 		return (NULL);
+// 	x = 0;
+// 	while (tab_path[x])
+// 	{
+// 		tmp = ft_strjoin(tab_path[x], binary);
+// 		check = access(tmp, X_OK);
+// 		if (check == 0)
+// 			return (tmp);
+// 		free(tmp);
+// 		x++;
+// 	}
+// 	return (NULL);
+// }
 
 int	fork_exec(t_cmd *cmd, t_env *env_copy)
 {
@@ -102,63 +102,67 @@ int	fork_exec(t_cmd *cmd, t_env *env_copy)
 	return (0);
 }
 
-int	run_cmd(t_cmd *cmd, t_env *env_copy)
+// static int	get_entry(t_input *entry, t_env *env_copy, t_cmd *cmd)
+// {
+// 	t_list	*tmp;
+// 	int		x;
+
+// 	cmd->env_copy = conv_tab_env(env_copy);
+// 	tmp = entry->list;
+// 	x = 0;
+// 	while (tmp)
+// 	{
+// 		x++;
+// 		tmp = tmp->next;
+// 	}
+// 	cmd->args = malloc(sizeof(char *) * (x + 1));
+// 	if (!cmd->args)
+// 		return (1);
+// 	x = 0;
+// 	tmp = entry->list;
+// 	while (tmp)
+// 	{
+// 		cmd->args[x] = tmp->content;
+// 		x++;
+// 		tmp = tmp->next;
+// 	}
+// 	cmd->args[x] = NULL;
+// 	return (0);
+// }
+
+int		setup_cmd(t_cmd *cmd, t_input *entry, t_env *env_copy)
 {
-	char	*path;
-
-	path = ft_getenv(env_copy, "PATH");
-	if (!path)
-		return (1);
-	cmd->args[0] = find_binary(cmd->args[0], path);
-	if (!cmd->args[0])
-		return (1);
-	if (fork_exec(cmd, env_copy) == 0)
-		return (0);
-	// if (execve(cmd->args[0], cmd->args, cmd->env_copy))
-	// 	perror("execve");
-	return (0);
-}
-
-static int	get_entry(t_input *entry, t_env *env_copy, t_cmd *cmd)
-{
-	t_list	*tmp;
-	int		x;
-
 	cmd->env_copy = conv_tab_env(env_copy);
-	tmp = entry->list;
-	x = 0;
-	while (tmp)
-	{
-		x++;
-		tmp = tmp->next;
-	}
-	cmd->args = malloc(sizeof(char *) * (x + 1));
+	cmd->lst_env = env_copy;
+	if (!cmd->env_copy)
+		return (1);
+	cmd->size_list = get_size_list(entry->list);	
+	cmd->args = malloc(sizeof(char *) * (cmd->size_list + 1));
 	if (!cmd->args)
 		return (1);
-	x = 0;
-	tmp = entry->list;
-	while (tmp)
-	{
-		cmd->args[x] = tmp->content;
-		x++;
-		tmp = tmp->next;
-	}
-	cmd->args[x] = NULL;
+	create_args(cmd, entry->list);
+	cmd->numbers_pipe = check_if_pipe(entry->list);
 	return (0);
 }
 
-void	execute(t_input *entry, t_env *env_copy)
+int		run_cmd(t_cmd *cmd)
+{
+	if (cmd->numbers_pipe == 0)
+		simple_command(cmd);
+	return (0);
+}
+
+int	execute(t_input *entry, t_env *env_copy)
 {
 	t_cmd	*cmd;
-	// t_list	*input;
 
 	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
-		return ;
+		return (1);
 	init_cmd(cmd);
-	get_entry(entry, env_copy, cmd);
-	entry->signal = run_cmd(cmd, env_copy);
-	//FLAG
-	// printf("entry->signal = %d\n", entry->signal);
-	free(cmd);
+	if (setup_cmd(cmd, entry, env_copy) == 1)
+		return (1);
+	if (run_cmd(cmd) == 1)
+		return (1);
+	return (0);
 }
