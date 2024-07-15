@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/15 15:57:59 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:22:13 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,11 +169,13 @@ void	init_cmd(t_cmd *cmd)
 	cmd->args = NULL;
 	cmd->size_list = 0;
 	cmd->numbers_pipe = 0;
+	cmd->lst_env = NULL;
 }
 
 int		setup_cmd(t_cmd *cmd, t_input *entry, t_env *env_copy)
 {
 	cmd->env_copy = conv_tab_env(env_copy);
+	cmd->lst_env = env_copy;
 	if (!cmd->env_copy)
 		return (1);
 	cmd->size_list = get_size_list(entry->list);	
@@ -182,26 +184,27 @@ int		setup_cmd(t_cmd *cmd, t_input *entry, t_env *env_copy)
 		return (1);
 	create_args(cmd, entry->list);
 	cmd->numbers_pipe = check_if_pipe(entry->list);
-	printf("numbers of pipe : %d\n", cmd->numbers_pipe);
 	return (0);
 }
 
-int		run_cmd(t_cmd *cmd, t_list *list)
+int		run_cmd(t_cmd *cmd)
 {
-	(void)cmd;
-	(void)list;
+	if (cmd->numbers_pipe == 0)
+		simple_command(cmd);
 	return (0);
 }
 
-void	execute(t_input *entry, t_env *env_copy)
+int		execute(t_input *entry, t_env *env_copy)
 {
 	t_cmd	*cmd;
 
-	printf("execute function\n");
 	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
-		return ;
+		return (1);
 	init_cmd(cmd);
 	if (setup_cmd(cmd, entry, env_copy) == 1)
-		return ;
+		return (1);
+	if (run_cmd(cmd) == 1)
+		return (1);
+	return (0);
 }

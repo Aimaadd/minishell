@@ -41,7 +41,6 @@ int		check_if_pipe(t_list *list)
 	tmp = list;
 	while (tmp)
 	{
-		printf("type = %d\n", tmp->type);
 		if (tmp->type == 5)
 			count++;
 		tmp = tmp->next;	
