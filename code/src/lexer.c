@@ -6,11 +6,40 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/14 18:19:15 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:55:47 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
+
+int	contains_quotes(t_list *list)
+{
+	int	i;
+	int	quotes_counter;
+
+	quotes_counter = 0;
+	while (list)
+	{
+	if (!list->content)
+		return (1);
+		i = 0;
+		while (list->content[i])
+		{
+			if (list->content[i] == '\"' || list->content[i] == '\'')
+			{
+				quotes_counter++;
+			}
+			i++;
+		}
+		list = list->next;
+	}
+	if (quotes_counter % 2 != 0)
+	{
+		printf("syntax error : quotes not closed\n");
+		return (UNCLOSED_QTS);
+	}
+	return (quotes_counter);
+}
 
 //This function will read the content of a node and return the type of the content
 int	read_type(char *content)
@@ -40,8 +69,12 @@ int	read_list(t_list *list)
 	while (list)
 	{
 		list->type = read_type(list->content);
+		if (contains_quotes(list) == UNCLOSED_QTS)
+			return (ERROR_LOOP);
 		if (list->type == PIPE)
+		{
 			printf("amount of pipes : %d\n", pipe_counter++);
+		}
 		if (list->type == ENV)
 		{
 			to_expand(list);
@@ -52,20 +85,6 @@ int	read_list(t_list *list)
 	}
 	return (pipe_counter);
 }
-
-// int read_list(t_list *list)
-// {
-// 	t_list *current;
-	
-// 	current = list;
-// 	while (current)
-// 	{
-// 		printf("%s\n", current->content); 
-// 		current = current->next;
-// 	}
-// 	return (0);
-// }
-
 
 int	is_parameter(const char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/14 20:14:49 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:55:39 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	minishell_loop(t_input *entry, t_env *env_copy)
 	{
 		entry->line = prompt_handler(entry->line);
 		input_to_list(entry);
-		read_list(entry->list);
+		if (read_list(entry->list) == ERROR_LOOP)
+			minishell_loop(entry, env_copy);
 		//in execute(entry, env_copy) : signal_assignement ($?)
 		execute(entry, env_copy);
 		free(entry->line);
