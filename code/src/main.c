@@ -15,6 +15,7 @@
 void	minishell_loop(t_input *entry, t_env *env_copy)
 {
 	t_list	*tmp;
+	int		signal;
 
 	while (1)
 	{
@@ -22,7 +23,7 @@ void	minishell_loop(t_input *entry, t_env *env_copy)
 		input_to_list(entry);
 		read_list(entry->list);
 		//in execute(entry, env_copy) : signal_assignement ($?)
-		execute(entry, env_copy);
+		signal = execute(entry, env_copy);
 		free(entry->line);
 		while (entry->list)
 		{

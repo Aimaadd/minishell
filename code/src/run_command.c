@@ -43,3 +43,28 @@ int		simple_command(t_cmd *cmd)
 	waitpid(pid, &status, 0);
 	return (0);
 }
+
+int		pipe_command(t_cmd *cmd)
+{
+	int		x;
+	int		numbers_command;
+	t_list	*tmp;
+
+	x = 0;
+	tmp = cmd->list;
+	while(numbers_command != cmd->numbers_pipe)
+	{
+		while(tmp->type != PIPE)
+		{
+			x++;
+			tmp = tmp->next;
+		}
+		cmd->args = malloc(sizeof(char *) * (x + 1));
+		if (!cmd->args)
+			return (1);
+		create_args(cmd, cmd->list, x);
+		x++;
+		//free_tab();
+	}
+	return (0);
+}

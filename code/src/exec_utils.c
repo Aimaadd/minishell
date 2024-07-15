@@ -15,14 +15,14 @@ int		get_size_list(t_list *list)
 	return (len);
 }
 
-void	create_args(t_cmd *cmd, t_list	*list)
+void	create_args(t_cmd *cmd, t_list	*list, int x)
 {
 	t_list	*tmp;
 	int		count;
 
 	count = 0;
 	tmp = list;
-	while(tmp)
+	while(tmp && count != x)
 	{
 		cmd->args[count] = tmp->content;
 		count++;

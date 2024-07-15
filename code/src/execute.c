@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/15 16:22:13 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/07/15 20:26:46 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,7 @@ void	init_cmd(t_cmd *cmd)
 	cmd->size_list = 0;
 	cmd->numbers_pipe = 0;
 	cmd->lst_env = NULL;
+	cmd->list = NULL;
 }
 
 int		setup_cmd(t_cmd *cmd, t_input *entry, t_env *env_copy)
@@ -178,12 +179,17 @@ int		setup_cmd(t_cmd *cmd, t_input *entry, t_env *env_copy)
 	cmd->lst_env = env_copy;
 	if (!cmd->env_copy)
 		return (1);
-	cmd->size_list = get_size_list(entry->list);	
-	cmd->args = malloc(sizeof(char *) * (cmd->size_list + 1));
-	if (!cmd->args)
-		return (1);
-	create_args(cmd, entry->list);
+	cmd->size_list = get_size_list(entry->list);
 	cmd->numbers_pipe = check_if_pipe(entry->list);
+	if (cmd->numbers_pipe == 0)
+	{
+		cmd->args = malloc(sizeof(char *) * (cmd->size_list + 1));
+		if (!cmd->args)
+			return (1);
+		create_args(cmd, entry->list, cmd->size_list);
+	}
+	else
+		cmd->list = entry->list;
 	return (0);
 }
 
@@ -191,6 +197,8 @@ int		run_cmd(t_cmd *cmd)
 {
 	if (cmd->numbers_pipe == 0)
 		simple_command(cmd);
+	else
+		pipe_command(cmd);
 	return (0);
 }
 
