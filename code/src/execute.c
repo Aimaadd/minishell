@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/15 15:39:36 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:57:59 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ int	fork_exec(t_cmd *cmd, t_env *env_copy)
 {
 	pid_t	pid;
 	int		status;
-	(void)env_copy;
 
+	(void)env_copy;
 	pid = fork();
 	if (pid == -1)
 	{
@@ -102,19 +102,21 @@ int	fork_exec(t_cmd *cmd, t_env *env_copy)
 	return (0);
 }
 
-void run_cmd(t_cmd *cmd, t_env *env_copy)
+int	run_cmd(t_cmd *cmd, t_env *env_copy)
 {
-	char *path;
+	char	*path;
 
 	path = ft_getenv(env_copy, "PATH");
 	if (!path)
-		return ;
+		return (1);
 	cmd->args[0] = find_binary(cmd->args[0], path);
 	if (!cmd->args[0])
-		return ;
-	fork_exec(cmd, env_copy);
+		return (1);
+	if (fork_exec(cmd, env_copy) == 0)
+		return (0);
 	// if (execve(cmd->args[0], cmd->args, cmd->env_copy))
 	// 	perror("execve");
+	return (0);
 }
 
 static int	get_entry(t_input *entry, t_env *env_copy, t_cmd *cmd)
@@ -155,7 +157,9 @@ void	execute(t_input *entry, t_env *env_copy)
 		return ;
 	init_cmd(cmd);
 	get_entry(entry, env_copy, cmd);
-	run_cmd(cmd, env_copy);
+	entry->signal = run_cmd(cmd, env_copy);
+	//FLAG
+	// printf("entry->signal = %d\n", entry->signal);
 	free(cmd);
 }*/
 

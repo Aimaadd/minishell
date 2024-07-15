@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/15 15:39:07 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:57:35 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+# include "../readline/includes/history.h"
+# include "../readline/includes/readline.h"
 # include <signal.h>
 # include "../libft/libft.h"
 
@@ -37,10 +37,10 @@ enum	e_type
 
 typedef struct s_env
 {
-	char *variable;
-	char *value;
+	char			*variable;
+	char			*value;
 	struct s_env	*next;
-} t_env;
+}	t_env;
 
 typedef struct s_list
 {
@@ -48,35 +48,43 @@ typedef struct s_list
 	int				type;
 	struct s_list	*next;
 	struct s_list	*prev;
-}				t_list;
+}	t_list;
 
 typedef struct s_input
 {
-	t_list	*list;
-	t_env	*env;
-	char	*line;
-	int		index;
-}					t_input;
+	t_list				*list;
+	t_env				*env;
+	char				*line;
+	int					index;
+	int					signal;
+}	t_input;
 
 typedef struct s_cmd
 {
+<<<<<<< HEAD
 	char 	**env_copy;
 	char 	**args;
 	int		size_list;
 	int		numbers_pipe;
+=======
+	char	**env_copy;
+	char	**args;
+>>>>>>> origin/dev
 }	t_cmd;
 
 //main.c 
 void	minishell_loop(t_input *entry, t_env *env_copy);
+<<<<<<< HEAD
 // execute.c
 int		run_cmd(t_cmd *cmd, t_list *list);
+=======
+>>>>>>> origin/dev
 
 //init_input.c
-void ft_lstadd_back(t_list **lst, t_list *new);
-t_list *ft_lstnew(void *content);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *head);
-int	analyzing_list(t_list *list);
-t_list *array_to_list(char **array);
+t_list	*array_to_list(char **array);
 
 // input.c
 void	free_list(t_list *list);
@@ -106,13 +114,13 @@ void	print_env(t_env *env);
 void	ft_cd(char *path, t_env *env);
 
 // ft_pwd.c
-void	ft_pwd();
+void	ft_pwd(void);
 
 // ft_export.c
 void	ft_export(char *input, t_env **copy_env);
 
 // ft_unset.c
-void    ft_unset(char *variable, t_env **copy_env);
+void	ft_unset(char *variable, t_env **copy_env);
 
 // ft_env.c
 void	ft_env(t_env *env);
@@ -136,9 +144,10 @@ t_input	*init_input(void);
 
 // execute.c
 void	execute(t_input *entry, t_env *env_copy);
+int		run_cmd(t_cmd *cmd, t_env *env_copy);
 
 // sig_handler.c
-void	init_signal(void);
+void	*init_signal(void);
 
 // exec_utils.c
 int		get_size_list(t_list *list);
