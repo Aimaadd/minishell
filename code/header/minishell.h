@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/14 01:51:19 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:39:07 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,13 @@ typedef struct s_cmd
 	char 	**env_copy;
 	char 	**args;
 	int		size_list;
+	int		numbers_pipe;
 }	t_cmd;
 
 //main.c 
 void	minishell_loop(t_input *entry, t_env *env_copy);
 // execute.c
-void	run_cmd(t_cmd *cmd, t_env *env_copy);
+int		run_cmd(t_cmd *cmd, t_list *list);
 
 //init_input.c
 void ft_lstadd_back(t_list **lst, t_list *new);
@@ -142,5 +143,6 @@ void	init_signal(void);
 // exec_utils.c
 int		get_size_list(t_list *list);
 void	create_args(t_cmd *cmd, t_list	*list);
+int		check_if_pipe(t_list *list);
 
 #endif
