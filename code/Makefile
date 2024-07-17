@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/07/15 16:10:56 by mmeerber         ###   ########.fr        #
+#    Updated: 2024/07/17 18:08:57 by mmeerber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ O = "\033[38;5;214m"
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 READLIB = $(HOME)/.brew/opt/readline/lib
 READINCL = $(HOME)/.brew/opt/readline/include
@@ -43,8 +43,6 @@ SRCS =  ./src/main.c \
 		./src/prompt_handling.c \
 		./src/sig_handler.c \
 		./src/parse_input.c \
-		./src/exec_utils.c \
-		./src/run_command.c \
 
 OBJS= $(SRCS:.c=.o)
 
