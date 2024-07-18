@@ -24,6 +24,13 @@ t_cmd	*setup_execute(t_input *entry, t_env *env_copy)
 	return (command);
 }
 
+int		run_execute(t_cmd *command)
+{
+	if (!command->next)
+		simple_command(command);
+	return (0);
+}
+
 int		execute(t_input *entry, t_env *env_copy)
 {
 	t_cmd	*command;
@@ -31,6 +38,6 @@ int		execute(t_input *entry, t_env *env_copy)
 	command = setup_execute(entry, env_copy);
 	if (!command)
 		return (1);
-	printf("end execute\n");
+	run_execute(command);
 	return (0);
 }

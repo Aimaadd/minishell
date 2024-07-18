@@ -46,6 +46,7 @@ SRCS =  ./src/main.c \
 		./src/exec_utils.c \
 		./src/create_command.c \
 		./src/init_command.c \
+		./src/command.c \
 
 OBJS= $(SRCS:.c=.o)
 

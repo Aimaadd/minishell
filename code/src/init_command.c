@@ -61,6 +61,7 @@ int		add_args(t_cmd	*command, t_list *list)
 
 int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command)
 {
+	command->env_copy = env_copy;
 	if (add_envp(command, env_copy) == 1)
 		return (1);
 	if (add_args(command, entry->list) == 1)

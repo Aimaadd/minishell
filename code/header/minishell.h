@@ -64,6 +64,7 @@ typedef struct s_cmd
 {
 	char			**args;
 	char			**envp;
+	t_env			*env_copy;
 	struct s_cmd	*next;
 }	t_cmd;
 
@@ -147,5 +148,8 @@ t_cmd	*create_cmd(t_list *list);
 
 // init_command.c
 int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
+
+// command.c
+int     simple_command(t_cmd *command);
 
 #endif

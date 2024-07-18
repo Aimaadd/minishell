@@ -8,6 +8,8 @@ t_cmd	*ft_new_command()
 	if (!new)
 		return (NULL);
     new->envp = NULL;
+	new->args = NULL;
+	new->env_copy = NULL;
 	new->next = NULL;
 	return (new);
 }

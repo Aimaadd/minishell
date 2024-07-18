@@ -34,14 +34,9 @@ int	read_type(char *content)
 // element in the list 
 int	read_list(t_list *list)
 {
-	int	pipe_counter;
-
-	pipe_counter = 1;
 	while (list)
 	{
 		list->type = read_type(list->content);
-		if (list->type == PIPE)
-			printf("amount of pipes : %d\n", pipe_counter++);
 		if (list->type == ENV)
 		{
 			to_expand(list);
@@ -50,7 +45,7 @@ int	read_list(t_list *list)
 		// printf("content : %s | type : %d\n",list->content, list->type);
 		list = list->next;
 	}
-	return (pipe_counter);
+	return (0);
 }
 
 // int read_list(t_list *list)
