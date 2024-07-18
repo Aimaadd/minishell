@@ -49,6 +49,7 @@ int		create_multiple_command(t_cmd **command, int number_command)
 t_cmd	*create_cmd(t_list *list)
 {
 	t_cmd 	*command;
+	t_list	*tmp;
 	int		number_command;
 
 	command = NULL;
@@ -63,6 +64,12 @@ t_cmd	*create_cmd(t_list *list)
 		command  = ft_new_command();
 		if (!command)
 			return (NULL);
+	}
+	tmp = list;
+	while (tmp)
+	{
+		tmp->read = 1;
+		tmp = tmp->next;
 	}
 	return (command);
 }

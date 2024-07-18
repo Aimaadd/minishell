@@ -12,20 +12,25 @@
 
 #include "../header/minishell.h"
 
-
-
-void	setup_execute(t_input *entry, t_env *env_copy)
+t_cmd	*setup_execute(t_input *entry, t_env *env_copy)
 {
 	t_cmd	*command;
 	(void)env_copy;
 	command = create_cmd(entry->list);
+	if (!command)
+		return (NULL);
+	if (init_execute(entry, env_copy, command) == 1)
+		return (NULL);
+	return (command);
 }
 
 int		execute(t_input *entry, t_env *env_copy)
 {
-	(void)entry;
-	(void)env_copy;
+	t_cmd	*command;
 
-	setup_execute(entry, env_copy);
+	command = setup_execute(entry, env_copy);
+	if (!command)
+		return (1);
+	printf("end execute\n");
 	return (0);
 }

@@ -16,15 +16,28 @@ int     get_number_pipe(t_list *list)
     return (count_pipe);
 }
 
-void    free_args(char **args)
+int     get_size_command(t_list *list)
 {
-    int x;
+    int         len_command;
+    t_list      *tmp;
 
-    x = 0;
-    while (args[x])
+    len_command = 0;
+    tmp = list;
+    while(tmp)
     {
-        free(args[x]);
-        x++;
+        if (tmp->read == 0)
+            tmp = tmp->next;
+        else
+        {
+            if (tmp->type == PIPE)
+            {
+                tmp->read = 0;
+                return (len_command);
+            }
+            len_command++;
+            tmp->read = 0;
+            tmp = tmp->next;
+        }
     }
-    free(args);
+    return (len_command);
 }

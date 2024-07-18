@@ -46,6 +46,8 @@ typedef struct s_list
 {
 	char			*content;
 	int				type;
+	int				read;
+	int				second_read;
 	struct s_list	*next;
 	struct s_list	*prev;
 }	t_list;
@@ -60,6 +62,7 @@ typedef struct s_input
 
 typedef struct s_cmd
 {
+	char			**args;
 	char			**envp;
 	struct s_cmd	*next;
 }	t_cmd;
@@ -134,12 +137,15 @@ int		execute(t_input *entry, t_env *env_copy);
 
 // exec_utils.c
 int     get_number_pipe(t_list *list);
-void	free_args(char **args);
+int     get_size_command(t_list *list);
 
 // sig_handler.c
 void	*init_signal(void);
 
 // create_command.c
 t_cmd	*create_cmd(t_list *list);
+
+// init_command.c
+int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
 
 #endif
