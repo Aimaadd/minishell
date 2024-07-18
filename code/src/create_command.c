@@ -1,12 +1,13 @@
 #include "../header/minishell.h"
 
-t_cmd	*ft_new_command(void)
+t_cmd	*ft_new_command()
 {
 	t_cmd	*new;
 
 	new = malloc(sizeof(t_cmd));
 	if (!new)
 		return (NULL);
+    new->envp = NULL;
 	new->next = NULL;
 	return (new);
 }

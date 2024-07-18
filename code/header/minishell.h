@@ -60,6 +60,7 @@ typedef struct s_input
 
 typedef struct s_cmd
 {
+	char			**envp;
 	struct s_cmd	*next;
 }	t_cmd;
 
@@ -130,7 +131,6 @@ t_input	*init_input(void);
 
 // execute.c
 int		execute(t_input *entry, t_env *env_copy);
-int		run_cmd(t_cmd *cmd);
 
 // exec_utils.c
 int     get_number_pipe(t_list *list);
