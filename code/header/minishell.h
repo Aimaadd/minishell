@@ -60,13 +60,7 @@ typedef struct s_input
 
 typedef struct s_cmd
 {
-	t_env	*lst_env;
-	t_list	*list;
-	char 	**env_copy;
-	char 	**args;
-	int		size_list;
-	int		numbers_pipe;
-	int		fd[2];
+	struct s_cmd	*next;
 }	t_cmd;
 
 //main.c 
@@ -138,7 +132,14 @@ t_input	*init_input(void);
 int		execute(t_input *entry, t_env *env_copy);
 int		run_cmd(t_cmd *cmd);
 
+// exec_utils.c
+int     get_number_pipe(t_list *list);
+void	free_args(char **args);
+
 // sig_handler.c
 void	*init_signal(void);
+
+// create_command.c
+t_cmd	*create_cmd(t_list *list);
 
 #endif
