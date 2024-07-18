@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 11:16:36 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/15 19:17:32 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:58:08 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	signal_handler(int signum)
 		rl_redisplay();
 	}
 	else if (signum == SIGQUIT)
-		exit(0);
+		exit(128 + SIGQUIT);
 	else
 		exit(0);
 }
@@ -33,7 +33,7 @@ void	*init_signal(t_input *entry)
 
 	sigemptyset(&set);
 	if (signal(SIGQUIT, signal_handler))
-		entry->signal = 128 + SIGINT;
+		entry->signal = 128 + SIGQUIT;
 	if (signal(SIGINT, signal_handler))
 		entry->signal = 128 + SIGINT;
 	if (signal(SIGTSTP, signal_handler))

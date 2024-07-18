@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/15 19:10:04 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:39:44 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include <fcntl.h>
 # include "../readline/includes/history.h"
 # include "../readline/includes/readline.h"
 # include <signal.h>
@@ -24,6 +25,8 @@
 
 # define ERROR_LOOP -1
 # define UNCLOSED_QTS 1
+
+int	g_status;
 
 enum	e_type
 {
@@ -65,8 +68,8 @@ typedef struct s_input
 typedef struct s_cmd
 {
 	t_env	*lst_env;
-	char 	**env_copy;
-	char 	**args;
+	char	**env_copy;
+	char	**args;
 	int		size_list;
 	int		numbers_pipe;
 }	t_cmd;
@@ -150,5 +153,8 @@ int		simple_command(t_cmd *cmd);
 
 // sig_handler.c
 void	*init_signal(t_input *entry);
+
+// redirection.c
+int		redirection(char *filename);
 
 #endif
