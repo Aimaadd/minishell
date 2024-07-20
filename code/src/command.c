@@ -43,3 +43,63 @@ int     simple_command(t_cmd *command)
     waitpid(pid, &status, 0);
     return (0);
 }
+
+int		multiple_command(t_cmd *command)
+{
+	pid_t	*pid;
+	t_cmd	*tmp_command;
+	int		number_of_command;
+	int		count_command;
+	int		fd[2];
+	int		last_fd;
+
+	number_of_command = get_number_command(command);
+	pid = (pid_t *)malloc(sizeof(pid_t) * number_of_command);
+	if (!pid)
+		return (1);
+	tmp_command = command;
+	count_command = 0;
+	while (tmp_command)
+	{
+		if (tmp_command->next)
+			if (pipe(fd) == -1)
+				return (1);
+		pid[count_command] = fork();
+		if (pid[count_command] == -1)
+			exit (1);
+		if (pid[count_command] == 0)
+		{
+			if (last_fd != -1)
+			{
+				dup2(last_fd, STDIN_FILENO);
+				close(last_fd);
+			}
+			if (tmp_command->next)
+			{
+				close(fd[0]);
+				dup2(fd[1], STDOUT_FILENO);
+				close(fd[1]);
+			}
+			simple_command(tmp_command);
+			exit (0);
+		}
+       if (last_fd != -1)
+		{
+            close(last_fd);
+        }
+        if (tmp_command->next)
+		{
+            close(fd[1]);
+            last_fd = fd[0];
+        }
+		count_command++;
+		tmp_command = tmp_command->next;	
+	}
+	int x = 0;
+	while (x < count_command)
+	{
+		waitpid(pid[x], 0, 0);
+		x++;
+	}
+	return (0);
+}

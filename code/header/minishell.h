@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/17 18:09:17 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/07/20 19:57:10 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,9 @@ int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
 
 // command.c
 int     simple_command(t_cmd *command);
+int		multiple_command(t_cmd *command);
+
+// command_utils.c
+int		get_number_command(t_cmd *cmd);
 
 #endif

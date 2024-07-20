@@ -8,6 +8,7 @@ int		add_envp(t_cmd *command, t_env *env_copy)
 	while (tmp)
 	{
 		tmp->envp = conv_tab_env(env_copy);
+		tmp->env_copy = env_copy;
 		if (!tmp->envp)
 			return (1);
 		tmp = tmp->next;
@@ -61,7 +62,7 @@ int		add_args(t_cmd	*command, t_list *list)
 
 int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command)
 {
-	command->env_copy = env_copy;
+	//command->env_copy = env_copy;
 	if (add_envp(command, env_copy) == 1)
 		return (1);
 	if (add_args(command, entry->list) == 1)

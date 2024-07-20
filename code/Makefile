@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/07/17 18:08:57 by mmeerber         ###   ########.fr        #
+#    Updated: 2024/07/20 19:57:33 by mmeerber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRCS =  ./src/main.c \
 		./src/create_command.c \
 		./src/init_command.c \
 		./src/command.c \
+		./src/command_utils.c \
 
 OBJS= $(SRCS:.c=.o)
 
