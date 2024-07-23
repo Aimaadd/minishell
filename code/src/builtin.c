@@ -40,8 +40,11 @@ int		check_builtin(t_cmd *command)
 		ft_cd(command->args[1], command->env_copy);
 		return (0);
 	}
-	/* if (ft_builtin_compare(is_builtin, "pwd") == 0) */	
-	/* 	ft_pwd(); */
+	if (ft_builtin_compare(is_builtin, "pwd") == 0)
+	{
+		ft_pwd();
+		return (0);
+	}
 	/* if (ft_builtin_compare(is_builtin, "export") == 0) */	
 	/* 	ft_export(); */
 	/* if (ft_builtin_compare(is_builtin, "unset") == 0) */	
