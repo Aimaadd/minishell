@@ -29,6 +29,8 @@ int     simple_command(t_cmd *command)
     pid_t   pid;
     int     status;
 
+	if (check_builtin(command) == 0)
+		return (0);
     command->args[0] = find_binary(command->args[0], ft_getenv(command->env_copy, "PATH"));
     if (!command->args[0])
         return (1);

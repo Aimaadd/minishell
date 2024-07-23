@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/20 19:57:10 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:04:07 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*between_quotes(char *line);
 char	*to_expand(t_list *input);
 
 // ft_echo.c
-void	ft_echo(char *str, int parametre, int fd);
+void	ft_echo(t_cmd *command);
 
 // copy_env.c
 t_env	*create_copy_env(char **env);
@@ -155,5 +155,9 @@ int		multiple_command(t_cmd *command);
 
 // command_utils.c
 int		get_number_command(t_cmd *cmd);
+
+// builtin.c
+int		check_builtin(t_cmd *command);
+int		check_max_len(char *s1, char *s2);
 
 #endif
