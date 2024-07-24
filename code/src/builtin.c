@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmeerber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/24 15:39:40 by mmeerber          #+#    #+#             */
+/*   Updated: 2024/07/24 16:09:10 by mmeerber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/minishell.h"
 
 int		check_max_len(char *s1, char *s2)
@@ -50,8 +62,11 @@ int		check_builtin(t_cmd *command)
 		ft_export(command->args[1], &command->env_copy);
 		return (0);
 	}
-	/* if (ft_builtin_compare(is_builtin, "unset") == 0) */	
-	/* 	ft_unset(); */
+	if (ft_builtin_compare(is_builtin, "unset") == 0)
+	{
+	 	ft_unset(command->args[1], &command->env_copy);
+		return (0);
+	}
 	/* if (ft_builtin_compare(is_builtin, "env") == 0) */	
 	/* 	ft_env(); */
 	/* if (ft_builtin_compare(is_builtin, "exit") == 0) */	
