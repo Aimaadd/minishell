@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:46:57 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/06/11 11:04:37 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:04:04 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,30 @@ t_env	*create_element(char *content)
 	char	**tab;
 	char	*value;
 
+	value = NULL;
 	new = malloc(sizeof(t_env));
 	if (!new)
 		return (NULL);
 	tab = ft_split(content, '=');
 	if (!tab)
 		return (NULL);
-	if (getenv(tab[0]))
-		value = getenv(tab[0]);
+	if (tab[1])
+	{
+		if (getenv(tab[0]))
+			value = getenv(tab[0]);
+		else
+			if (tab[1])
+				value = tab[1];
+		new->variable = tab[0];
+		new->value = value;
+		new->next = NULL;
+	}
 	else
-		value = tab[1];
-	new->variable = tab[0];
-	new->value = value;
-	new->next = NULL;
+	{
+		new->variable = tab[0];	
+		new->value = "";
+		new->next = NULL;
+	}
 	return (new);
 }
 

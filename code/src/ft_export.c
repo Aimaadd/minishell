@@ -50,13 +50,17 @@ static void	print_element(t_env **copy_env)
 	bubble_sort(temp);
 	while (temp)
 	{
-		printf("declare -x %s=%s\n", temp->variable, temp->value);
+		if (ft_strlen(temp->value) == 0)
+			printf("declare -x %s\n", temp->variable);
+		else
+			printf("declare -x %s=%s\n", temp->variable, temp->value);
 		temp = temp->next;
 	}
 }
 
 void	ft_export(char *input, t_env **copy_env)
 {
+	printf("input = %s\n", input);
 	if (!input || input[0] == 0)
 		print_element(copy_env);
 	else
