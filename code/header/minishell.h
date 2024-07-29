@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/18 13:39:44 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:28:37 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ typedef struct s_input
 
 typedef struct s_cmd
 {
-	t_env	*lst_env;
-	char	**env_copy;
-	char	**args;
-	int		size_list;
-	int		numbers_pipe;
+	char			**args;
+	char			**envp;
+	t_env			*env_copy;
+	struct s_cmd	*next;
 }	t_cmd;
+
 //main.c 
 void	minishell_loop(t_input *entry, t_env *env_copy);
 
@@ -155,6 +155,7 @@ int		simple_command(t_cmd *cmd);
 void	*init_signal(t_input *entry);
 
 // redirection.c
-int		redirection(char *filename);
+void		redirection(t_list *list);
+int		dup_and_close(char *filename);
 
 #endif

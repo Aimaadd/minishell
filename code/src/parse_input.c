@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:40:08 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/15 18:45:16 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/28 13:50:29 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //This function will see if there is a pipe or redirection in the input
 int	pipe_or_redirection(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i])
@@ -41,33 +41,34 @@ int	pipe_or_redirection(char *line)
 //     }
 // }
 
-char **split_pipe_redir(char *line)
+char	**split_pipe_redir(char *line)
 {
-	char **result = (char**)ft_calloc(4, sizeof(char*));
-	char *start = line;
-	char *end = ft_strpbrk(line, "|><");
+	char	**result;
+	char	*start;
+	char	*end;
 
+	result = (char **)ft_calloc(4, sizeof(char *));
+	start = line;
+	end = ft_strpbrk(line, "|><");
 	if (!result || !end)
 	{
 		if (result)
 			free(result);
-		return NULL;
+		return (NULL);
 	}
-
 	result[0] = ft_substr(start, 0, end - start);
 	result[1] = ft_substr(end, 0, 1);
 	result[2] = ft_strdup(end + 1);
 	result[3] = NULL;
-
 	return (result);
 }
 
 //This function will return the string between two quotes
-char *between_quotes(char *line)
+char	*between_quotes(char *line)
 {
-	int i;
-	int j;
-	char *str;
+	int		i;
+	int		j;
+	char	*str;
 
 	i = 0;
 	j = 0;
@@ -111,7 +112,6 @@ char	*to_expand(t_list *input)
 	}
 	temp[j] = '\0';
 	input->content = getenv(temp);
-	printf("getenvprint %s \n", getenv(temp));
 	free(temp);
 	return (input->content);
 }
