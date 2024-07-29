@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/29 08:57:48 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/29 10:58:35 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,28 +52,32 @@ int	read_type(char *content)
 		return (PARAMETER);
 	else if (!ft_strncmp(content, " ", ft_strlen(content)))
 		return (ARGUMENT);
-	else 
+	else
 		return (BINARY);
 	return (0);
 }
 
+int	if_type(t_list *list)
+{
+	if (list->type == REDIRECTION)
+		redirection(list);
+	if (list->type == ENV)
+		to_expand(list);
+	return (list->type);
+}
+
 // this function will read the content of the list and give the type of each
 // element in the list 
-// int	validate_bin(t_list *list)
-// {
-// 	if (list->type == BINARY)
-// 		if (list->next->type !=  INFILE || list->next->type != PARAMETER)
-// 			return (printf()
-// }
-
 int	read_list(t_list *list)
 {
+	if (!list)
+		return (ERROR_LOOP);
 	while (list)
 	{
 		list->type = read_type(list->content);
-		if (list->type == ENV)
-			to_expand(list);
-		// printf("content : %s | type : %d\n",list->content, list->type);
+		if (contains_quotes(list) == UNCLOSED_QTS)
+			return (ERROR_LOOP);
+		if_type(list);
 		list = list->next;
 	}
 	return (0);

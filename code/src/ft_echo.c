@@ -5,9 +5,23 @@ int		check_parametre(char **args)
 	char	**tmp;
 
 	tmp = args;
+	if (!tmp)
+		printf("bail");
 	if (ft_strncmp(tmp[1], "-n", check_max_len(tmp[1], "-n")) == 0)
 			return (0);
 	return (1);
+}
+
+void	write_args(int x, int y, char **args)
+{
+	while (args[x][y])
+	{
+		write(1, &args[x][y], 1);
+		y++;
+	}
+	if (args[x + 1])
+		write(1, " ", 1);
+	x++;
 }
 
 void	ft_echo(t_cmd *command)
@@ -30,12 +44,7 @@ void	ft_echo(t_cmd *command)
 	while(args[x])
 	{
 		y = 0;
-		while (args[x][y])
-		{
-			write(1, &args[x][y], 1);
-			y++;
-		}
-		x++;
+		write_args(x++, y, args);
 	}
 	if (flag == 1)
 		write(1, "\n", 2);
