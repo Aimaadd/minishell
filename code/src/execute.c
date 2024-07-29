@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/29 08:28:07 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:59:34 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_cmd	*setup_execute(t_input *entry, t_env *env_copy)
 {
 	t_cmd	*command;
-
 	(void)env_copy;
 	command = create_cmd(entry->list);
 	if (!command)
@@ -26,6 +25,7 @@ t_cmd	*setup_execute(t_input *entry, t_env *env_copy)
 }
 
 int	run_execute(t_cmd *command)
+int		run_execute(t_cmd *command)
 {
 	if (!command->next)
 		simple_command(command);
@@ -35,6 +35,7 @@ int	run_execute(t_cmd *command)
 }
 
 int	execute(t_input *entry, t_env *env_copy)
+int		execute(t_input *entry, t_env *env_copy)
 {
 	t_cmd	*command;
 

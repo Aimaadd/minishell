@@ -32,6 +32,8 @@ t_list *ft_lstnew(void *content)
 	new_node->content = content;
 	new_node->next = NULL;
 	new_node->type = 0;
+	new_node->read = 1;
+	new_node->second_read = 1;
 	return new_node;
 }
 

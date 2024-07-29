@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/29 08:28:37 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:58:43 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_list
 {
 	char			*content;
 	int				type;
+	int				read;
+	int				second_read;
 	struct s_list	*next;
 	struct s_list	*prev;
 }	t_list;
@@ -93,7 +95,7 @@ char	*between_quotes(char *line);
 char	*to_expand(t_list *input);
 
 // ft_echo.c
-void	ft_echo(char *str, int parametre, int fd);
+void	ft_echo(t_cmd *command);
 
 // copy_env.c
 t_env	*create_copy_env(char **env);
@@ -150,6 +152,11 @@ int		get_size_list(t_list *list);
 
 // run_command.c
 int		simple_command(t_cmd *cmd);
+int		execute(t_input *entry, t_env *env_copy);
+
+// exec_utils.c
+int     get_number_pipe(t_list *list);
+int     get_size_command(t_list *list);
 
 // sig_handler.c
 void	*init_signal(t_input *entry);
@@ -157,5 +164,39 @@ void	*init_signal(t_input *entry);
 // redirection.c
 void		redirection(t_list *list);
 int		dup_and_close(char *filename);
+
+// create_command.c
+t_cmd	*create_cmd(t_list *list);
+
+// init_command.c
+int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
+
+// command.c
+int     simple_command(t_cmd *command);
+int		multiple_command(t_cmd *command);
+
+// command_utils.c
+int		get_number_command(t_cmd *cmd);
+
+// builtin.c
+int		check_builtin(t_cmd *command);
+int		check_max_len(char *s1, char *s2);
+
+// create_command.c
+t_cmd	*create_cmd(t_list *list);
+
+// init_command.c
+int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
+
+// command.c
+int     simple_command(t_cmd *command);
+int		multiple_command(t_cmd *command);
+
+// command_utils.c
+int		get_number_command(t_cmd *cmd);
+
+// builtin.c
+int		check_builtin(t_cmd *command);
+int		check_max_len(char *s1, char *s2);
 
 #endif

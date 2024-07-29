@@ -6,7 +6,7 @@
 /*   By: mmeerber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:29:50 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/05/20 18:47:32 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:37:44 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	ft_cd(char *path, t_env *env)
 		update_value_env(pwd, "OLDPWD", env);
 		return ;
 	}
-	else
-		perror("");
 	if (chdir(path) == -1)
 		perror("");
 	else

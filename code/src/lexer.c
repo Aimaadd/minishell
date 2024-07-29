@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/28 13:49:21 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:57:48 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,15 @@ int	read_type(char *content)
 
 int	read_list(t_list *list)
 {
-	int	pipe_counter;
-	pipe_counter = 1;
 	while (list)
 	{
 		list->type = read_type(list->content);
-		if (contains_quotes(list) == UNCLOSED_QTS)
-			return (ERROR_LOOP);
-		if (list->type == PIPE)
-		{
-			printf("amount of pipes : %d\n", pipe_counter++);
-		}
-		if (list->type == REDIRECTION)
-			redirection(list);
 		if (list->type == ENV)
 			to_expand(list);
 		// printf("content : %s | type : %d\n",list->content, list->type);
 		list = list->next;
 	}
-	return (pipe_counter);
+	return (0);
 }
 
 int	is_parameter(const char *str)
