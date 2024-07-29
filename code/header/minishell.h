@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/29 16:15:13 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/07/29 18:39:19 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,9 @@ int		check_builtin(t_cmd *command);
 int		check_max_len(char *s1, char *s2);
 
 // ft_exit.c
-void	ft_exit();
+void	ft_exit(t_cmd *command);
+
+// ft_free.c
+void	free_command(t_cmd *command);
 
 #endif

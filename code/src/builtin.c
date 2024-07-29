@@ -6,7 +6,7 @@
 /*   By: mmeerber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:39:40 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/07/29 16:15:25 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/07/29 18:38:12 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		check_builtin(t_cmd *command)
 	}
 	if (ft_builtin_compare(is_builtin, "exit") == 0)	
 	{
-		ft_exit();
+		ft_exit(command);
 		return (0);
 	}
 	return (1);
