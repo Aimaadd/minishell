@@ -6,59 +6,33 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:32:36 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/29 08:59:51 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/29 09:47:13 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-int		get_size_list(t_list *list)
+int     get_number_pipe(t_list *list)
 {
-	t_list	*tmp;
-	int		len;
+    int     count_pipe;
+    t_list  *tmp;
 
-	len = 0;
-	tmp = list;
-	while(tmp)
-	{
-		tmp = tmp->next;
-		len++;	
-	}
-	return (len);
+    count_pipe = 0;
+    tmp = list;
+    while (tmp)
+    {
+        if (tmp->type == PIPE)
+            count_pipe++;
+        tmp = tmp->next;
+    }
+    return (count_pipe);
 }
 
-void	create_args(t_cmd *cmd, t_list	*list)
+int     get_size_command(t_list *list)
 {
-	t_list	*tmp;
-	int		count;
+    int         len_command;
+    t_list      *tmp;
 
-	count = 0;
-	tmp = list;
-	while(tmp)
-	{
-		cmd->args[count] = tmp->content;
-		count++;
-		tmp = tmp->next;
-	}
-	cmd->args[count] = NULL;
-	return ;
-}
-
-int		check_if_pipe(t_list *list)
-{
-	t_list	*tmp;
-	int 	count;
-
-	count = 0;
-	tmp = list;
-	while (tmp)
-	{
-		if (tmp->type == 5)
-			count++;
-		tmp = tmp->next;	
-	}
-	return (count);
-}
     len_command = 0;
     tmp = list;
     while(tmp)
