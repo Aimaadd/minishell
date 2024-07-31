@@ -1,4 +1,0 @@
-char tab
-char *
-if between quotes : "command line "between" and  more"
-everything between double quotes is a command
