@@ -92,6 +92,7 @@ int		multiple_command(t_cmd *command)
 				close(fd[1]);
 			}
 			simple_command(tmp_command);
+			// command redirection
 			exit (0);
 		}
        if (last_fd != -1)
