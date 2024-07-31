@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/29 18:39:19 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:16:10 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	update_value_env(char *value, char *variable, t_env *env);
 int		check_size(char *s1, char *s2);
 char	**conv_tab_env(t_env *env_copy);
 void	print_env(t_env *env);
+void	free_tab(char **tab);
 
 // ft_cd.c
 void	ft_cd(char *path, t_env *env);
