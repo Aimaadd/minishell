@@ -1,18 +1,5 @@
 #include "../header/minishell.h"
 
-void	free_tab(char **tab)
-{
-	int x;
-
-	x = 0;
-	while (tab[x])
-	{
-		free(tab[x]);
-		x++;	
-	}
-	free(tab);
-}
-
 void	free_env(t_env *env_copy)
 {
 	while (env_copy)
