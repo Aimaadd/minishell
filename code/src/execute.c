@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/29 09:59:21 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:08:59 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ int	execute(t_input *entry, t_env *env_copy)
 	if (!command)
 		return (1);
 	run_execute(command);
+	free_command(command);
 	return (0);
 }

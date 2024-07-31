@@ -1,5 +1,11 @@
 #include "../header/minishell.h"
 
+void	update_envp(t_env *env_copy, char **envp)
+{
+	free_tab(envp);
+	envp = conv_tab_env(env_copy);
+}
+
 char    *find_binary(char *bin, char *path)
 {
     char    **new_path;
@@ -30,7 +36,10 @@ int     simple_command(t_cmd *command)
     int     status;
 
 	if (check_builtin(command) == 0)
+	{
+		update_envp(command->env_copy, command->envp);
 		return (0);
+	}
     command->args[0] = find_binary(command->args[0], ft_getenv(command->env_copy, "PATH"));
     if (!command->args[0])
         return (1);
@@ -83,6 +92,7 @@ int		multiple_command(t_cmd *command)
 				close(fd[1]);
 			}
 			simple_command(tmp_command);
+			// command redirection
 			exit (0);
 		}
        if (last_fd != -1)

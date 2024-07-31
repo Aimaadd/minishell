@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/07/29 10:34:48 by abentaye         ###   ########.fr        #
+#    Updated: 2024/07/31 14:10:08 by mmeerber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,8 @@ SRCS =  ./src/main.c \
 		./src/command_utils.c \
 		./src/builtin.c \
 		./src/redirection.c \
+		./src/ft_exit.c \
+		./src/ft_free.c \
 
 OBJS= $(SRCS:.c=.o)
 
@@ -59,7 +61,7 @@ $(NAME) : $(OBJS)
 	@echo $(O)"[INFO]" $(W)"Compiling libft"
 	@make -C $(LIBFT)
 	@echo $(O)"[INFO]" $(W)"Compiling $(NAME)..." $(W)
-	@$(CC) $(CFLAGS) $(LINKER) -o $(NAME) $(OBJS) $(LIBFTA)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFTA) $(LINKER) 
 	@echo $(G)"[INFO]" $(W)"Compilation done"
 
 $(OBJS): %.o: %.c
