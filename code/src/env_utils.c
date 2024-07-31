@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:20:25 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/07/14 18:11:16 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:12:23 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	update_value_env(char *value, char *variable, t_env *env)
 // 	return (tab_env);
 // }
 
-static void	free_tab(char **tab)
+void	free_tab(char **tab)
 {
 	int	i;
 
