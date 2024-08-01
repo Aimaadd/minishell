@@ -13,6 +13,15 @@ static t_data_multiple	*init_data_multiple(t_cmd *command)
 	return (data);
 }
 
+static void		ft_waitpid(t_data_multiple *data, pid_t *pid)
+{
+	while (data->count_pid < data->count_command)
+	{
+		waitpid(pid[data->count_pid], 0, 0);
+		data->count_pid++;
+	}
+}
+
 
 int		multiple_command(t_cmd *command)
 {
@@ -66,10 +75,6 @@ int		multiple_command(t_cmd *command)
 		data->count_command++;
 		tmp_command = tmp_command->next;	
 	}
-	while (data->count_pid < data->count_command)
-	{
-		waitpid(pid[data->count_pid], 0, 0);
-		data->count_pid++;
-	}
+	ft_waitpid(data, pid);
 	return (0);
 }
