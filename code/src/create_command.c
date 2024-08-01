@@ -11,10 +11,11 @@ t_cmd	*ft_new_command()
 	new->args = NULL;
 	new->env_copy = NULL;
 	new->next = NULL;
+	new->file = NULL;
 	return (new);
 }
 
-int		add_command(t_cmd **command)
+int	add_command(t_cmd **command)
 {
 	t_cmd	*new_command;
 	t_cmd	*last;
@@ -50,7 +51,7 @@ int		create_multiple_command(t_cmd **command, int number_command)
 
 t_cmd	*create_cmd(t_list *list)
 {
-	t_cmd 	*command;
+	t_cmd	*command;
 	t_list	*tmp;
 	int		number_command;
 
@@ -63,7 +64,7 @@ t_cmd	*create_cmd(t_list *list)
 	}
 	else
 	{
-		command  = ft_new_command();
+		command = ft_new_command();
 		if (!command)
 			return (NULL);
 	}

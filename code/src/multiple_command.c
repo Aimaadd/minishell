@@ -41,8 +41,8 @@ static void		run_child(pid_t *pid, t_data_multiple *data, int *fd, t_cmd *tmp_co
 			dup2(fd[1], STDOUT_FILENO);
 			close(fd[1]);
 		}
-		simple_command(tmp_command);
 		// command redirection
+		simple_command(tmp_command);
 		exit (0);
 	}
 }
