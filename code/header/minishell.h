@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/01 16:57:59 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:40:06 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <unistd.h>
 # include <string.h>
 # include <fcntl.h>
-# include "../readline/includes/history.h"
-# include "../readline/includes/readline.h"
+# include <readline/history.h>
+# include <readline/readline.h>
 # include <signal.h>
 # include "../libft/libft.h"
 
@@ -212,5 +212,8 @@ void	free_command(t_cmd *command);
 
 // multiple_command.c
 int		multiple_command(t_cmd *command);
+
+//readline functions
+void	rl_replace_line(const char *text, int clear_undo);
 
 #endif
