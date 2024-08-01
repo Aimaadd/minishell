@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/01 16:57:59 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:39:23 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ int     get_size_command(t_list *list);
 void	*init_signal(t_input *entry);
 
 // redirection.c
-void		redirection(t_list *list);
+void		redirection(char *filename);
 int		dup_and_close(char *filename);
 
 // create_command.c

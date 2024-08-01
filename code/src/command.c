@@ -48,6 +48,8 @@ int     simple_command(t_cmd *command)
         return (1);
     else if (pid == 0)
     {
+		if (command->file)
+			redirection(command->file);
         execve(command->args[0], command->args, command->envp);
         exit (0);
     }
