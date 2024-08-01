@@ -35,21 +35,22 @@ int     simple_command(t_cmd *command)
     pid_t   pid;
     int     status;
 
-	if (check_builtin(command) == 0)
-	{
-		update_envp(command->env_copy, command->envp);
-		return (0);
-	}
-    command->args[0] = find_binary(command->args[0], ft_getenv(command->env_copy, "PATH"));
-    if (!command->args[0])
-        return (1);
     pid = fork();
     if (pid == 1)
         return (1);
     else if (pid == 0)
     {
-		if (command->file)
-			redirection(command->file);
+        if (command->file)
+		    redirection(command->file);
+        if (check_builtin(command) == 0)
+	    {
+		    update_envp(command->env_copy, command->envp);
+		    exit (0);
+	    }
+        command->args[0] = find_binary(command->args[0], ft_getenv(command->env_copy, "PATH"));
+        if (!command->args[0])
+            return (1);
+
         execve(command->args[0], command->args, command->envp);
         exit (0);
     }
