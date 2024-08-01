@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/31 14:09:18 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:55:42 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,13 @@ typedef struct s_cmd
 	t_env			*env_copy;
 	struct s_cmd	*next;
 }	t_cmd;
+
+typedef struct s_data_multiple
+{
+	int		number_of_command;
+	int		count_command;
+	int		count_pid;
+} t_data_multiple;
 
 //main.c 
 void	minishell_loop(t_input *entry, t_env *env_copy);
@@ -172,10 +179,6 @@ t_cmd	*create_cmd(t_list *list);
 // init_command.c
 int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
 
-// command.c
-int     simple_command(t_cmd *command);
-int		multiple_command(t_cmd *command);
-
 // command_utils.c
 int		get_number_command(t_cmd *cmd);
 
@@ -191,7 +194,6 @@ int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
 
 // command.c
 int     simple_command(t_cmd *command);
-int		multiple_command(t_cmd *command);
 
 // command_utils.c
 int		get_number_command(t_cmd *cmd);
@@ -205,5 +207,8 @@ void	ft_exit(t_cmd *command);
 
 // ft_free.c
 void	free_command(t_cmd *command);
+
+// multiple_command.c
+int		multiple_command(t_cmd *command);
 
 #endif
