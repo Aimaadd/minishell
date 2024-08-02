@@ -6,19 +6,17 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:39:47 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/01 16:57:26 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:40:20 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-void	redirection(t_list *list)
+void	redirection(char *filename)
 {
 	int		fd;
-	t_list	*tmp;
 
-	tmp = list;
-	fd = open(tmp->next->content, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 		g_status = 1;
 	if (dup2(fd, STDOUT_FILENO) < 0)

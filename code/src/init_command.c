@@ -45,13 +45,22 @@ int		add_args(t_cmd	*command, t_list *list)
 					tmp_list->second_read = 0;
 					break;
 				}
-				
-				tmp_list->second_read = 0;
+				if (tmp_list->type == REDIRECTION)
+				{
+					tmp_cmd->file = tmp_list->next->content;
+					tmp_list->second_read = 0;
+					if (!tmp_list->next->next)
+						return (0);
+					tmp_list = tmp_list->next;
+					tmp_list->second_read = 0;
+					tmp_list = tmp_list->next;
+				}
 				tmp_cmd->args[x] = malloc(sizeof(char) * (ft_strlen(tmp_list->content) + 1));
 				if (!tmp_cmd->args[x])
 					return (1);
 				ft_strlcpy(tmp_cmd->args[x], tmp_list->content, (ft_strlen(tmp_list->content) + 1));
 				x++;
+				tmp_list->second_read = 0;
 				tmp_list = tmp_list->next;
 			}
 		}

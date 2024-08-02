@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/01 16:35:40 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/01 18:41:14 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int	read_type(char *content)
 
 int	if_type(t_list *list)
 {
-	if (list->type == REDIRECTION)
-		redirection(list);
+	/*if (list->type == REDIRECTION)
+		redirection(list);*/
 	if (list->type == ENV)
 		to_expand(list);
 	return (list->type);
