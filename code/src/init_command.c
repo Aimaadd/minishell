@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_command.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 15:29:33 by abentaye          #+#    #+#             */
+/*   Updated: 2024/08/02 15:30:31 by abentaye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/minishell.h"
 
-int		add_envp(t_cmd *command, t_env *env_copy)
+int	add_envp(t_cmd *command, t_env *env_copy)
 {
 	t_cmd	*tmp;
 
@@ -16,7 +28,7 @@ int		add_envp(t_cmd *command, t_env *env_copy)
 	return (0);
 }
 
-int		add_args(t_cmd	*command, t_list *list)
+int	add_args(t_cmd	*command, t_list *list)
 {
 	t_list	*tmp_list;
 	t_cmd	*tmp_cmd;
@@ -25,11 +37,10 @@ int		add_args(t_cmd	*command, t_list *list)
 
 	tmp_list = list;
 	tmp_cmd = command;
-	while(tmp_cmd)
+	while (tmp_cmd)
 	{
 		x = 0;
 		len_command = get_size_command(tmp_list);
-		// printf("len command : %d\n", len_command);
 		tmp_cmd->args = malloc(sizeof(char *) * (len_command + 1));
 		if (!tmp_cmd->args)
 			return (1);
@@ -41,9 +52,8 @@ int		add_args(t_cmd	*command, t_list *list)
 			{
 				if (tmp_list->type == PIPE)
 				{
-					
 					tmp_list->second_read = 0;
-					break;
+					break ;
 				}
 				if (tmp_list->type == REDIRECTION)
 				{
@@ -69,9 +79,8 @@ int		add_args(t_cmd	*command, t_list *list)
 	return (0);
 }
 
-int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command)
+int	init_execute(t_input *entry, t_env *env_copy, t_cmd *command)
 {
-	//command->env_copy = env_copy;
 	if (add_envp(command, env_copy) == 1)
 		return (1);
 	if (add_args(command, entry->list) == 1)

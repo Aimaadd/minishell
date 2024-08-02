@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   multiple_command.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 15:16:59 by abentaye          #+#    #+#             */
+/*   Updated: 2024/08/02 15:28:58 by abentaye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/minishell.h"
 
 static t_data_multiple	*init_data_multiple(t_cmd *command)
@@ -14,7 +26,7 @@ static t_data_multiple	*init_data_multiple(t_cmd *command)
 	return (data);
 }
 
-static void		ft_waitpid(t_data_multiple *data, pid_t *pid)
+static void	ft_waitpid(t_data_multiple *data, pid_t *pid)
 {
 	while (data->count_pid < data->count_command)
 	{
@@ -23,7 +35,7 @@ static void		ft_waitpid(t_data_multiple *data, pid_t *pid)
 	}
 }
 
-static void		run_child(pid_t *pid, t_data_multiple *data, int *fd, t_cmd *tmp_command)
+void	run_child(pid_t *pid, t_data_multiple *data, int *fd, t_cmd *tmp_commnd)
 {
 	pid[data->count_command] = fork();
 	if (pid[data->count_command] == -1)
@@ -35,14 +47,13 @@ static void		run_child(pid_t *pid, t_data_multiple *data, int *fd, t_cmd *tmp_co
 			dup2(data->last_fd, STDIN_FILENO);
 			close(data->last_fd);
 		}
-		if (tmp_command->next)
+		if (tmp_commnd->next)
 		{
 			close(fd[0]);
 			dup2(fd[1], STDOUT_FILENO);
 			close(fd[1]);
 		}
-		// command redirection
-		simple_command(tmp_command);
+		simple_command(tmp_commnd);
 		exit (0);
 	}
 }
@@ -60,7 +71,7 @@ static void	check_fd(t_data_multiple *data, int *fd, t_cmd *tmp_command)
 	}
 }
 
-int		multiple_command(t_cmd *command)
+int	multiple_command(t_cmd *command)
 {
 	t_data_multiple	*data;
 	pid_t			*pid;
@@ -82,7 +93,7 @@ int		multiple_command(t_cmd *command)
 		run_child(pid, data, fd, tmp_command);
 		check_fd(data, fd, tmp_command);
 		data->count_command++;
-		tmp_command = tmp_command->next;	
+		tmp_command = tmp_command->next;
 	}
 	ft_waitpid(data, pid);
 	free(data);

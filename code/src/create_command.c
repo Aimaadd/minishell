@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_command.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 15:36:25 by abentaye          #+#    #+#             */
+/*   Updated: 2024/08/02 15:37:06 by abentaye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/minishell.h"
 
-t_cmd	*ft_new_command()
+t_cmd	*ft_new_command(void)
 {
 	t_cmd	*new;
 
 	new = malloc(sizeof(t_cmd));
 	if (!new)
 		return (NULL);
-    new->envp = NULL;
+	new->envp = NULL;
 	new->args = NULL;
 	new->env_copy = NULL;
 	new->next = NULL;
@@ -35,7 +47,7 @@ int	add_command(t_cmd **command)
 	return (0);
 }
 
-int		create_multiple_command(t_cmd **command, int number_command)
+int	create_multiple_command(t_cmd **command, int number_command)
 {
 	int		count_command;
 

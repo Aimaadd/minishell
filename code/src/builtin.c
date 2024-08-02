@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmeerber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:39:40 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/07/29 18:38:12 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:40:42 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-int		check_max_len(char *s1, char *s2)
+int	check_max_len(char *s1, char *s2)
 {
 	int		len_s1;
 	int		len_s2;
@@ -27,7 +27,7 @@ int		check_max_len(char *s1, char *s2)
 		return (len_s1);
 }
 
-int		ft_builtin_compare(char *command_user, char *builtin)
+int	ft_builtin_compare(char *command_user, char *builtin)
 {
 	int		len_max;
 	int		check;
@@ -39,9 +39,9 @@ int		ft_builtin_compare(char *command_user, char *builtin)
 	return (check);
 }
 
-int		check_builtin(t_cmd *command)
+int	check_builtin(t_cmd *command)
 {
-	char 	*is_builtin;
+	char	*is_builtin;
 
 	is_builtin = command->args[0];
 	if (ft_builtin_compare(is_builtin, "echo") == 0)
@@ -49,7 +49,7 @@ int		check_builtin(t_cmd *command)
 		ft_echo(command);
 		return (0);
 	}
-	if (ft_builtin_compare(is_builtin, "cd") == 0)	
+	if (ft_builtin_compare(is_builtin, "cd") == 0)
 	{
 		ft_cd(command->args[1], command->env_copy);
 		return (0);
@@ -59,22 +59,22 @@ int		check_builtin(t_cmd *command)
 		ft_pwd();
 		return (0);
 	}
-	if (ft_builtin_compare(is_builtin, "export") == 0)	
+	if (ft_builtin_compare(is_builtin, "export") == 0)
 	{
 		ft_export(command->args[1], &command->env_copy);
 		return (0);
 	}
 	if (ft_builtin_compare(is_builtin, "unset") == 0)
 	{
-	 	ft_unset(command->args[1], &command->env_copy);
+		ft_unset(command->args[1], &command->env_copy);
 		return (0);
 	}
-	if (ft_builtin_compare(is_builtin, "env") == 0)	
+	if (ft_builtin_compare(is_builtin, "env") == 0)
 	{
 		ft_env(command->env_copy);
 		return (0);
 	}
-	if (ft_builtin_compare(is_builtin, "exit") == 0)	
+	if (ft_builtin_compare(is_builtin, "exit") == 0)
 	{
 		ft_exit(command);
 		return (0);

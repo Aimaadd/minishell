@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 15:30:54 by abentaye          #+#    #+#             */
+/*   Updated: 2024/08/02 15:30:59 by abentaye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/minishell.h"
 
 static void	delete_variable(char *variable, t_env *copy_env)
@@ -7,7 +19,7 @@ static void	delete_variable(char *variable, t_env *copy_env)
 	t_env	*variable_after;
 	int		len;
 	int		check;
-	
+
 	variable_after = 0;
 	tmp = copy_env;
 	while (tmp)
@@ -17,7 +29,7 @@ static void	delete_variable(char *variable, t_env *copy_env)
 		if (check == 0)
 		{
 			variable_after = tmp->next;
-			break;
+			break ;
 		}
 		variable_before = tmp;
 		tmp = tmp->next;

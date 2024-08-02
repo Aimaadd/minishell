@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 15:31:19 by abentaye          #+#    #+#             */
+/*   Updated: 2024/08/02 15:31:23 by abentaye         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/minishell.h"
 
 static void	swap(t_env *element)
@@ -44,7 +56,7 @@ static void	bubble_sort(t_env *env)
 
 static void	print_element(t_env **copy_env)
 {
-	t_env *temp;
+	t_env	*temp;
 
 	temp = *copy_env;
 	bubble_sort(temp);

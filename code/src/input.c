@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/13 19:58:05 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:29:24 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,19 @@ void	free_list(t_list *list)
 		free(tmp->content);
 		free(tmp);
 	}
+}
+
+void	empty_node(t_list *list)
+{
+	t_list	*tmp;
+	t_list	*next;
+
+	tmp = list;
+	while (tmp != NULL)
+	{
+		next = tmp->next;
+		free(tmp);
+		tmp = next;
+	}
+	return ;
 }

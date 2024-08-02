@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/01 18:41:14 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:18:35 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	contains_quotes(t_list *list)
 	return (quotes_counter);
 }
 
-//This function will read the content of a node and return the type of the content
 int	read_type(char *content)
 {
 	if (!ft_strncmp(content, "|", ft_strlen(content)))
@@ -59,8 +58,6 @@ int	read_type(char *content)
 
 int	if_type(t_list *list)
 {
-	/*if (list->type == REDIRECTION)
-		redirection(list);*/
 	if (list->type == ENV)
 		to_expand(list);
 	return (list->type);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:10:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/05/27 12:21:24 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:16:34 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*catch_input(char *input)
 	return (input);
 }
 
-// This function is going to launch the prompt and wait for the user to input a command
+// This function is going to launch the prompt and wait user to input a command
 char	*prompt(void)
 {
 	char	*input;

@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 14:54:43 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:46:39 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct s_data_multiple
 	int		count_command;
 	int		count_pid;
 	int		last_fd;
-} t_data_multiple;
+}			t_data_multiple;
 
 //main.c 
 void	minishell_loop(t_input *entry, t_env *env_copy);
@@ -96,6 +96,7 @@ t_list	*array_to_list(char **array);
 // input.c
 void	free_list(t_list *list);
 char	*catch_input(char *prompt);
+void	empty_node(t_list *list);
 
 // parse_input.c
 int		pipe_or_redirection(char *line);
@@ -165,14 +166,14 @@ int		simple_command(t_cmd *cmd);
 int		execute(t_input *entry, t_env *env_copy);
 
 // exec_utils.c
-int     get_number_pipe(t_list *list);
-int     get_size_command(t_list *list);
+int		get_number_pipe(t_list *list);
+int		get_size_command(t_list *list);
 
 // sig_handler.c
 void	*init_signal(t_input *entry);
 
 // redirection.c
-void		redirection(char *filename);
+void	redirection(char *filename);
 int		dup_and_close(char *filename);
 
 // create_command.c
@@ -195,7 +196,7 @@ t_cmd	*create_cmd(t_list *list);
 int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
 
 // command.c
-int     simple_command(t_cmd *command);
+int		simple_command(t_cmd *command);
 
 // command_utils.c
 int		get_number_command(t_cmd *cmd);
