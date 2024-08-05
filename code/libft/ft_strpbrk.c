@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 08:52:20 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:45:30 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:19:26 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ char	*ft_strpbrk(const char *s1, const char *s2)
 		}
 		s1++;
 	}
-	return (NULL);
+	return (0);
 }
