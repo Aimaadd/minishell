@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:46:57 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/08/02 15:37:54 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:44:04 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,24 @@ int	add_element(t_env **copy_env, char *content)
 	return (0);
 }
 
+int		env_empty(t_env **copy_env)
+{
+	char	*pwd;
+
+	pwd = ft_strjoin("PWD=", getcwd(0, 0));
+	if (!pwd)
+		return (1);
+	if (add_element(copy_env, "SHLVL=1") == 1)
+		return (1);
+	if (add_element(copy_env, "_=/usr/bin/env") == 1)
+		return (1);
+	if (add_element(copy_env, "OLDPWD") == 1)
+		return (1);
+	if (add_element(copy_env, pwd) == 1)
+		return (1);
+	return (0);
+}
+
 t_env	*create_copy_env(char **env)
 {
 	int		x;
@@ -72,6 +90,12 @@ t_env	*create_copy_env(char **env)
 
 	x = 0;
 	copy_env = NULL;
+	if (!env || !*env)
+	{
+		if (env_empty(&copy_env) == 1)
+			return (NULL);
+		return (copy_env);
+	}
 	while (env[x])
 	{
 		add_element(&copy_env, env[x]);

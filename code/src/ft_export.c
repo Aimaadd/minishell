@@ -72,7 +72,6 @@ static void	print_element(t_env **copy_env)
 
 void	ft_export(char *input, t_env **copy_env)
 {
-	printf("input = %s\n", input);
 	if (!input || input[0] == 0)
 		print_element(copy_env);
 	else

@@ -46,7 +46,6 @@ int	main(int ac, char **ag, char **envp)
 	struct sigaction	sa;
 
 	memset(&sa, 0, sizeof(sa));
-	env_copy = create_copy_env(envp);
 	entry = NULL;
 	(void)ac;
 	(void)ag;
