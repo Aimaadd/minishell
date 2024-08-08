@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:39:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/08 15:56:38 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:17:44 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ int	simple_command(t_cmd *command)
 		return (1);
 	else if (pid == 0)
 	{
-		if (command->file)
+		if (command->file && command->type_file == 1)
 			redirection(command->file);
+		else if (command->file && command->type_file == 2)
+			append_mode(command->file);
 		if (access(command->args[0], X_OK) == 0 && (command->args[0][0] == '.' || command->args[0][0] == '/'))
 		{
 			execve(command->args[0], command->args, NULL);

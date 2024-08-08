@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/08 15:56:52 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:10:49 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_cmd
 	char			**envp;
 	t_env			*env_copy;
 	char			*file;
+	int				type_file;
 	struct s_cmd	*next;
 }	t_cmd;
 
@@ -174,6 +175,7 @@ void	*init_signal(t_input *entry);
 
 // redirection.c
 void	redirection(char *filename);
+void	append_mode(char *filename);
 int		dup_and_close(char *filename);
 
 // create_command.c
