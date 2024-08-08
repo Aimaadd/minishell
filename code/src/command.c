@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:39:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/08 17:17:44 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/08/08 18:19:37 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	simple_command(t_cmd *command)
 		command->args[0] = find_binary(command->args[0],
 				ft_getenv(command->env_copy, "PATH"));
 		if (!command->args[0])
-			return (1);
+			exit (1);
 		execve(command->args[0], command->args, command->envp);
 		exit (0);
 	}
