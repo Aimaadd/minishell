@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:46:39 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:56:52 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ enum	e_type
 	REDIRECTION = 4,
 	PIPE = 5,
 	OUTFILE = 6,
-	INFILE = 7,
+	APPEND = 7,
 	FOLDER = 8,
 	ENV = 9
 };
