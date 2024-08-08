@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:39:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:39:25 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:34:50 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*find_binary(char *bin, char *path)
 	char	*path_bin;
 	int		x;
 
+	if (access(bin, X_OK) == 0 && (bin[0] == '.' || bin[0] == '/'))
+		return (bin);
 	bin = ft_strjoin("/", bin);
 	if (!bin)
 		return (NULL);
