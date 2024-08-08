@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/08 15:56:59 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:59:09 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	read_list(t_list *list)
 			return (ERROR_LOOP);
 		}
 		if (list->type != REDIRECTION && list->type != PIPE
-			&& list->type != OUTFILE && list->type != INFILE)
+			&& list->type != OUTFILE && list->type != APPEND)
 			list->content = remove_quotes(list->content);
 		if_type(list);
 		list = list->next;
