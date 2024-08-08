@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:39:47 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/01 18:40:20 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/08/06 08:57:37 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	redirection(char *filename)
 	close(fd);
 }
 
-void	heredoc(t_list *list)
+void	append_mode(t_list *list)
 {
 	int		fd;
 	t_list	*tmp;
