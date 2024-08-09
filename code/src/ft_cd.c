@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:29:50 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/08/02 15:32:14 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/09 13:53:54 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_cd(char *path, t_env *env)
 	home = ft_getenv(env, "HOME");
 	old_pwd = ft_getenv(env, "OLDPWD");
 	pwd = ft_getenv(env, "PWD");
-	if (!path)
+	if (!path || *path == '~')
 	{
 		if (chdir(home) == -1)
 			perror("");
