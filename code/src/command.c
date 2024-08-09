@@ -6,16 +6,17 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:39:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:39:25 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:47:49 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-void	update_envp(t_env *env_copy, char **envp)
+int	update_envp(t_env *env_copy, char **envp)
 {
 	free_tab(envp);
 	envp = conv_tab_env(env_copy);
+	return (0);
 }
 
 char	*find_binary(char *bin, char *path)
@@ -47,22 +48,25 @@ int	simple_command(t_cmd *command)
 	pid_t	pid;
 	int		status;
 
+	if (!check_builtin(command))
+		return (update_envp(command->env_copy, command->envp));
 	pid = fork();
 	if (pid == 1)
 		return (1);
-	else if (pid == 0)
+	if (pid == 0)
 	{
-		if (command->file)
+		if (command->file && command->type_file == BINARY)
 			redirection(command->file);
-		if (check_builtin(command) == 0)
+		else if (command->file && command->type_file == PARAMETER)
+			append_mode(command->file);
+		if (access(command->args[0], X_OK) == 0 && (command->args[0][0] == '.' || command->args[0][0] == '/'))
 		{
-			update_envp(command->env_copy, command->envp);
+			execve(command->args[0], command->args, NULL);
 			exit (0);
 		}
-		command->args[0] = find_binary(command->args[0],
-				ft_getenv(command->env_copy, "PATH"));
+		command->args[0] = find_binary(command->args[0], ft_getenv(command->env_copy, "PATH"));
 		if (!command->args[0])
-			return (1);
+			exit (1);
 		execve(command->args[0], command->args, command->envp);
 		exit (0);
 	}

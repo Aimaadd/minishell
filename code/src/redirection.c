@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:39:47 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/06 08:57:37 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/08 17:18:52 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ void	redirection(char *filename)
 	close(fd);
 }
 
-void	append_mode(t_list *list)
+void	append_mode(char *filename)
 {
 	int		fd;
-	t_list	*tmp;
 
-	tmp = list;
-	fd = open(tmp->next->content, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd < 0)
 		g_status = 1;
 	if (dup2(fd, STDOUT_FILENO) < 0)

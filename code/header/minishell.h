@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/09 18:34:13 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:48:24 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,30 @@
 
 int	g_status;
 
-enum	e_type
+// enum	e_type
+// {
+// 	BINARY,
+// 	PARAMETER = 2,
+// 	ARGUMENT = 3,
+// 	REDIRECTION = 4,
+// 	PIPE = 5,
+// 	OUTFILE = 6,
+// 	APPEND = 7,
+// 	HEREDOC = 8,
+// 	ENV = 9
+// };
+
+enum e_type
 {
 	BINARY = 1,
-	PARAMETER = 2,
-	ARGUMENT = 3,
-	REDIRECTION = 4,
-	PIPE = 5,
-	OUTFILE = 6,
-	APPEND = 7,
-	HEREDOC = 8,
-	ENV = 9
+	PARAMETER,
+	ARGUMENT,
+	REDIRECTION,
+	PIPE,
+	OUTFILE,
+	APPEND,
+	HEREDOC,
+	ENV
 };
 
 typedef struct s_env
@@ -76,6 +89,7 @@ typedef struct s_cmd
 	char			**envp;
 	t_env			*env_copy;
 	char			*file;
+	int				type_file;
 	struct s_cmd	*next;
 }	t_cmd;
 
@@ -177,6 +191,7 @@ void	*init_signal(t_input *entry);
 
 // redirection.c
 void	redirection(char *filename);
+void	append_mode(char *filename);
 int		dup_and_close(char *filename);
 
 // create_command.c

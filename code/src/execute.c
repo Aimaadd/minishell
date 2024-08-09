@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/01 13:28:59 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/08/09 21:39:40 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,44 @@ t_cmd	*setup_execute(t_input *entry, t_env *env_copy)
 	return (command);
 }
 
-int	run_execute(t_cmd *command)
+void printab(char **str)
 {
+	int i;
+
+	i = -1;
+
+	while(str[++i])
+		printf("%s\n", str[i]);
+	return;
+}
+
+void ft_printlst(t_cmd *cmd)
+{
+	t_cmd *tmp;
+
+	tmp = cmd;
+
+	while(tmp)
+	{
+		printab(tmp->args);
+		tmp = tmp->next;
+	}
+	return;
+}
+
+int	run_execute(t_cmd *command, t_list *list)
+{
+	t_list *tmp;
+
+	tmp = list;
+	
+	ft_printlst(command);
 	if (!command->next)
 		simple_command(command);
 	else
 		multiple_command(command);
+	if (tmp->type == HEREDOC)
+		handle_heredoc(tmp->next->content);
 	return (0);
 }
 
@@ -41,7 +73,7 @@ int	execute(t_input *entry, t_env *env_copy)
 	command = setup_execute(entry, env_copy);
 	if (!command)
 		return (1);
-	run_execute(command);
+	run_execute(command, entry->list);
 	if (command->next)
 		free_command(command);
 	else

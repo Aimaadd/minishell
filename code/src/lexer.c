@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/09 18:35:01 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:48:34 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	read_type(char *content)
 		return (REDIRECTION);
 	else if (!ft_strncmp(content, ">>", 1))
 		return (APPEND);
-	else if(!ft_strmcmp(content, "<<", 1))
+	else if(!ft_strncmp(content, "<<", 1))
 		return (HEREDOC);
 	else if (!ft_strncmp(content, "$", 1))
 		return (ENV);

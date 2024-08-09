@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:31:19 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:31:23 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/09 13:19:34 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,24 @@ static void	print_element(t_env **copy_env)
 
 void	ft_export(char *input, t_env **copy_env)
 {
-	printf("input = %s\n", input);
+	char	**tmp;
+	char	*value;
+
 	if (!input || input[0] == 0)
 		print_element(copy_env);
 	else
-		add_element(copy_env, input);
+	{
+		tmp = ft_split(input, '=');
+		value = ft_getenv(*copy_env, tmp[0]);
+		if (value && !tmp[1])
+			return ;
+		else
+		{
+			if (ft_getenv(*copy_env, tmp[0]))
+				update_value_env(tmp[1], tmp[0], *copy_env);
+			else
+				add_element(copy_env, input);
+		}
+	}
 	return ;
 }

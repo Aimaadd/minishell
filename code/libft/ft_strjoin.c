@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:32:50 by abentaye          #+#    #+#             */
-/*   Updated: 2024/06/10 16:07:48 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/09 21:21:13 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len2;
 	size_t	lentot;
 
-	if (!s1 || !s2)
+	if (!s2)
 		return (NULL);
+	if (!s1)
+		return ft_strdup(s2);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	lentot = len1 + len2;

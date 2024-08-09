@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:16:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:28:58 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:51:15 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	multiple_command(t_cmd *command)
 	t_cmd			*tmp_command;
 	int				fd[2];
 
+	printf("2!\n");
 	data = init_data_multiple(command);
 	if (!data)
 		return (1);

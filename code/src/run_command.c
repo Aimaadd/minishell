@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:36:09 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/01 16:45:00 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/09 19:50:52 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	simple_command(t_cmd *cmd)
 	pid_t	pid;
 	int		status;
 
+	printf("!\n");
 	path = ft_getenv(cmd->env_copy, "PATH");
 	if (!path)
 		return (1);

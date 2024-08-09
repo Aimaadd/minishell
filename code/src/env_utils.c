@@ -19,7 +19,7 @@ void	print_env(t_env *env)
 	tmp = env;
 	while (tmp)
 	{
-		printf("%s\n", tmp->variable);
+		printf("%s=%s\n", tmp->variable, tmp->value);
 		tmp = tmp->next;
 	}
 	return ;
