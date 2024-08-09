@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/08 15:56:52 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:34:13 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include <errno.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
@@ -22,9 +23,11 @@
 # include <readline/readline.h>
 # include <signal.h>
 # include "../libft/libft.h"
+# include <termios.h>
 
 # define ERROR_LOOP -1
 # define UNCLOSED_QTS 1
+# define BUFFERSIZE 1024
 
 int	g_status;
 
@@ -37,7 +40,7 @@ enum	e_type
 	PIPE = 5,
 	OUTFILE = 6,
 	APPEND = 7,
-	FOLDER = 8,
+	HEREDOC = 8,
 	ENV = 9
 };
 
@@ -216,5 +219,10 @@ int		multiple_command(t_cmd *command);
 
 //readline functions
 void	rl_replace_line(const char *text, int clear_undo);
+
+// heredoc.c
+int		temp_file_create(void);
+char	*heredoc_loop(void);
+void	handle_heredoc(char *delim);
 
 #endif
