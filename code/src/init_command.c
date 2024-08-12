@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:29:33 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/08 17:15:48 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/08/12 16:44:49 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	add_args(t_cmd	*command, t_list *list)
 						tmp_cmd->type_file = 1;
 					else
 						tmp_cmd->type_file = 2;
-
 					tmp_cmd->file = tmp_list->next->content;
 					tmp_list->second_read = 0;
 					if (!tmp_list->next->next)
