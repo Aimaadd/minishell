@@ -12,19 +12,6 @@
 
 #include "../header/minishell.h"
 
-void	print_env(t_env *env)
-{
-	t_env	*tmp;
-
-	tmp = env;
-	while (tmp)
-	{
-		printf("%s=%s\n", tmp->variable, tmp->value);
-		tmp = tmp->next;
-	}
-	return ;
-}
-
 int	check_size(char *s1, char *s2)
 {
 	int	x;

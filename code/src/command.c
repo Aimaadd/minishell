@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:39:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/08 21:19:04 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:34:08 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,29 @@ char	*find_binary(char *bin, char *path)
 	return (NULL);
 }
 
+void	run_execve(t_cmd *command)
+{
+	if (access(command->args[0], X_OK) == 0 && \
+			(command->args[0][0] == '.' || command->args[0][0] == '/'))
+	{
+		execve(command->args[0], command->args, NULL);
+		exit (0);
+	}
+	command->args[0] = find_binary(command->args[0],
+			ft_getenv(command->env_copy, "PATH"));
+	if (!command->args[0])
+		exit (1);
+	execve(command->args[0], command->args, command->envp);
+	exit (0);
+}
+
 int	simple_command(t_cmd *command)
 {
 	pid_t	pid;
 	int		status;
 
 	if (check_builtin(command) == 0)
-	{
-		update_envp(command->env_copy, command->envp);
 		return (0);
-	}
 	pid = fork();
 	if (pid == 1)
 		return (1);
@@ -61,17 +74,7 @@ int	simple_command(t_cmd *command)
 			redirection(command->file);
 		else if (command->file && command->type_file == 2)
 			append_mode(command->file);
-		if (access(command->args[0], X_OK) == 0 && (command->args[0][0] == '.' || command->args[0][0] == '/'))
-		{
-			execve(command->args[0], command->args, NULL);
-			exit (0);
-		}
-		command->args[0] = find_binary(command->args[0],
-				ft_getenv(command->env_copy, "PATH"));
-		if (!command->args[0])
-			exit (1);
-		execve(command->args[0], command->args, command->envp);
-		exit (0);
+		run_execve(command);
 	}
 	waitpid(pid, &status, 0);
 	return (0);

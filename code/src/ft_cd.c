@@ -17,11 +17,11 @@ char	*if_tield_in_path(char *path, char *home)
 	char	*new_path;
 	char	**tab;
 	int		x;
-	
-	x =0;
+
+	x = 0;
 	if (!path)
 		return (NULL);
-	while(path[x])
+	while (path[x])
 	{
 		if (path[x] == '~')
 		{
@@ -34,6 +34,15 @@ char	*if_tield_in_path(char *path, char *home)
 	return (new_path);
 }
 
+void	to_home(char *path, char *home, char *pwd, t_env *env)
+{
+	path = if_tield_in_path(path, home);
+	if (chdir(home) == -1)
+		perror("");
+	update_value_env(home, "PWD", env);
+	update_value_env(pwd, "OLDPWD", env);
+}
+
 void	ft_cd(char *path, t_env *env)
 {
 	char	*home;
@@ -44,28 +53,19 @@ void	ft_cd(char *path, t_env *env)
 	old_pwd = ft_getenv(env, "OLDPWD");
 	pwd = ft_getenv(env, "PWD");
 	if (!path || *path == '~')
-	{
-		path = if_tield_in_path(path, home);
-		if (chdir(home) == -1)
-			perror("");
-		update_value_env(home, "PWD", env);
-		update_value_env(pwd, "OLDPWD", env);
-		return ;
-	}
-	if (ft_strlen(path) == 0)
+		to_home(path, home, pwd, env);
+	else if (ft_strncmp(path, "-", ft_strlen(path)) == 0)
 	{
 		if (chdir(old_pwd) == -1)
 			perror("");
 		update_value_env(getcwd(0, 0), "PWD", env);
 		update_value_env(pwd, "OLDPWD", env);
-		return ;
 	}
-	if (chdir(path) == -1)
+	else if (chdir(path) == -1)
 		perror("");
 	else
 	{
 		update_value_env(getcwd(0, 0), "PWD", env);
 		update_value_env(pwd, "OLDPWD", env);
 	}
-	return ;
 }

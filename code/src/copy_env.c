@@ -6,11 +6,23 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:46:57 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/08/05 16:44:04 by mmeerber         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:42:27 by mmeerber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
+
+void	create_element_with_content(char **tab, char *value, t_env *new)
+{
+	if (getenv(tab[0]))
+		value = getenv(tab[0]);
+	else
+		if (tab[1])
+			value = tab[1];
+	new->variable = tab[0];
+	new->value = value;
+	new->next = NULL;
+}
 
 t_env	*create_element(char *content)
 {
@@ -26,16 +38,7 @@ t_env	*create_element(char *content)
 	if (!tab)
 		return (NULL);
 	if (tab[1])
-	{
-		if (getenv(tab[0]))
-			value = getenv(tab[0]);
-		else
-			if (tab[1])
-				value = tab[1];
-		new->variable = tab[0];
-		new->value = value;
-		new->next = NULL;
-	}
+		create_element_with_content(tab, value, new);
 	else
 	{
 		new->variable = tab[0];
@@ -65,7 +68,7 @@ int	add_element(t_env **copy_env, char *content)
 	return (0);
 }
 
-int		env_empty(t_env **copy_env)
+int	env_empty(t_env **copy_env)
 {
 	char	*pwd;
 
