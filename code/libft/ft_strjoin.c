@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:32:50 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/09 21:21:13 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:04:09 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s2)
 		return (NULL);
 	if (!s1)
-		return ft_strdup(s2);
+		return (ft_strdup(s2));
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	lentot = len1 + len2;

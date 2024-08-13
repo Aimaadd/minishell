@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:31:53 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:31:59 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/13 13:53:51 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	ft_echo(t_cmd *command)
 	flag = 0;
 	x = 0;
 	y = 0;
+	if (!check_parametre(command->args))
+		return ;
 	if (check_parametre(command->args) == 1)
 		flag = 1;
 	if (flag == 0)

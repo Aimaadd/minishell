@@ -6,13 +6,13 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:18:11 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:27:03 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-void	minishell_loop(t_input *entry, t_env *env_copy)
+int	minishell_loop(t_input *entry, t_env *env_copy)
 {
 	t_list	*tmp;
 
@@ -22,9 +22,7 @@ void	minishell_loop(t_input *entry, t_env *env_copy)
 		input_to_list(entry);
 		if (read_list(entry->list) == ERROR_LOOP)
 			continue ;
-		entry->signal = execute(entry, env_copy);
-		if (entry->signal == 1)
-			exit(1);
+		execute(entry, env_copy);
 		free(entry->line);
 		while (entry->list)
 		{
@@ -37,6 +35,7 @@ void	minishell_loop(t_input *entry, t_env *env_copy)
 			free(tmp);
 		}
 	}
+	return (entry->ret_val);
 }
 
 int	main(int ac, char **ag, char **envp)
@@ -44,7 +43,9 @@ int	main(int ac, char **ag, char **envp)
 	t_env				*env_copy;
 	t_input				*entry;
 	struct sigaction	sa;
+	int					ret;
 
+	ret = 0;
 	memset(&sa, 0, sizeof(sa));
 	entry = NULL;
 	(void)ac;
@@ -54,6 +55,5 @@ int	main(int ac, char **ag, char **envp)
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	env_copy = create_copy_env(envp);
-	minishell_loop(entry, env_copy);
-	return (0);
+	return (minishell_loop(entry, env_copy));
 }

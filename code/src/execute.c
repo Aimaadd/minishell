@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/09 21:39:40 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:09:32 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,38 +25,34 @@ t_cmd	*setup_execute(t_input *entry, t_env *env_copy)
 	return (command);
 }
 
-void printab(char **str)
+void	printab(char **str)
 {
-	int i;
+	int	i;
 
 	i = -1;
-
-	while(str[++i])
+	while (str[++i])
 		printf("%s\n", str[i]);
-	return;
+	return ;
 }
 
-void ft_printlst(t_cmd *cmd)
+void	ft_printlst(t_cmd *cmd)
 {
-	t_cmd *tmp;
+	t_cmd	*tmp;
 
 	tmp = cmd;
-
-	while(tmp)
+	while (tmp)
 	{
 		printab(tmp->args);
 		tmp = tmp->next;
 	}
-	return;
+	return ;
 }
 
 int	run_execute(t_cmd *command, t_list *list)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = list;
-	
-	ft_printlst(command);
 	if (!command->next)
 		simple_command(command);
 	else

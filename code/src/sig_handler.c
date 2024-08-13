@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 11:16:36 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 17:46:01 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:36:08 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ void	signal_handler(int signum)
 		rl_redisplay();
 	}
 	else if (signum == SIGQUIT)
-		exit(128 + SIGQUIT);
+		rl_redisplay();
 	else
-	{
 		return ;
-	}
 }
 
 void	*init_signal(t_input *entry)

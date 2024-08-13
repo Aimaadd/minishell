@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:40:08 by abentaye          #+#    #+#             */
-/*   Updated: 2024/07/28 13:50:29 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/12 15:57:10 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,6 @@ int	pipe_or_redirection(char *line)
 	}
 	return (0);
 }
-
-//This function will split whats before and after the pipe or redirection into
-// three strings and return the one in the middle
-// static void copy_chars(char *str, char *line, int *i, int *j)
-// {
-//     while (line[*i] != '|' && line[*i] != '>' && line[*i] != '<' && line[*i])
-//     {
-//         str[*j] = line[*i];
-//         (*i)++;
-//         (*j)++;
-//     }
-// }
 
 char	**split_pipe_redir(char *line)
 {
@@ -104,6 +92,7 @@ char	*to_expand(t_list *input)
 		return (NULL);
 	j = 0;
 	i = 1;
+	printf("input->content : %s\n", input->content);
 	while (input->content[i])
 	{
 		temp[j] = input->content[i];
@@ -114,4 +103,22 @@ char	*to_expand(t_list *input)
 	input->content = getenv(temp);
 	free(temp);
 	return (input->content);
+}
+
+int	is_parameter(const char *str)
+{
+	int	i;
+
+	if (str[0] == '-' && str[1])
+	{
+		i = 1;
+		while (str[i])
+		{
+			if (str[i] == ' ')
+				return (1);
+			i++;
+		}
+		return (0);
+	}
+	return (1);
 }

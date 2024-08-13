@@ -6,17 +6,16 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:39:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/09 19:47:49 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:20:55 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-int	update_envp(t_env *env_copy, char **envp)
+void	update_envp(t_env *env_copy, char **envp)
 {
 	free_tab(envp);
 	envp = conv_tab_env(env_copy);
-	return (0);
 }
 
 char	*find_binary(char *bin, char *path)
@@ -43,32 +42,39 @@ char	*find_binary(char *bin, char *path)
 	return (NULL);
 }
 
+void	run_execve(t_cmd *command)
+{
+	if (access(command->args[0], X_OK) == 0 && \
+			(command->args[0][0] == '.' || command->args[0][0] == '/'))
+	{
+		execve(command->args[0], command->args, NULL);
+		exit (0);
+	}
+	command->args[0] = find_binary(command->args[0],
+			ft_getenv(command->env_copy, "PATH"));
+	if (!command->args[0])
+		exit (1);
+	execve(command->args[0], command->args, command->envp);
+	exit (0);
+}
+
 int	simple_command(t_cmd *command)
 {
 	pid_t	pid;
 	int		status;
 
-	if (!check_builtin(command))
-		return (update_envp(command->env_copy, command->envp));
+	if (check_builtin(command) == 0)
+		return (0);
 	pid = fork();
 	if (pid == 1)
 		return (1);
-	if (pid == 0)
+	else if (pid == 0)
 	{
-		if (command->file && command->type_file == BINARY)
+		if (command->file && command->type_file == 1)
 			redirection(command->file);
-		else if (command->file && command->type_file == PARAMETER)
+		else if (command->file && command->type_file == 2)
 			append_mode(command->file);
-		if (access(command->args[0], X_OK) == 0 && (command->args[0][0] == '.' || command->args[0][0] == '/'))
-		{
-			execve(command->args[0], command->args, NULL);
-			exit (0);
-		}
-		command->args[0] = find_binary(command->args[0], ft_getenv(command->env_copy, "PATH"));
-		if (!command->args[0])
-			exit (1);
-		execve(command->args[0], command->args, command->envp);
-		exit (0);
+		run_execve(command);
 	}
 	waitpid(pid, &status, 0);
 	return (0);

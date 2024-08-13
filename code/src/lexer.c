@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/09 19:48:34 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:23:39 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,18 @@ int	contains_quotes(t_list *list)
 
 int	read_type(char *content)
 {
-	if (!ft_strncmp(content, "|", ft_strlen(content)))
+	if (!ft_strncmp(content, "|", 1))
 		return (PIPE);
-	else if (!ft_strncmp(content, ">", ft_strlen(content)))
-		return (REDIRECTION);
-	else if (!ft_strncmp(content, ">>", 1))
+	else if (!ft_strncmp(content, ">>", 2))
 		return (APPEND);
-	else if(!ft_strncmp(content, "<<", 1))
+	else if (!ft_strncmp(content, ">", 1))
+		return (REDIRECTION);
+	else if (!ft_strncmp(content, "<<", 2))
 		return (HEREDOC);
 	else if (!ft_strncmp(content, "$", 1))
 		return (ENV);
+	else if (!ft_strncmp(content, "<", 1))
+		return (INFILE);
 	else if (!is_parameter(content))
 		return (PARAMETER);
 	else if (!ft_strncmp(content, " ", ft_strlen(content)))
@@ -99,33 +101,13 @@ int	read_list(t_list *list)
 	{
 		list->type = read_type(list->content);
 		if (contains_quotes(list) == UNCLOSED_QTS)
-		{
-			printf("list->content: %s\n", list->content);
 			return (ERROR_LOOP);
-		}
 		if (list->type != REDIRECTION && list->type != PIPE
-			&& list->type != OUTFILE && list->type != APPEND)
+			&& list->type != OUTFILE && list->type != APPEND && list->type
+			!= INFILE)
 			list->content = remove_quotes(list->content);
 		if_type(list);
 		list = list->next;
 	}
 	return (0);
-}
-
-int	is_parameter(const char *str)
-{
-	int	i;
-
-	if (str[0] == '-' && str[1])
-	{
-		i = 1;
-		while (str[i])
-		{
-			if (str[i] == ' ')
-				return (1);
-			i++;
-		}
-		return (0);
-	}
-	return (1);
 }

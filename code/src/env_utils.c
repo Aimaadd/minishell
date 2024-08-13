@@ -6,24 +6,11 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:20:25 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/08/02 15:47:18 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/13 13:59:07 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
-
-void	print_env(t_env *env)
-{
-	t_env	*tmp;
-
-	tmp = env;
-	while (tmp)
-	{
-		printf("%s=%s\n", tmp->variable, tmp->value);
-		tmp = tmp->next;
-	}
-	return ;
-}
 
 int	check_size(char *s1, char *s2)
 {
