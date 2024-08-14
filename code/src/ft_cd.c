@@ -6,13 +6,13 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:29:50 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/08/13 13:54:53 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:41:36 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-char	*if_tield_in_path(char *path, char *home)
+char	*if_tilde_in_path(char *path, char *home)
 {
 	char	*new_path;
 	char	**tab;
@@ -36,7 +36,7 @@ char	*if_tield_in_path(char *path, char *home)
 
 void	to_home(char *path, char *home, char *pwd, t_env *env)
 {
-	path = if_tield_in_path(path, home);
+	path = if_tilde_in_path(path, home);
 	if (chdir(home) == -1)
 		perror("");
 	update_value_env(home, "PWD", env);
@@ -52,6 +52,8 @@ void	ft_cd(char *path, t_env *env)
 	home = ft_getenv(env, "HOME");
 	old_pwd = ft_getenv(env, "OLDPWD");
 	pwd = ft_getenv(env, "PWD");
+	printf("OLDPWD : %s\n", old_pwd);
+	printf("PWD : %s\n", pwd);
 	if (!path || *path == '~')
 		to_home(path, home, pwd, env);
 	else if (ft_strncmp(path, "-", ft_strlen(path)) == 0)

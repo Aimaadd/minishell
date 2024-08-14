@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/13 14:26:35 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:39:31 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,4 +231,8 @@ int		temp_file_create(void);
 char	*heredoc_loop(void);
 void	handle_heredoc(char *delim);
 
+// debug_tools.c
+void	printab(char **str);
+void	printenv(t_env *env);
+void	printlist(t_list *list);
 #endif

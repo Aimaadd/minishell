@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 11:16:36 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/12 14:36:08 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:29:10 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,3 @@ void	*init_signal(t_input *entry)
 		entry->signal = 128 + SIGTSTP;
 	return (NULL);
 }
-
-// int	signal_assignement(t_input *entry)
-// {
-
-// 	entry->signal = 
-// }

@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:20:25 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/08/13 13:59:07 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:36:56 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	update_value_env(char *value, char *variable, t_env *env)
 		tmp = tmp->next;
 	}
 	tmp->value = value;
+	// printlist(tmp);
 	return ;
 }
 

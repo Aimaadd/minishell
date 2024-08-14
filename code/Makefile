@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/08/13 16:21:49 by abentaye         ###   ########.fr        #
+#    Updated: 2024/08/14 18:39:49 by abentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRCS =  ./src/main.c \
 		./src/ft_free.c \
 		./src/multiple_command.c \
 		./src/heredoc.c \
+		./src/debug_tools.c \
 
 OBJS= $(SRCS:.c=.o)
 
