@@ -22,14 +22,13 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
+# include <sys/wait.h>
 # include "../libft/libft.h"
 # include <termios.h>
 
 # define ERROR_LOOP -1
 # define UNCLOSED_QTS 1
 # define BUFFERSIZE 1024
-
-int						g_status;
 
 enum e_type
 {
