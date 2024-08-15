@@ -30,6 +30,6 @@ void	printab(char **str)
 
 	i = -1;
 	while (str[++i])
-		printf("printab : %s\n", str[i]);
+		printf("printab [%d] : %s\n",i,str[i]);
 	return ;
 }
