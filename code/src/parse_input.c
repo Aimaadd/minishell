@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:40:08 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/14 15:46:46 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/15 02:17:38 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*to_expand(t_list *input)
 	char	*temp;
 	int		i;
 	int		j;
-
+	
 	temp = malloc(sizeof (char *));
 	if (!temp)
 		return (NULL);
@@ -99,9 +99,12 @@ char	*to_expand(t_list *input)
 		i++;
 	}
 	temp[j] = '\0';
-	input->content = getenv(temp);
+	if (getenv(temp))
+		return (input->content = getenv(temp));
+	else
+		write(1, "\n", 1);
 	free(temp);
-	return (input->content);
+	return (input->content = "\n");
 }
 
 int	is_parameter(const char *str)
