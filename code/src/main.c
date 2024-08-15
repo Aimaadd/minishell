@@ -43,9 +43,7 @@ int	main(int ac, char **ag, char **envp)
 	t_env				*env_copy;
 	t_input				*entry;
 	struct sigaction	sa;
-	int					ret;
 
-	ret = 0;
 	memset(&sa, 0, sizeof(sa));
 	entry = NULL;
 	(void)ac;
