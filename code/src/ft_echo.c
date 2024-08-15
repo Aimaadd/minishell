@@ -19,7 +19,7 @@ int	check_parameter(char **args)
 
 	i = 1;
 	tmp = args;
-	if (!tmp)
+	if (!tmp || !tmp[1])
 		return (1);
 	while (tmp[1][i])
 	{
@@ -54,7 +54,9 @@ void	ft_echo(t_cmd *command)
 	flag = 0;
 	x = 0;
 	y = 0;
-	if (check_parameter(command->args) == 0)
+	if (!args[1])
+		write(1, "\n", 1);
+	if (check_parameter(args) == 0)
 		flag = 1;
 	if (flag == 0)
 		x = 2;
@@ -66,5 +68,5 @@ void	ft_echo(t_cmd *command)
 		write_args(x++, y, args);
 	}
 	if (flag == 1)
-		write(1, "\n", 2);
-}
+		write(1, "\n", 1);
+}		
