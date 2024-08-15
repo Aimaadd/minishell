@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:46:57 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/08/13 13:59:48 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/15 22:23:08 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,22 @@ int	env_empty(t_env **copy_env)
 	return (0);
 }
 
-t_env	*create_copy_env(char **env)
+t_env	*create_copy_env(char **envp)
 {
 	int		x;
 	t_env	*copy_env;
 
 	x = 0;
 	copy_env = NULL;
-	if (!env || !*env)
+	if (!envp || !*envp)
 	{
 		if (env_empty(&copy_env) == 1)
 			return (NULL);
 		return (copy_env);
 	}
-	while (env[x])
+	while (envp[x])
 	{
-		add_element(&copy_env, env[x]);
+		add_element(&copy_env, envp[x]);
 		x++;
 	}
 	return (copy_env);

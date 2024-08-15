@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/13 15:27:03 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/15 23:54:21 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-int	minishell_loop(t_input *entry, t_env *env_copy)
+int		minishell_loop(t_input *entry)
 {
 	t_list	*tmp;
 
@@ -22,7 +22,7 @@ int	minishell_loop(t_input *entry, t_env *env_copy)
 		input_to_list(entry);
 		if (read_list(entry->list) == ERROR_LOOP)
 			continue ;
-		execute(entry, env_copy);
+		execute(entry);
 		free(entry->line);
 		while (entry->list)
 		{
@@ -40,7 +40,6 @@ int	minishell_loop(t_input *entry, t_env *env_copy)
 
 int	main(int ac, char **ag, char **envp)
 {
-	t_env				*env_copy;
 	t_input				*entry;
 	struct sigaction	sa;
 
@@ -52,6 +51,6 @@ int	main(int ac, char **ag, char **envp)
 	sa.sa_handler = init_signal(entry);
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
-	env_copy = create_copy_env(envp);
-	return (minishell_loop(entry, env_copy));
+	entry->env = create_copy_env(envp);
+	return (minishell_loop(entry));
 }

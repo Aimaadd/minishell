@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:29:33 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/13 13:51:23 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/16 00:03:43 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-int	add_envp(t_cmd *command, t_env *env_copy)
+//t_env is loaded in entry->env
+int	add_envp(t_input *entry)
 {
 	t_cmd	*tmp;
-
-	tmp = command;
+	t_input	*temp;
+	
+	temp = entry;
+	tmp = entry->cmd;
 	while (tmp)
 	{
-		tmp->envp = conv_tab_env(env_copy);
-		tmp->env_copy = env_copy;
+		tmp->envp = conv_tab_env(temp->env);
+		tmp->env_copy = tmp->env_copy;
 		if (!tmp->envp)
 			return (1);
 		tmp = tmp->next;
@@ -99,11 +102,11 @@ int	add_args(t_cmd	*command, t_list *list)
 	return (0);
 }
 
-int	init_execute(t_input *entry, t_env *env_copy, t_cmd *command)
+int	init_execute(t_input *entry)
 {
-	if (add_envp(command, env_copy) == 1)
+	if (add_envp(entry) == 1)
 		return (1);
-	if (add_args(command, entry->list) == 1)
+	if (add_args(entry->cmd, entry->list) == 1)
 		return (1);
 	return (0);
 }

@@ -3,50 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/14 14:48:23 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/16 00:04:17 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-t_cmd	*setup_execute(t_input *entry, t_env *env_copy)
+t_cmd	*setup_execute(t_input *entry)
 {
-	t_cmd	*command;
-
-	(void)env_copy;
-	command = create_cmd(entry->list);
-	if (!command)
+	entry->cmd = create_cmd(entry->list);
+	printlist(entry->list);
+	if (!entry->cmd)
 		return (NULL);
-	if (init_execute(entry, env_copy, command) == 1)
+	if (init_execute(entry) == 1)
 		return (NULL);
-	return (command);
+	return (entry->cmd);
 }
-
-// void	printab(char **str)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (str[++i])
-// 		printf("%s\n", str[i]);
-// 	return ;
-// }
-
-// void	ft_printlst(t_cmd *cmd)
-// {
-// 	t_cmd	*tmp;
-
-// 	tmp = cmd;
-// 	while (tmp)
-// 	{
-// 		printab(tmp->args);
-// 		tmp = tmp->next;
-// 	}
-// 	return ;
-// }
 
 int	run_execute(t_cmd *command, t_list *list)
 {
@@ -62,17 +37,17 @@ int	run_execute(t_cmd *command, t_list *list)
 	return (0);
 }
 
-int	execute(t_input *entry, t_env *env_copy)
+int	execute(t_input *entry)
 {
-	t_cmd	*command;
-
-	command = setup_execute(entry, env_copy);
-	if (!command)
+	entry->cmd = setup_execute(entry);
+	if (!entry->cmd)
 		return (1);
-	run_execute(command, entry->list);
-	if (command->next)
-		free_command(command);
+	entry->cmd->args = fill_array_from_list(entry->list);
+	// printab(entry->cmd->args);
+	run_execute(entry->cmd, entry->list);
+	if (entry->cmd->next)
+		free_command(entry->cmd);
 	else
-		free(command);
+		free(entry->cmd);
 	return (0);
 }

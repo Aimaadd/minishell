@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:23:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/12 17:45:55 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/15 21:25:56 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_input	*init_input(void)
 		return (NULL);
 	entry->index = 0;
 	entry->line = NULL;
+	entry->cmd = NULL;
 	entry->env = NULL;
 	entry->signal = 0;
 	entry->list = NULL;

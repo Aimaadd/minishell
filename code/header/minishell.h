@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/14 18:39:31 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/15 23:02:18 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,6 @@ typedef struct s_list
 	struct s_list		*prev;
 }	t_list;
 
-typedef struct s_input
-{
-	t_list				*list;
-	t_env				*env;
-	char				*line;
-	int					index;
-	int					signal;
-	int					ret_val;
-}	t_input;
-
 typedef struct s_cmd
 {
 	char				**args;
@@ -82,6 +72,18 @@ typedef struct s_cmd
 	struct s_cmd		*next;
 }	t_cmd;
 
+typedef struct s_input
+{
+	t_list				*list;
+	t_env				*env;
+	t_cmd				*cmd;
+	char				*line;
+	int					index;
+	int					signal;
+	int					ret_val;
+}	t_input;
+
+
 typedef struct s_data_multiple
 {
 	int					number_of_command;
@@ -91,7 +93,7 @@ typedef struct s_data_multiple
 }			t_data_multiple;
 
 //main.c 
-int		minishell_loop(t_input *entry, t_env *env_copy);
+int		minishell_loop(t_input *entry);
 
 //init_input.c
 void	ft_lstadd_back(t_list **lst, t_list *new);
@@ -115,7 +117,7 @@ char	*to_expand(t_list *input);
 void	ft_echo(t_cmd *command);
 
 // copy_env.c
-t_env	*create_copy_env(char **env);
+t_env	*create_copy_env(char **envp);
 int		add_element(t_env **copy_env, char *content);
 
 // env_utils.c
@@ -158,7 +160,7 @@ int		read_type(char *content);
 t_input	*init_input(void);
 
 // execute.c
-int		execute(t_input *entry, t_env *env_copy);
+int		execute(t_input *entry);
 int		setup_cmd(t_cmd *cmd, t_input *entry, t_env *env_copy);
 int		run_cmd(t_cmd *cmd);
 
@@ -169,7 +171,6 @@ int		get_size_list(t_list *list);
 
 // run_command.c
 int		simple_command(t_cmd *cmd);
-int		execute(t_input *entry, t_env *env_copy);
 
 // exec_utils.c
 int		get_number_pipe(t_list *list);
@@ -187,7 +188,7 @@ int		dup_and_close(char *filename);
 t_cmd	*create_cmd(t_list *list);
 
 // init_command.c
-int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
+int	init_execute(t_input *entry);
 
 // command_utils.c
 int		get_number_command(t_cmd *cmd);
@@ -198,9 +199,6 @@ int		check_max_len(char *s1, char *s2);
 
 // create_command.c
 t_cmd	*create_cmd(t_list *list);
-
-// init_command.c
-int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
 
 // command.c
 int		simple_command(t_cmd *command);
@@ -234,4 +232,8 @@ void	handle_heredoc(char *delim);
 void	printab(char **str);
 void	printenv(t_env *env);
 void	printlist(t_list *list);
+
+// solo_execute.c 
+char	**fill_array_from_list(t_list *list);
+
 #endif
