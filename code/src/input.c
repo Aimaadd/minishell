@@ -39,9 +39,7 @@ void	*new_node(t_list **list, char *content)
 t_list	*input_to_list(t_input *entry)
 {
 	char	**splinput;
-	int		i;
 
-	i = 0;
 	splinput = ft_split(entry->line, ' ');
 	entry->list = array_to_list(splinput);
 	free(splinput);
