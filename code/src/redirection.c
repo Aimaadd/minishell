@@ -18,10 +18,9 @@ void	redirection(char *filename)
 
 	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
-		g_status = 1;
+		{}
 	if (dup2(fd, STDOUT_FILENO) < 0)
 	{
-		g_status = 1;
 		close(fd);
 		exit(EXIT_FAILURE);
 	}
@@ -34,10 +33,9 @@ void	append_mode(char *filename)
 
 	fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd < 0)
-		g_status = 1;
+		{}
 	if (dup2(fd, STDOUT_FILENO) < 0)
 	{
-		g_status = 1;
 		close(fd);
 		exit(EXIT_FAILURE);
 	}
