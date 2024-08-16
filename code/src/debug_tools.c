@@ -19,7 +19,7 @@ void	printenv(t_env *env)
 	tmp = env;
 	while (tmp)
 	{
-		printf("node[%d] : %s\n", counter++, tmp->variable);
+		printf("node[%d] : variable %s and value : %s\n", counter++, tmp->variable, tmp->value);
 		tmp = tmp->next;
 	}
 }

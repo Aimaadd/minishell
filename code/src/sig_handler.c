@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 11:16:36 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/13 16:29:10 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/16 23:55:40 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ void	signal_handler(int signum)
 		return ;
 }
 
-void	*init_signal(t_input *entry)
+void	*init_signal(void)
 {
 	sigset_t			set;
 
 	sigemptyset(&set);
 	if (signal(SIGQUIT, signal_handler))
-		entry->signal = 128 + SIGQUIT;
+		g_ms->signal = 128 + SIGQUIT;
 	if (signal(SIGINT, signal_handler))
-		entry->signal = 128 + SIGINT;
+		g_ms->signal = 128 + SIGINT;
 	if (signal(SIGTSTP, signal_handler))
-		entry->signal = 128 + SIGTSTP;
+		g_ms->signal = 128 + SIGTSTP;
 	return (NULL);
 }

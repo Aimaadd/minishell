@@ -6,30 +6,11 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:29:33 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/16 00:03:43 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/17 00:01:11 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
-
-//t_env is loaded in entry->env
-int	add_envp(t_input *entry)
-{
-	t_cmd	*tmp;
-	t_input	*temp;
-	
-	temp = entry;
-	tmp = entry->cmd;
-	while (tmp)
-	{
-		tmp->envp = conv_tab_env(temp->env);
-		tmp->env_copy = tmp->env_copy;
-		if (!tmp->envp)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
 
 int	add_args_bis(t_list **tmp_list, t_cmd **tmp_cmd)
 {
@@ -99,14 +80,5 @@ int	add_args(t_cmd	*command, t_list *list)
 			return (1);
 		tmp_cmd = tmp_cmd->next;
 	}
-	return (0);
-}
-
-int	init_execute(t_input *entry)
-{
-	if (add_envp(entry) == 1)
-		return (1);
-	if (add_args(entry->cmd, entry->list) == 1)
-		return (1);
 	return (0);
 }

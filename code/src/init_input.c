@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:23:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/15 21:25:56 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/16 23:56:18 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 t_input	*init_input(void)
 {
-	t_input	*entry;
 
-	entry = malloc(sizeof(t_input));
-	if (!entry)
+	g_ms = malloc(sizeof(t_input));
+	if (!g_ms)
 		return (NULL);
-	entry->index = 0;
-	entry->line = NULL;
-	entry->cmd = NULL;
-	entry->env = NULL;
-	entry->signal = 0;
-	entry->list = NULL;
-	entry->ret_val = 0;
-	return (entry);
+	g_ms->index = 0;
+	g_ms->line = NULL;
+	g_ms->cmd = NULL;
+	g_ms->env = NULL;
+	g_ms->signal = 0;
+	g_ms->list = NULL;
+	g_ms->ret_val = 0;
+	return (g_ms);
 }
 
 t_list	*ft_lstnew(void *content)

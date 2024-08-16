@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:29:24 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/16 23:56:02 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ void	*new_node(t_list **list, char *content)
 }
 
 //this function will turn a str into a list
-t_list	*input_to_list(t_input *entry)
+t_list	*input_to_list()
 {
 	char	**splinput;
 
-	splinput = ft_split(entry->line, ' ');
-	entry->list = array_to_list(splinput);
+	splinput = ft_split(g_ms->line, ' ');
+	g_ms->list = array_to_list(splinput);
 	free(splinput);
-	return (entry->list);
+	return (g_ms->list);
 }
 
 //This function will loop and free the list

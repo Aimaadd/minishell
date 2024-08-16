@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:39:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/15 22:46:56 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/17 00:03:59 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	run_execve(t_cmd *command)
 		exit (0);
 	}
 	command->args[0] = find_binary(command->args[0],
-			ft_getenv(command->env_copy, "PATH"));
+			ft_getenv(g_ms->env, "PATH"));
 	if (!command->args[0])
 		exit (1);
 	execve(command->args[0], command->args, command->envp);

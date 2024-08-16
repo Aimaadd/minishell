@@ -6,21 +6,18 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/16 00:04:17 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/17 00:02:04 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-t_cmd	*setup_execute(t_input *entry)
+t_cmd	*setup_execute(void)
 {
-	entry->cmd = create_cmd(entry->list);
-	printlist(entry->list);
-	if (!entry->cmd)
+	g_ms->cmd = create_cmd(g_ms->list);
+	if (!g_ms->cmd)
 		return (NULL);
-	if (init_execute(entry) == 1)
-		return (NULL);
-	return (entry->cmd);
+	return (g_ms->cmd);
 }
 
 int	run_execute(t_cmd *command, t_list *list)
@@ -29,7 +26,7 @@ int	run_execute(t_cmd *command, t_list *list)
 
 	tmp = list;
 	if (!command->next)
-		simple_command(command);
+		simple_command(command); // to keep
 	else
 		multiple_command(command);
 	if (tmp->type == HEREDOC)
@@ -37,17 +34,16 @@ int	run_execute(t_cmd *command, t_list *list)
 	return (0);
 }
 
-int	execute(t_input *entry)
+int	execute(void)
 {
-	entry->cmd = setup_execute(entry);
-	if (!entry->cmd)
+	g_ms->cmd = setup_execute();
+	if (!g_ms->cmd)
 		return (1);
-	entry->cmd->args = fill_array_from_list(entry->list);
-	// printab(entry->cmd->args);
-	run_execute(entry->cmd, entry->list);
-	if (entry->cmd->next)
-		free_command(entry->cmd);
+	g_ms->cmd->args = fill_array_from_list(g_ms->list);
+	run_execute(g_ms->cmd, g_ms->list);
+	if (g_ms->cmd->next)
+		free_command(g_ms->cmd);
 	else
-		free(entry->cmd);
+		free(g_ms->cmd);
 	return (0);
 }

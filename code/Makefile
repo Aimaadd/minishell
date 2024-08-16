@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/08/15 23:50:09 by abentaye         ###   ########.fr        #
+#    Updated: 2024/08/16 22:11:52 by abentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,10 @@ O = "\033[38;5;214m"
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror
+LIBGCDIR = ./gc/
+LIBGC = libgc.a
+LIBGCFLAGS = -L $(LIBGCDIR) -l:$(LIBGC)
 RM = rm -f
 READLIB = $(HOME)/.brew/opt/readline/lib
 READINCL = $(HOME)/.brew/opt/readline/include
@@ -64,8 +67,10 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	@echo $(O)"[INFO]" $(W)"Compiling libft"
 	@make -C $(LIBFT)
+	@echo $(O)"[INFO]" $(W)"Compiling gc"
+	@make -C $(LIBGCDIR)
 	@echo $(O)"[INFO]" $(W)"Compiling $(NAME)..." $(W)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFTA) $(LINKER) 
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFTA) $(LIBGCFLAGS) $(LINKER) 
 	@echo $(G)"[INFO]" $(W)"Compilation done"
 
 $(OBJS): %.o: %.c
@@ -78,6 +83,7 @@ clean :
 fclean : clean
 	@$(RM) $(NAME) 
 	@make fclean -C $(LIBFT)
+	@make fclean -C $(LIBGCDIR)
 	@echo $(R)"[INFO]" $(W)"$(NAME) deleted"
 
 re : fclean all
