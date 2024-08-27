@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/17 00:02:04 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:12:28 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	execute(void)
 	run_execute(g_ms->cmd, g_ms->list);
 	if (g_ms->cmd->next)
 		free_command(g_ms->cmd);
-	else
-		free(g_ms->cmd);
+	// else
+	// 	free(g_ms->cmd);
 	return (0);
 }

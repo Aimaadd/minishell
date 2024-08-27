@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 13:46:57 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/08/15 22:23:08 by abentaye         ###   ########.fr       */
+/*   Created: 2024/05/16 13:46:57 by abentaye          #+#    #+#             */
+/*   Updated: 2024/08/27 18:01:45 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_env	*create_element(char *content)
 	char	*value;
 
 	value = NULL;
-	new = malloc(sizeof(t_env));
+	new = gc_malloc(&(g_ms->gcenv), sizeof(t_env));
 	if (!new)
 		return (NULL);
 	tab = ft_split(content, '=');

@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:39:40 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/08/14 18:40:11 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:34:33 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	check_builtin(t_cmd *command)
 	else if (ft_builtin_compare(is_builtin, "env") == 0)
 		ft_env(command->env_copy);
 	else if (ft_builtin_compare(is_builtin, "exit") == 0)
-		ft_exit(command);
+		ft_exit();
 	else
 		return (1);
 	return (0);

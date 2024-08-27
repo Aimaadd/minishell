@@ -24,6 +24,19 @@ void	printenv(t_env *env)
 	}
 }
 
+int	get_envsize(t_env *env)
+{
+	t_env	*tmp = NULL;
+	int		counter = 0;
+	tmp = env;
+	while (tmp)
+	{
+		counter++;
+		tmp = tmp->next;
+	}
+	return (counter);
+}
+
 void	printab(char **str)
 {
 	int	i;

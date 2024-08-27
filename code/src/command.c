@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:39:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/17 00:03:59 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:59:04 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-void	update_envp(t_env *env_copy, char **envp)
-{
-	free_tab(envp);
-	envp = conv_tab_env(env_copy);
-}
+// void	update_envp(t_env *env_copy, char **envp)
+// {
+// 	free_tab(envp);
+// 	envp = conv_tab_env(env_copy);
+// }
 
 char	*find_binary(char *bin, char *path)
 {

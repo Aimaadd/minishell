@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:20:25 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/08/14 18:36:56 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:58:12 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-char	**conv_tab_env(t_env *env_copy)
+char	**tab_env(t_env *env_copy)
 {
 	char	**tab_env;
 	t_env	*tmp;
@@ -93,7 +93,7 @@ char	**conv_tab_env(t_env *env_copy)
 		x++;
 		tmp = tmp->next;
 	}
-	tab_env = malloc(sizeof(char *) * (x + 1));
+	tab_env = gc_malloc(&(g_ms->gc), sizeof(char *) * (x + 1));
 	if (!tab_env)
 		return (NULL);
 	x = 0;

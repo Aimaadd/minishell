@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/16 23:54:09 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:01:17 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/wait.h>
 # include "../libft/libft.h"
 # include <termios.h>
+# include "../gc/gc.h"
 
 # define ERROR_LOOP -1
 # define UNCLOSED_QTS 1
@@ -77,13 +78,15 @@ typedef struct s_input
 	t_list				*list;
 	t_env				*env;
 	t_cmd				*cmd;
+	t_gcan				gc;
+	t_gcan				gcenv;
 	char				*line;
 	int					index;
 	int					signal;
 	int					ret_val;
 }	t_input;
 
-extern	t_input	*g_ms;
+extern t_input	*g_ms;
 
 typedef struct s_data_multiple
 {
@@ -189,7 +192,7 @@ int		dup_and_close(char *filename);
 t_cmd	*create_cmd(t_list *list);
 
 // init_command.c
-int	init_execute(void);
+int		init_execute(void);
 
 // command_utils.c
 int		get_number_command(t_cmd *cmd);
@@ -213,7 +216,7 @@ int		check_builtin(t_cmd *command);
 int		check_max_len(char *s1, char *s2);
 
 // ft_exit.c
-void	ft_exit(t_cmd *command);
+void	ft_exit(void);
 
 // ft_free.c
 void	free_command(t_cmd *command);

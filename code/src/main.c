@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/16 23:58:59 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:15:19 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,21 @@ int	minishell_loop(void)
 			free(tmp);
 		}
 	}
+		gc_clean(&(g_ms->gc));
+		gc_clean(&(g_ms->gcenv));
 	return (g_ms->ret_val);
 }
 
 int	main(int ac, char **ag, char **envp)
 {
 	struct sigaction	sa;
-
+	
+	g_ms = init_input();
+	gc_init(&(g_ms->gc));
+	gc_init(&(g_ms->gcenv));
 	memset(&sa, 0, sizeof(sa));
-	g_ms = NULL;
 	(void)ac;
 	(void)ag;
-	g_ms = init_input();
 	sa.sa_handler = init_signal();
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;

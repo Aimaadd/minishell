@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+         #
+#    By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/08/16 22:11:52 by abentaye         ###   ########.fr        #
+#    Updated: 2024/08/27 17:55:45 by abentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,10 @@ O = "\033[38;5;214m"
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 LIBGCDIR = ./gc/
-LIBGC = libgc.a
-LIBGCFLAGS = -L $(LIBGCDIR) -l:$(LIBGC)
+LIBGC = ./gc/libgc.a
+LIBGCFLAGS = -L $(LIBGCDIR) $(LIBGC)
 RM = rm -f
 READLIB = $(HOME)/.brew/opt/readline/lib
 READINCL = $(HOME)/.brew/opt/readline/include

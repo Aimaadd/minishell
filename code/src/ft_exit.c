@@ -6,14 +6,15 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:31:34 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:31:35 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:32:30 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-void	ft_exit(t_cmd *cmd)
+void	ft_exit(void)
 {
-	free_command(cmd);
+	gc_clean(&(g_ms->gc));
+	gc_clean(&(g_ms->gcenv));
 	exit(1);
 }
