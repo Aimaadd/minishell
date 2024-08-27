@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/27 18:01:17 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:13:34 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_input
 	t_cmd				*cmd;
 	t_gcan				gc;
 	t_gcan				gcenv;
+	t_gcan				gcmd;
 	char				*line;
 	int					index;
 	int					signal;
@@ -239,5 +240,6 @@ void	printlist(t_list *list);
 
 // solo_execute.c 
 char	**fill_array_from_list(t_list *list);
+char	**fill_array_from_env(t_env *env);
 
 #endif

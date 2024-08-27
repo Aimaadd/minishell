@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/27 18:15:19 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:05:10 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	main(int ac, char **ag, char **envp)
 	g_ms = init_input();
 	gc_init(&(g_ms->gc));
 	gc_init(&(g_ms->gcenv));
+	gc_init(&(g_ms->gcmd));
 	memset(&sa, 0, sizeof(sa));
 	(void)ac;
 	(void)ag;

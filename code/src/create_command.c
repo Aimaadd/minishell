@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:36:25 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/27 17:34:18 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:03:19 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_cmd	*ft_new_command(void)
 {
 	t_cmd	*new;
 
-	new = gc_malloc(&(g_ms->gcenv), sizeof(t_cmd));
+	new = gc_malloc(&(g_ms->gcmd), sizeof(t_cmd));
 	if (!new)
 		return (NULL);
 	new->envp = NULL;

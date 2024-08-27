@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/27 18:12:28 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:14:25 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	execute(void)
 	if (!g_ms->cmd)
 		return (1);
 	g_ms->cmd->args = fill_array_from_list(g_ms->list);
+	g_ms->cmd->envp = fill_array_from_env(g_ms->cmd->env_copy);
 	run_execute(g_ms->cmd, g_ms->list);
 	if (g_ms->cmd->next)
 		free_command(g_ms->cmd);
