@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/27 19:13:34 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:36:38 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,6 @@ void	create_args(t_cmd *cmd, t_list	*list);
 int		get_size_list(t_list *list);
 
 // run_command.c
-int		simple_command(t_cmd *cmd);
 
 // exec_utils.c
 int		get_number_pipe(t_list *list);
@@ -199,11 +198,8 @@ int		init_execute(void);
 int		get_number_command(t_cmd *cmd);
 
 // builtin.c
-int		check_builtin(t_cmd *command);
+int		check_builtin(t_cmd *cmd);
 int		check_max_len(char *s1, char *s2);
-
-// create_command.c
-t_cmd	*create_cmd(t_list *list);
 
 // command.c
 int		simple_command(t_cmd *command);

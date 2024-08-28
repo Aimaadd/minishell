@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:38:15 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/13 14:00:06 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/28 18:36:15 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	get_number_command(t_cmd *cmd)
 	{
 		tmp = tmp->next;
 		number_of_command++;
+		printf("%d\n", number_of_command);
 	}
 	return (number_of_command);
 }
