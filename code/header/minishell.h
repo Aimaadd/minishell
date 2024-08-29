@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/28 15:36:38 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/29 22:22:47 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ typedef struct s_list
 typedef struct s_cmd
 {
 	char				**args;
-	char				**envp;
-	t_env				*env_copy;
+	char				**envp; //
+	t_env				*env_copy; //
 	char				*file;
 	int					type_file;
 	struct s_cmd		*next;
@@ -214,6 +214,7 @@ int		check_max_len(char *s1, char *s2);
 
 // ft_exit.c
 void	ft_exit(void);
+void	ft_exit_status(int status);
 
 // ft_free.c
 void	free_command(t_cmd *command);

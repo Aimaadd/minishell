@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/29 18:23:44 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/29 22:02:18 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ int	execute(void)
 	if (!g_ms->cmd)
 		return (1);
 	g_ms->cmd->args = fill_array_from_list(g_ms->list);
-	g_ms->cmd->envp = fill_array_from_env(g_ms->cmd->env_copy);
+	// g_ms->cmd->envp = fill_array_from_env(g_ms->cmd->env_copy);
+	g_ms->cmd->env_copy = g_ms->env;
+	g_ms->cmd->envp = fill_array_from_env(g_ms->env);
 	get_number_command(g_ms->cmd);
 	run_execute(g_ms->list);
 	// if (g_ms->cmd->next)

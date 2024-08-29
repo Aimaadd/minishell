@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/27 19:05:10 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/29 22:28:13 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	minishell_loop(void)
 			free(tmp);
 		}
 	}
-		gc_clean(&(g_ms->gc));
-		gc_clean(&(g_ms->gcenv));
+	gc_clean(&(g_ms->gc));
+	gc_clean(&(g_ms->gcenv));
 	return (g_ms->ret_val);
 }
 

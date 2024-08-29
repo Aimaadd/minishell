@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:39:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/29 17:17:22 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/29 22:22:34 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,22 @@ char	*find_binary(char *bin, char *path)
 	if (!bin)
 		return (NULL);
 	new_path = ft_split(path, ':');
-	if (!new_path)
+	if (!new_path) {
+		free(bin);
 		return (NULL);
+	}
 	x = 0;
 	while (new_path[x])
 	{
 		path_bin = ft_strjoin(new_path[x], bin);
-		if (access(path_bin, X_OK) == 0)
+		if (access(path_bin, X_OK) == 0) {
+			free_tab(new_path);
 			return (path_bin);
+		}
 		free(path_bin);
 		x++;
 	}
+	free_tab(new_path);
 	return (NULL);
 }
 
@@ -42,14 +47,14 @@ void	run_execve(t_cmd *command)
 			(command->args[0][0] == '.' || command->args[0][0] == '/'))
 	{
 		execve(command->args[0], command->args, NULL);
-		exit (0);
+		ft_exit_status(0);
 	}
 	command->args[0] = find_binary(command->args[0],
 			ft_getenv(g_ms->env, "PATH"));
 	if (!command->args[0])
-		exit (1);
+		ft_exit_status(1);
 	execve(command->args[0], command->args, command->envp);
-	exit (0);
+	ft_exit_status(0);
 }
 
 int	simple_command(t_cmd *cmd)

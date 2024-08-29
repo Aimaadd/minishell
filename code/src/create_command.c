@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   create_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:36:25 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/28 17:13:43 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/29 21:43:28 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-t_cmd	*ft_new_command(t_cmd *cmd)
+t_cmd	*ft_new_command(void)
 {
 	t_cmd	*new;
 
-	new = gc_malloc(&g_ms->gcmd, sizeof(t_cmd));
+	new = malloc(sizeof(t_cmd));
 	if (!new)
 		return (NULL);
-	cmd = NULL;
 	new->args = NULL;
 	new->envp = NULL;
 	new->env_copy = NULL;
@@ -34,7 +33,7 @@ int	add_command(t_cmd **command)
 	t_cmd	*new_command;
 	t_cmd	*last;
 
-	new_command = ft_new_command(g_ms->cmd);
+	new_command = ft_new_command();
 	if (!new_command)
 		return (1);
 	if (*command == NULL)
@@ -76,7 +75,7 @@ t_cmd	*create_cmd(t_list *list)
 	}
 	else
 	{
-		g_ms->cmd = ft_new_command(g_ms->cmd);
+		g_ms->cmd = ft_new_command();
 		if (!g_ms->cmd)
 			return (NULL);
 	}
