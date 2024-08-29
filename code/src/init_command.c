@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:29:33 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/13 13:51:23 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/29 22:53:39 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	add_args_sub_loop(t_list **tmp_list, t_cmd **tmp_cmd, int *x)
 			*x += 1;
 		}
 	}
+	(*tmp_cmd)->args[*x] = NULL;
 	return (0);
 }
 
