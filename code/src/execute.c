@@ -65,14 +65,11 @@ int	run_execute(t_cmd *command, t_list *list)
 int	execute(t_input *entry, t_env *env_copy)
 {
 	t_cmd	*command;
-
+	
 	command = setup_execute(entry, env_copy);
 	if (!command)
 		return (1);
 	run_execute(command, entry->list);
-	if (command->next)
-		free_command(command);
-	else
-		free(command);
+	free_command(command);
 	return (0);
 }

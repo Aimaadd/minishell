@@ -12,70 +12,90 @@
 
 #include "libft.h"
 
-static size_t	get_nb_words(char *s, char c)
-{
-	size_t	count;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chly-huc <chly-huc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/08 02:10:35 by chly-huc          #+#    #+#             */
+/*   Updated: 2021/08/14 19:23:36 by chly-huc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	count = 0;
-	while (*s)
-	{
-		while (*s && *s == (char)c)
-			s++;
-		if (!(*s))
-			break ;
-		++count;
-		while (*s && *s != (char)c)
-			s++;
-	}
-	return (count);
+#include "libft.h"
+
+static char		**malloc_free(char **str)
+{
+	int i;
+
+	i = -1;
+	while (str[++i])
+		free(str[i]);
+	free(str);
+	return (NULL);
 }
 
-static char	*get_next_word(char **s, char c)
+static int		count_words(char *str, char c)
 {
-	char	*sptr;
-
-	while (**s && **s == (char)c)
-		(*s)++;
-	if (!**s)
-		return (NULL);
-	sptr = *s;
-	while (**s && **s != (char)c)
-		(*s)++;
-	return (ft_substr(sptr, 0, *s - sptr));
-}
-
-static void	free_split(char **tab, size_t len)
-{
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (i < len)
-		free(tab[i++]);
-	free(tab);
+	while (str[i])
+	{
+		while (str[i] && (str[i] == c))
+			i++;
+		if (str[i++] && str[i] != c)
+			while (str[i] && str[i] != c)
+				i++;
+	}
+	return (i);
 }
 
-char	**ft_split(char const *s, char c)
+static char		*malloc_word(char *str, char c)
 {
-	char	*ptr;
-	char	**tab;
-	size_t	i;
-	size_t	tabsize;
+	char	*word;
+	int		i;
 
-	ptr = (char *)s;
-	tabsize = get_nb_words((char *)s, c);
-	tab = malloc(sizeof(char *) * (tabsize + 1));
+	i = 0;
+	while (str[i] && str[i] != c)
+		i++;
+	word = malloc(sizeof(char) * (i + 1));
+	if (!word)
+		return (NULL);
+	i = -1;
+	while (str[++i] && str[i] != c)
+		word[i] = str[i];
+	word[i] = '\0';
+	return (word);
+}
+
+char			**ft_split(char *str, char charset)
+{
+	int		words;
+	int		i;
+	char	**tab;
+
+	i = 0;
+	if (!str)
+		return (NULL);
+	words = count_words(str, charset);
+	tab = malloc(sizeof(char*) * (words + 1));
 	if (!tab)
 		return (NULL);
-	i = 0;
-	while (i < tabsize)
+	while (*str)
 	{
-		tab[i] = get_next_word(&ptr, c);
-		if (!(tab[i]))
+		while (*str && (*str == charset))
+			str++;
+		if (*str && *str != charset)
 		{
-			free_split(tab, i);
-			return (NULL);
+			tab[i++] = malloc_word(str, charset);
+			if (!tab)
+				return (malloc_free(tab));
+			while (*str && *str != charset)
+				str++;
 		}
-		++i;
 	}
 	tab[i] = NULL;
 	return (tab);

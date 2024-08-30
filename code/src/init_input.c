@@ -25,6 +25,7 @@ t_input	*init_input(void)
 	entry->signal = 0;
 	entry->list = NULL;
 	entry->ret_val = 0;
+	entry->cmd = NULL;
 	return (entry);
 }
 
@@ -35,7 +36,7 @@ t_list	*ft_lstnew(void *content)
 	new_node = (t_list *)malloc(sizeof(t_list));
 	if (!new_node)
 		return (NULL);
-	new_node->content = content;
+	new_node->content = ft_strdup(content);
 	new_node->next = NULL;
 	new_node->type = 0;
 	new_node->read = 1;
@@ -83,13 +84,11 @@ t_list	*array_to_list(char **array)
 
 	i = 0;
 	list = NULL;
-	while (array[i] != NULL)
+	while (array[i])
 	{
 		new_node = ft_lstnew(array[i]);
 		if (!new_node)
-		{
 			empty_node(list);
-		}
 		ft_lstadd_back(&list, new_node);
 		i++;
 	}

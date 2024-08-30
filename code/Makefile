@@ -19,7 +19,7 @@ O = "\033[38;5;214m"
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -f
 READLIB = $(HOME)/.brew/opt/readline/lib
 READINCL = $(HOME)/.brew/opt/readline/include
