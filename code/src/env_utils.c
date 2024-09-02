@@ -33,13 +33,11 @@ char	*ft_getenv(t_env *env, char *name_var)
 {
 	t_env	*temp;
 	int		check;
-	int		len;
 
 	temp = env;
 	while (temp)
 	{
-		len = check_size(temp->variable, name_var);
-		check = ft_strncmp(temp->variable, name_var, len);
+		check = ft_strncmp(temp->variable, name_var, ft_strlen(temp->variable));
 		if (check == 0)
 			return (temp->value);
 		temp = temp->next;
@@ -71,12 +69,9 @@ void	free_tab(char **tab)
 {
 	int	i;
 
-	i = 0;
-	while (tab[i])
-	{
+	i = -1;
+	while (tab[++i])
 		free(tab[i]);
-		i++;
-	}
 	free(tab);
 }
 
@@ -100,7 +95,7 @@ char	**conv_tab_env(t_env *env_copy)
 	tmp = env_copy;
 	while (tmp)
 	{
-		tab_env[x] = ft_strjoin(ft_strjoin(tmp->variable, "="), tmp->value);
+		tab_env[x] = ft_strjoinfree(ft_strjoin(tmp->variable, "="), tmp->value);
 		if (!tab_env[x])
 			return (free_tab(tab_env), NULL);
 		x++;

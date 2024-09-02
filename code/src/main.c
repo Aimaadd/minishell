@@ -35,6 +35,9 @@ int	minishell_loop(t_input *entry, t_env *env_copy)
 			}
 			free(tmp);
 		}
+		free_list(entry->list);
+		entry->list = NULL;
+		// free_command(entry->cmd);
 	}
 	return (entry->ret_val);
 }

@@ -34,3 +34,27 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	*(s + lentot) = '\0';
 	return (s);
 }
+
+char	*ft_strjoinfree(char *s1, char *s2)
+{
+	char	*s;
+	size_t	len1;
+	size_t	len2;
+	size_t	lentot;
+
+	if (!s2)
+		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	lentot = len1 + len2;
+	s = malloc (sizeof(char) * (len1 + len2 + 1));
+	if (!s)
+		return (NULL);
+	ft_memcpy(s, s1, len1);
+	ft_memcpy(s + len1, s2, len2);
+	*(s + lentot) = '\0';
+	free(s1);
+	return (s);
+}

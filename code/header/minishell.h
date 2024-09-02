@@ -62,16 +62,6 @@ typedef struct s_list
 	struct s_list		*prev;
 }	t_list;
 
-typedef struct s_input
-{
-	t_list				*list;
-	t_env				*env;
-	char				*line;
-	int					index;
-	int					signal;
-	int					ret_val;
-}	t_input;
-
 typedef struct s_cmd
 {
 	char				**args;
@@ -81,6 +71,17 @@ typedef struct s_cmd
 	int					type_file;
 	struct s_cmd		*next;
 }	t_cmd;
+
+typedef struct s_input
+{
+	t_list				*list;
+	t_env				*env;
+	t_cmd				*cmd;
+	char				*line;
+	int					index;
+	int					signal;
+	int					ret_val;
+}	t_input;
 
 typedef struct s_data_multiple
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:36:25 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:37:06 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/29 22:35:16 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ t_cmd	*ft_new_command(void)
 	new = malloc(sizeof(t_cmd));
 	if (!new)
 		return (NULL);
-	new->envp = NULL;
 	new->args = NULL;
+	new->envp = NULL;
 	new->env_copy = NULL;
-	new->next = NULL;
 	new->file = NULL;
+	new->next = NULL;
 	return (new);
 }
 

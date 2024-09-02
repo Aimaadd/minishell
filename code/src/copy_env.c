@@ -19,8 +19,8 @@ void	create_element_with_content(char **tab, char *value, t_env *new)
 	else
 		if (tab[1])
 			value = tab[1];
-	new->variable = tab[0];
-	new->value = value;
+	new->variable = ft_strdup(tab[0]);
+	new->value = ft_strdup(value);
 	new->next = NULL;
 }
 
@@ -41,10 +41,11 @@ t_env	*create_element(char *content)
 		create_element_with_content(tab, value, new);
 	else
 	{
-		new->variable = tab[0];
-		new->value = "";
+		new->variable = ft_strdup(tab[0]);
+		new->value = ft_strdup("");
 		new->next = NULL;
 	}
+	free_tab(tab);
 	return (new);
 }
 

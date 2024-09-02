@@ -19,13 +19,22 @@ char	*remove_quotes(char *content)
 	int		len;
 	char	*result;
 
+	result = NULL;
+
 	len = strlen(content);
-	result = malloc(len + 1);
-	if (!result)
-		return (NULL);
 	i = 0;
 	if (len < 2)
-		return (content);
+	{
+		result = ft_strdup(content);
+		free(content);
+		return (result);
+	}
+	result = malloc(len + 1);
+	if (!result)
+	{
+		free(content);
+		return (NULL);
+	}
 	j = 0;
 	while (i < len)
 	{
@@ -34,6 +43,7 @@ char	*remove_quotes(char *content)
 		i++;
 	}
 	result[j] = '\0';
+	free(content);
 	return (result);
 }
 
@@ -95,6 +105,9 @@ int	if_type(t_list *list)
 // element in the list 
 int	read_list(t_list *list)
 {
+	// char *ptr;
+
+	// ptr = NULL;
 	if (!list)
 		return (ERROR_LOOP);
 	while (list)
@@ -105,7 +118,9 @@ int	read_list(t_list *list)
 		if (list->type != REDIRECTION && list->type != PIPE
 			&& list->type != OUTFILE && list->type != APPEND && list->type
 			!= INFILE)
+		{
 			list->content = remove_quotes(list->content);
+		}
 		if_type(list);
 		list = list->next;
 	}

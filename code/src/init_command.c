@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:29:33 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/13 13:51:23 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/08/29 22:53:39 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ int	add_args_bis(t_list **tmp_list, t_cmd **tmp_cmd)
 	return (1);
 }
 
-int	add_args_sub_loop(t_list **tmp_list, t_cmd **tmp_cmd, int *x)
+int	add_args_sub_loop(t_list **tmp_list, t_cmd **tmp_cmd)
 {
+	int x;
+
+	x = 0;
 	while ((*tmp_list))
 	{
 		if ((*tmp_list)->second_read == 0)
@@ -62,17 +65,13 @@ int	add_args_sub_loop(t_list **tmp_list, t_cmd **tmp_cmd, int *x)
 		{
 			if (!add_args_bis(tmp_list, tmp_cmd))
 				break ;
-			(*tmp_cmd)->args[*x] = malloc(sizeof(char) * \
-					(ft_strlen((*tmp_list)->content) + 1));
-			if (!(*tmp_cmd)->args[*x])
-				return (1);
-			ft_strlcpy((*tmp_cmd)->args[*x], (*tmp_list)->content,
-				(ft_strlen((*tmp_list)->content) + 1));
+			(*tmp_cmd)->args[x] = ft_strdup((*tmp_list)->content);
 			(*tmp_list)->second_read = 0;
 			(*tmp_list) = (*tmp_list)->next;
-			*x += 1;
+			x++;
 		}
 	}
+	(*tmp_cmd)->args[x] = NULL;
 	return (0);
 }
 
@@ -81,18 +80,16 @@ int	add_args(t_cmd	*command, t_list *list)
 	t_list	*tmp_list;
 	t_cmd	*tmp_cmd;
 	int		len_command;
-	int		x;
 
 	tmp_list = list;
 	tmp_cmd = command;
 	while (tmp_cmd)
 	{
-		x = 0;
 		len_command = get_size_command(tmp_list);
 		tmp_cmd->args = malloc(sizeof(char *) * (len_command + 1));
 		if (!tmp_cmd->args)
 			return (1);
-		if (add_args_sub_loop(&tmp_list, &tmp_cmd, &x))
+		if (add_args_sub_loop(&tmp_list, &tmp_cmd))
 			return (1);
 		tmp_cmd = tmp_cmd->next;
 	}
