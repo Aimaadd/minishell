@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:29:24 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/02 18:20:34 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,59 @@ void	*new_node(t_list **list, char *content)
 	return (new);
 }
 
+int	counting_quotes(char *line)
+{
+	int	i;
+	int	quotes_counter;
+
+	quotes_counter = 0;
+	i = 0;
+	while(line[i])
+	{
+		if (line[i] == '\'' || line[i] == '\"')
+			quotes_counter++;
+		i++;	
+	}
+	return (quotes_counter);
+}
+
+char	*sort_quotes(char *line)
+{
+	int	i;
+	int	first_quote;
+	int	second_quote;
+	int	quotes_counter;
+
+	i = 0;
+	first_quote = 0;
+	second_quote = 0;
+	quotes_counter = counting_quotes(line);
+	if (quotes_counter % 2 != 0)
+		return (NULL);
+	while(line[i])
+	{
+		if (line[i] == '\'' || line[i] == '\"')
+		{
+			first_quote = i;
+			while(line[i])
+			{
+				if (line[i] == '\'' || line[i] == '\"')
+					second_quote = i;
+				i++;
+			}
+		}
+		i++;
+	}
+	return (NULL);
+}
+
 //this function will turn a str into a list
 t_list	*input_to_list(t_input *entry)
 {
 	char	**splinput;
-
+	// char	**temp_input;
+	
+	sort_quotes(entry->line);
 	splinput = ft_split(entry->line, ' ');
 	entry->list = array_to_list(splinput);
 	free(splinput);

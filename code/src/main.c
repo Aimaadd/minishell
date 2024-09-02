@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/13 15:27:03 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/02 18:22:33 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	minishell_loop(t_input *entry, t_env *env_copy)
 	{
 		entry->line = prompt_handler(entry->line);
 		input_to_list(entry);
+		printlist(entry->list);
 		if (read_list(entry->list) == ERROR_LOOP)
 			continue ;
 		execute(entry, env_copy);
