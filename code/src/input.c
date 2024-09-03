@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/02 18:20:34 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/03 12:43:15 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,24 @@ t_list	*input_to_list(t_input *entry)
 {
 	char	**splinput;
 	// char	**temp_input;
+	int		i;
 	
+	splinput = NULL;
+	i = 0;
 	sort_quotes(entry->line);
-	splinput = ft_split(entry->line, ' ');
+	if (counting_quotes(entry->line) != 0)
+	{
+		while (entry->line[i])
+		{
+			if (entry->line[i] == '\"')
+				splinput = ft_split(entry->line, '\"');
+			else if (entry->line[i] == '\'')
+				splinput = ft_split(entry->line, '\'');
+			i++;
+		}
+	}
+	else 
+		splinput = ft_split(entry->line, ' ');
 	entry->list = array_to_list(splinput);
 	free(splinput);
 	return (entry->list);

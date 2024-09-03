@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/14 14:48:23 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:08:06 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	run_execute(t_cmd *command, t_list *list)
 		simple_command(command);
 	else
 		multiple_command(command);
-	if (tmp->type == HEREDOC)
+	if (tmp->type == HEREDOC && tmp->next)
 		handle_heredoc(tmp->next->content);
 	return (0);
 }
