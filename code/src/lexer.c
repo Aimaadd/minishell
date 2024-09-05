@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/02 17:39:01 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:41:20 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	read_list(t_list *list)
 		return (ERROR_LOOP);
 	while (list)
 	{
+		list->content = remove_quotes(list->content);
 		list->type = read_type(list->content);
 		if (contains_quotes(list) == UNCLOSED_QTS)
 			return (ERROR_LOOP);

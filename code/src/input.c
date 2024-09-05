@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/03 12:43:15 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/05 10:34:13 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ char	*sort_quotes(char *line)
 t_list	*input_to_list(t_input *entry)
 {
 	char	**splinput;
-	// char	**temp_input;
 	int		i;
 	
 	splinput = NULL;
