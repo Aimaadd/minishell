@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/05 10:34:13 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:59:19 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,34 +51,42 @@ int	counting_quotes(char *line)
 	return (quotes_counter);
 }
 
-char	*sort_quotes(char *line)
-{
-	int	i;
-	int	first_quote;
-	int	second_quote;
-	int	quotes_counter;
+#include "../header/minishell.h"
 
-	i = 0;
-	first_quote = 0;
-	second_quote = 0;
-	quotes_counter = counting_quotes(line);
-	if (quotes_counter % 2 != 0)
-		return (NULL);
-	while(line[i])
-	{
-		if (line[i] == '\'' || line[i] == '\"')
-		{
-			first_quote = i;
-			while(line[i])
-			{
-				if (line[i] == '\'' || line[i] == '\"')
-					second_quote = i;
-				i++;
-			}
-		}
-		i++;
-	}
-	return (NULL);
+#include "../header/minishell.h"
+
+t_list *sort_quotes(char *line)
+{
+    int i;
+    int first_quote;
+    int second_quote;
+    int quotes_counter;
+    t_list *list = NULL;
+
+    i = 0;
+    first_quote = -1;
+    second_quote = -1;
+    quotes_counter = counting_quotes(line);
+    if (quotes_counter % 2 != 0)
+        return (NULL);
+    while (line[i])
+    {
+        if (line[i] == '\'' || line[i] == '\"')
+        {
+            if (first_quote == -1)
+                first_quote = i;
+            else
+            {
+                second_quote = i;
+                char *content = strndup(line + first_quote + 1, second_quote - first_quote - 1);
+                new_node(&list, content);
+                first_quote = -1;
+                second_quote = -1;
+            }
+        }
+        i++;
+    }
+    return (list);
 }
 
 //this function will turn a str into a list
@@ -101,7 +109,7 @@ t_list	*input_to_list(t_input *entry)
 			i++;
 		}
 	}
-	else 
+	else
 		splinput = ft_split(entry->line, ' ');
 	entry->list = array_to_list(splinput);
 	free(splinput);

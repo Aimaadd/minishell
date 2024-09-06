@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:31:53 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/05 14:25:49 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:37:16 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,39 +38,61 @@ void	write_args(int x, int y, char **args)
 		write(1, &args[x][y], 1);
 		y++;
 	}
-	if (args[x + 1])
-		write(1, " ", 1);
 	x++;
+}
+
+int	is_empty_or_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	is_only_spaces(char *str)
+{
+    while (*str)
+    {
+        if (*str != ' ')
+            return (0);
+        str++;
+    }
+    return (1);
 }
 
 void	ft_echo(t_cmd *command)
 {
-	int		flag;
-	int		x;
-	int		y;
-	char	**args;
+    int		flag;
+    int		x;
+    char	**args;
 
-	args = command->args;
-	flag = 0;
-	x = 0;
-	y = 0;
-	if (!args[1])
-	{
-		write(1, "\n", 1);
-		return ;
-	}
-	if (check_parameter(args) == 0)
-		flag = 1;
-	if (flag == 0)
-		x = 2;
-	else
-		x = 1;
-	while (args[x])
-	{
-		y = 0;
-		if (args[x])
-		write_args(x++, y, args);
-	}
-	if (flag == 1)
-		write(1, "\n", 1);
-}		
+	printcmd(command);
+    args = command->args;
+    flag = 0;
+    x = 1;
+    if (!args[1] || is_only_spaces(args[1]) == 1)
+    {
+        write(1, "\n", 1);
+        return ;
+    }
+    if (check_parameter(args) == 0)
+        flag = 1;
+    if (flag == 0)
+        x = 2;
+    while (args[x])
+    {
+        write_args(x, 0, args);
+        if (args[++x])
+            write(1, " ", 1);
+    }
+    if (flag == 1)
+        write(1, "\n", 1);
+}

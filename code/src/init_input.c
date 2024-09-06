@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:23:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/05 10:41:19 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/06 15:26:11 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_list	*array_to_list(char **array)
 		new_node = ft_lstnew(array[i]);
 		if (!new_node)
 		{
-			empty_node(list);
+			ft_lstnew(list);
 		}
 		ft_lstadd_back(&list, new_node);
 		i++;
