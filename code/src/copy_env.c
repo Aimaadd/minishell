@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:46:57 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/08/13 13:59:48 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 19:22:03 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,23 +86,18 @@ int	env_empty(t_env **copy_env)
 	return (0);
 }
 
-t_env	*create_copy_env(char **env)
+void	free_env_list(t_env *env)
 {
-	int		x;
-	t_env	*copy_env;
+	t_env	*temp;
 
-	x = 0;
-	copy_env = NULL;
-	if (!env || !*env)
+	while (env)
 	{
-		if (env_empty(&copy_env) == 1)
-			return (NULL);
-		return (copy_env);
+		temp = env;
+		env = env->next;
+		if (temp->variable)
+			free(temp->variable);
+		if (temp->value)
+			free(temp->value);
+		free(temp);
 	}
-	while (env[x])
-	{
-		add_element(&copy_env, env[x]);
-		x++;
-	}
-	return (copy_env);
 }

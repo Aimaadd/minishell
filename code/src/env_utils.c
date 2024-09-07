@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 13:20:25 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/08/14 18:36:56 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 21:04:46 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	update_value_env(char *value, char *variable, t_env *env)
 		tmp = tmp->next;
 	}
 	tmp->value = value;
-	// printlist(tmp);
 	return ;
 }
 
@@ -72,7 +71,7 @@ void	free_tab(char **tab)
 	int	i;
 
 	i = 0;
-	while (tab[i])
+	while (tab && tab[i])
 	{
 		free(tab[i]);
 		i++;

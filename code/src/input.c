@@ -6,141 +6,71 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/06 17:59:19 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 19:00:37 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
 // this function creates a new node to my list
-void	*new_node(t_list **list, char *content)
+void	new_node(t_list **list, char *content)
 {
 	t_list	*new;
-	t_list	*tmp;
+	t_list	*temp;
 
-	new = malloc(sizeof(t_list));
+	new = (t_list *)malloc(sizeof(t_list));
 	if (!new)
-		return (NULL);
-	new->content = content;
+		return ;
+	new->content = strdup(content);
 	new->next = NULL;
-	if (*list == NULL)
-	{
+	if (!*list)
 		*list = new;
-		return (new);
-	}
-	tmp = *list;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new;
-	return (new);
-}
-
-int	counting_quotes(char *line)
-{
-	int	i;
-	int	quotes_counter;
-
-	quotes_counter = 0;
-	i = 0;
-	while(line[i])
+	else
 	{
-		if (line[i] == '\'' || line[i] == '\"')
-			quotes_counter++;
-		i++;	
+		temp = *list;
+		while (temp->next)
+			temp = temp->next;
+		temp->next = new;
 	}
-	return (quotes_counter);
 }
 
-#include "../header/minishell.h"
-
-#include "../header/minishell.h"
-
-t_list *sort_quotes(char *line)
+char	*get_next_token(char **input)
 {
-    int i;
-    int first_quote;
-    int second_quote;
-    int quotes_counter;
-    t_list *list = NULL;
+	char	*start;
+	char	quote_char;
 
-    i = 0;
-    first_quote = -1;
-    second_quote = -1;
-    quotes_counter = counting_quotes(line);
-    if (quotes_counter % 2 != 0)
-        return (NULL);
-    while (line[i])
-    {
-        if (line[i] == '\'' || line[i] == '\"')
-        {
-            if (first_quote == -1)
-                first_quote = i;
-            else
-            {
-                second_quote = i;
-                char *content = strndup(line + first_quote + 1, second_quote - first_quote - 1);
-                new_node(&list, content);
-                first_quote = -1;
-                second_quote = -1;
-            }
-        }
-        i++;
-    }
-    return (list);
-}
-
-//this function will turn a str into a list
-t_list	*input_to_list(t_input *entry)
-{
-	char	**splinput;
-	int		i;
-	
-	splinput = NULL;
-	i = 0;
-	sort_quotes(entry->line);
-	if (counting_quotes(entry->line) != 0)
+	while (ft_isspace(**input))
+		(*input)++;
+	if (**input == '\'' || **input == '\"')
 	{
-		while (entry->line[i])
-		{
-			if (entry->line[i] == '\"')
-				splinput = ft_split(entry->line, '\"');
-			else if (entry->line[i] == '\'')
-				splinput = ft_split(entry->line, '\'');
-			i++;
-		}
+		quote_char = *(*input)++;
+		start = *input;
+		while (**input && **input != quote_char)
+			(*input)++;
 	}
 	else
-		splinput = ft_split(entry->line, ' ');
-	entry->list = array_to_list(splinput);
-	free(splinput);
-	return (entry->list);
+	{
+		start = *input;
+		while (**input && !ft_isspace(**input) && **input
+			!= '\'' && **input != '\"')
+			(*input)++;
+	}
+	return (strndup(start, *input - start));
 }
 
-//This function will loop and free the list
-void	free_list(t_list *list)
+t_list	*input_to_list(char *input)
 {
-	t_list	*tmp;
+	t_list	*list;
+	char	*token;
 
-	while (list)
+	list = NULL;
+	while (*input)
 	{
-		tmp = list;
-		list = list->next;
-		free(tmp->content);
-		free(tmp);
+		token = get_next_token(&input);
+		if (*input == '\'' || *input == '\"')
+			input++;
+		add_to_list(&list, token);
+		free(token);
 	}
-}
-
-void	empty_node(t_list *list)
-{
-	t_list	*tmp;
-	t_list	*next;
-
-	tmp = list;
-	while (tmp != NULL)
-	{
-		next = tmp->next;
-		free(tmp);
-		tmp = next;
-	}
-	return ;
+	return (list);
 }

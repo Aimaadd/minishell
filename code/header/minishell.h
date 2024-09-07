@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/06 16:12:46 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 22:22:44 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <sys/wait.h>
 # include "../libft/libft.h"
 # include <termios.h>
+# include <limits.h>
 
 # define ERROR_LOOP -1
 # define UNCLOSED_QTS 1
@@ -62,6 +63,17 @@ typedef struct s_list
 	struct s_list		*prev;
 }	t_list;
 
+typedef struct s_cmd
+{
+	char				**args;
+	char				**envp;
+	t_env				*env_copy;
+	char				*file;
+	int					type_file;
+	int					pipe_fd[2];
+	struct s_cmd		*next;
+}	t_cmd;
+
 typedef struct s_input
 {
 	t_list				*list;
@@ -70,17 +82,8 @@ typedef struct s_input
 	int					index;
 	int					signal;
 	int					ret_val;
+	t_cmd				*cmd;
 }	t_input;
-
-typedef struct s_cmd
-{
-	char				**args;
-	char				**envp;
-	t_env				*env_copy;
-	char				*file;
-	int					type_file;
-	struct s_cmd		*next;
-}	t_cmd;
 
 typedef struct s_data_multiple
 {
@@ -98,11 +101,13 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *head);
 t_list	*array_to_list(char **array);
+t_list	*input_to_list(char *input);
 
 // input.c
 void	free_list(t_list *list);
 char	*catch_input(char *prompt);
 void	empty_node(t_list *list);
+void	new_node(t_list **list, char *content);
 
 // parse_input.c
 int		is_parameter(const char *str);
@@ -115,8 +120,9 @@ char	*to_expand(t_list *input);
 void	ft_echo(t_cmd *command);
 
 // copy_env.c
-t_env	*create_copy_env(char **env);
 int		add_element(t_env **copy_env, char *content);
+void	free_env_list(t_env *env);
+int		env_empty(t_env **copy_env);
 
 // env_utils.c
 char	*ft_getenv(t_env *env, char *name_var);
@@ -141,7 +147,6 @@ void	ft_unset(char *variable, t_env **copy_env);
 // ft_env.c
 void	ft_env(t_env *env);
 char	*catch_input(char *prompt);
-t_list	*input_to_list(t_input *entry);
 
 // prompt.c
 char	*catch_input(char *prompt);
@@ -151,7 +156,7 @@ char	*prompt(void);
 char	*prompt_handler(char *entry);
 
 // lexer.c
-int		read_list(t_list *list);
+int		read_list(t_input *entry);
 int		read_type(char *content);
 
 //init.c
@@ -159,17 +164,18 @@ t_input	*init_input(void);
 
 // execute.c
 int		execute(t_input *entry, t_env *env_copy);
-int		setup_cmd(t_cmd *cmd, t_input *entry, t_env *env_copy);
-int		run_cmd(t_cmd *cmd);
+char	**list_to_array(t_input *entry);
+int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
+t_cmd	*setup_execute(t_input *entry, t_env *env_copy);
 
 // exec_utils.c
 int		check_if_pipe(t_list *list);
 void	create_args(t_cmd *cmd, t_list	*list);
-int		get_size_list(t_list *list);
+int		get_size_command(t_list *list);
+int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
 
 // run_command.c
 int		simple_command(t_cmd *cmd);
-int		execute(t_input *entry, t_env *env_copy);
 
 // exec_utils.c
 int		get_number_pipe(t_list *list);
@@ -184,10 +190,7 @@ void	append_mode(char *filename);
 int		dup_and_close(char *filename);
 
 // create_command.c
-t_cmd	*create_cmd(t_list *list);
-
-// init_command.c
-int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
+t_cmd	*create_cmd(t_input *entry);
 
 // command_utils.c
 int		get_number_command(t_cmd *cmd);
@@ -196,11 +199,11 @@ int		get_number_command(t_cmd *cmd);
 int		check_builtin(t_cmd *command);
 int		check_max_len(char *s1, char *s2);
 
-// create_command.c
-t_cmd	*create_cmd(t_list *list);
-
 // init_command.c
-int		init_execute(t_input *entry, t_env *env_copy, t_cmd *command);
+int		add_args(t_cmd *command, t_list *list);
+int		add_envp(t_cmd *command, t_env *env_copy);
+int		add_args_bis(t_list **tmp_list, t_cmd **tmp_cmd);
+int		add_args_sub_loop(t_list **tmp_list, t_cmd **tmp_cmd, int *x);
 
 // command.c
 int		simple_command(t_cmd *command);
@@ -234,6 +237,19 @@ void	handle_heredoc(char *delim);
 void	printab(char **str);
 void	printenv(t_env *env);
 void	printlist(t_list *list);
-void printcmd(t_cmd *cmd);
+void	printcmd(t_cmd *cmd);
+
+// quotes.c
+t_list	*sort_quotes(char *line);
+int		counting_quotes(char *line);
+
+// list_handling.c
+void	empty_node(t_list *list);
+void	free_list(t_list *list);
+void	add_to_list(t_list **list, char *content);
+int		get_size_list(t_list *list);
+
+// create_copy_env.c
+t_env	*create_copy_env(char **env);
 
 #endif

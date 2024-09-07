@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/06 17:51:51 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 22:16:29 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ int	minishell_loop(t_input *entry, t_env *env_copy)
 	while (1)
 	{
 		entry->line = prompt_handler(entry->line);
-		input_to_list(entry);
-		printlist(entry->list);
-		if (read_list(entry->list) == ERROR_LOOP)
+		entry->list = input_to_list(entry->line);
+		// entry->cmd->list = entry->list;
+		if (read_list(entry) == ERROR_LOOP)
 			continue ;
 		execute(entry, env_copy);
-		free(entry->line);
 		while (entry->list)
 		{
 			tmp = entry->list;
@@ -50,6 +49,7 @@ int	main(int ac, char **ag, char **envp)
 	(void)ac;
 	(void)ag;
 	entry = init_input();
+	entry->list = ft_lstnew(NULL);
 	sa.sa_handler = init_signal(entry);
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;

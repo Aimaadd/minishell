@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:23:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/06 15:26:11 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 18:54:52 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_input	*init_input(void)
 	entry->signal = 0;
 	entry->list = NULL;
 	entry->ret_val = 0;
+	entry->cmd = NULL;
 	return (entry);
 }
 

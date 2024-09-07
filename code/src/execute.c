@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/06 17:38:12 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 22:23:18 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,20 @@
 
 t_cmd	*setup_execute(t_input *entry, t_env *env_copy)
 {
-	t_cmd	*command;
-
 	(void)env_copy;
-	command = create_cmd(entry->list);
-	if (!command)
+	entry->cmd = create_cmd(entry);
+	if (!entry->cmd)
+	{
+		printf("Error: command not created\n");
 		return (NULL);
-	if (init_execute(entry, env_copy, command) == 1)
+	}
+	entry->cmd->env_copy = env_copy;
+	if (!entry->cmd)
 		return (NULL);
-	return (command);
+	if (init_execute(entry, entry->cmd->env_copy, entry->cmd) == 1)
+		return (NULL);
+	return (entry->cmd);
 }
-
-// void	printab(char **str)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (str[++i])
-// 		printf("%s\n", str[i]);
-// 	return ;
-// }
-
-// void	ft_printlst(t_cmd *cmd)
-// {
-// 	t_cmd	*tmp;
-
-// 	tmp = cmd;
-// 	while (tmp)
-// 	{
-// 		printab(tmp->args);
-// 		tmp = tmp->next;
-// 	}
-// 	return ;
-// }
 
 int	run_execute(t_cmd *command, t_list *list)
 {
@@ -64,15 +45,38 @@ int	run_execute(t_cmd *command, t_list *list)
 
 int	execute(t_input *entry, t_env *env_copy)
 {
-	t_cmd	*command;
-
-	command = setup_execute(entry, env_copy);
-	if (!command)
+	entry->cmd = setup_execute(entry, env_copy);
+	if (!entry->cmd)
 		return (1);
-	run_execute(command, entry->list);
-	if (command->next)
-		free_command(command);
+	run_execute(entry->cmd, entry->list);
+	if (entry->cmd->next)
+		free_command(entry->cmd);
 	else
-		free(command);
+		free(entry->cmd);
 	return (0);
 }
+
+void fill_args(char **args, t_list *list, int list_size)
+{
+    int i = 0;
+    while (list && i < list_size)
+    {
+        args[i] = strdup(list->content);
+        list = list->next;
+        i++;
+    }
+    args[i] = NULL;
+}
+
+char **list_to_array(t_input *entry)
+{
+    int list_size;
+	
+	list_size = get_size_list(entry->list);
+    char **args = malloc((list_size + 1) * sizeof(char *));
+    if (!args)
+        return NULL;
+    fill_args(args, entry->list, list_size);
+    return args;
+}
+

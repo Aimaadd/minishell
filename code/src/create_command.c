@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:36:25 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:37:06 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 22:25:15 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_cmd	*ft_new_command(void)
 	new->env_copy = NULL;
 	new->next = NULL;
 	new->file = NULL;
+	new->type_file = 0;
 	return (new);
 }
 
@@ -49,7 +50,7 @@ int	add_command(t_cmd **command)
 
 int	create_multiple_command(t_cmd **command, int number_command)
 {
-	int		count_command;
+	int	count_command;
 
 	count_command = 0;
 	while (count_command != number_command)
@@ -61,30 +62,28 @@ int	create_multiple_command(t_cmd **command, int number_command)
 	return (0);
 }
 
-t_cmd	*create_cmd(t_list *list)
+t_cmd	*create_cmd(t_input *entry)
 {
-	t_cmd	*command;
 	t_list	*tmp;
 	int		number_command;
 
-	command = NULL;
-	number_command = (get_number_pipe(list) + 1);
+	number_command = (get_number_pipe(entry->list) + 1);
 	if (number_command != 1)
 	{
-		if (create_multiple_command(&command, number_command) == 1)
+		if (create_multiple_command(&entry->cmd, number_command) == 1)
 			return (NULL);
 	}
 	else
 	{
-		command = ft_new_command();
-		if (!command)
+		entry->cmd = ft_new_command();
+		if (!entry->cmd)
 			return (NULL);
 	}
-	tmp = list;
+	tmp = entry->list;
 	while (tmp)
 	{
 		tmp->read = 1;
 		tmp = tmp->next;
 	}
-	return (command);
+	return (entry->cmd);
 }

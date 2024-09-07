@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/05 14:41:20 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 20:37:45 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,52 +63,56 @@ int	contains_quotes(t_list *list)
 
 int	read_type(char *content)
 {
-	if (!ft_strncmp(content, "|", 1))
-		return (PIPE);
-	else if (!ft_strncmp(content, ">>", 2))
-		return (APPEND);
-	else if (!ft_strncmp(content, ">", 1))
-		return (REDIRECTION);
-	else if (!ft_strncmp(content, "<<", 2))
-		return (HEREDOC);
-	else if (!ft_strncmp(content, "$", 1))
-		return (ENV);
-	else if (!ft_strncmp(content, "<", 1))
-		return (INFILE);
-	else if (!is_parameter(content))
-		return (PARAMETER);
-	else if (!ft_strncmp(content, " ", ft_strlen(content)))
-		return (ARGUMENT);
-	else
-		return (BINARY);
-	return (0);
+    if (!ft_strncmp(content, "|", 1) && ft_strlen(content) == 1)
+        return (PIPE);
+    else if (!ft_strncmp(content, ">>", 2) && ft_strlen(content) == 2)
+        return (APPEND);
+    else if (!ft_strncmp(content, ">", 1) && ft_strlen(content) == 1)
+        return (REDIRECTION);
+    else if (!ft_strncmp(content, "<<", 2) && ft_strlen(content) == 2)
+        return (HEREDOC);
+    else if (!ft_strncmp(content, "$", 1) && ft_strlen(content) == 1)
+        return (ENV);
+    else if (!ft_strncmp(content, "<", 1) && ft_strlen(content) == 1)
+        return (INFILE);
+    else if (is_parameter(content))
+        return (PARAMETER);
+    else if (!ft_strncmp(content, " ", ft_strlen(content)))
+        return (ARGUMENT);
+    else
+        return (BINARY);
+    return (0);
 }
 
 int	if_type(t_list *list)
 {
 	if (list->type == ENV)
 		to_expand(list);
+	printf("type : %d\n", list->type);
 	return (list->type);
 }
 
 // this function will read the content of the list and give the type of each
 // element in the list 
-int	read_list(t_list *list)
+int	read_list(t_input *entry)
 {
-	if (!list)
-		return (ERROR_LOOP);
-	while (list)
-	{
-		list->content = remove_quotes(list->content);
-		list->type = read_type(list->content);
-		if (contains_quotes(list) == UNCLOSED_QTS)
-			return (ERROR_LOOP);
-		if (list->type != REDIRECTION && list->type != PIPE
-			&& list->type != OUTFILE && list->type != APPEND && list->type
-			!= INFILE)
-			list->content = remove_quotes(list->content);
-		if_type(list);
-		list = list->next;
-	}
-	return (0);
+    t_list *temp;
+
+    if (!entry->list)
+        return (ERROR_LOOP);
+    temp = entry->list;
+    while (temp)
+    {
+        temp->content = remove_quotes(temp->content);
+        temp->type = read_type(temp->content);
+        if (contains_quotes(temp) == UNCLOSED_QTS)
+            return (ERROR_LOOP);
+        if (temp->type != REDIRECTION && temp->type != PIPE
+            && temp->type != OUTFILE && temp->type != APPEND
+                && temp->type != INFILE)
+            temp->content = remove_quotes(temp->content);
+		if_type(temp);
+        temp = temp->next;
+    }
+    return (0);
 }

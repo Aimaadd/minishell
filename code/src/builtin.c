@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:39:40 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/09/06 17:48:28 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 21:16:24 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,12 @@ int	check_builtin(t_cmd *command)
 {
 	char	*is_builtin;
 
+	// printcmd(command);
+	if (!command || !command->args || !command->args[0])
+		return (1);
 	is_builtin = command->args[0];
 	if (ft_builtin_compare(is_builtin, "echo") == 0)
-	{
-		printab(command->args);
-		write(1, "Hello\n", 6);
 		ft_echo(command);
-	}
 	else if (ft_builtin_compare(is_builtin, "cd") == 0)
 		ft_cd(command->args[1], command->env_copy);
 	else if (ft_builtin_compare(is_builtin, "pwd") == 0)

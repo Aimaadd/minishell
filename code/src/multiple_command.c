@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:16:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/13 15:14:18 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 22:23:40 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static t_data_multiple	*init_data_multiple(t_cmd *command)
 {
 	t_data_multiple	*data;
 
-	data = malloc(sizeof(t_data_multiple *));
+	data = (t_data_multiple *)malloc(sizeof(t_data_multiple));
 	if (!data)
 		return (NULL);
 	data->number_of_command = get_number_command(command);

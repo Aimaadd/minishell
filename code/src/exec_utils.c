@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 18:32:36 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/02 15:33:31 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 20:13:49 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,12 @@ int	get_size_command(t_list *list)
 		}
 	}
 	return (len_command);
+}
+
+int	init_execute(t_input *entry, t_env *env_copy, t_cmd *command)
+{
+	entry->cmd->args = list_to_array(entry);
+	if (add_envp(command, env_copy) == 1)
+		return (1);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 17:17:12 by abentaye          #+#    #+#             */
-/*   Updated: 2023/05/03 21:26:04 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:52:37 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static size_t	get_nb_words(char *s, char c)
 	size_t	count;
 
 	count = 0;
+	if (!s)
+		return (0);
 	while (*s)
 	{
 		while (*s && *s == (char)c)
