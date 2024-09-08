@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/08 15:45:29 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:55:25 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	if_type(t_list *list)
 {
 	if (list->type == ENV)
 		to_expand(list);
-	printf("type : %d\n", list->type);
 	return (list->type);
 }
 
