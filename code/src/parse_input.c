@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:40:08 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/07 20:29:49 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:45:48 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,13 @@ char	*between_quotes(char *line)
 	str[j] = '\0';
 	return (str);
 }
+
 char	*to_expand(t_list *input)
 {
 	char	*temp;
 	int		i;
 	int		j;
-	
+
 	temp = malloc(sizeof (char *));
 	if (!temp)
 		return (NULL);

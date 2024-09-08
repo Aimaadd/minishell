@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:39:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/07 22:22:14 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:47:57 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*find_binary(char *bin, char *path)
 
 void	run_execve(t_cmd *command)
 {
-	if (command && command->args &&command->args[0])
+	if (command && command->args && command->args[0])
 	{
 		if (access(command->args[0], X_OK) == 0 && \
 				(command->args[0][0] == '.' || command->args[0][0] == '/'))
@@ -68,7 +68,7 @@ int	simple_command(t_cmd *command)
 {
 	pid_t	pid;
 	int		status;
-	
+
 	if (check_builtin(command) == 0)
 		return (0);
 	pid = fork();

@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:39:40 by mmeerber          #+#    #+#             */
-/*   Updated: 2024/09/07 21:16:24 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:48:02 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	check_builtin(t_cmd *command)
 {
 	char	*is_builtin;
 
-	// printcmd(command);
 	if (!command || !command->args || !command->args[0])
 		return (1);
 	is_builtin = command->args[0];

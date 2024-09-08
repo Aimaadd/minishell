@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 03:09:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/07 20:37:45 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:45:29 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,25 +63,25 @@ int	contains_quotes(t_list *list)
 
 int	read_type(char *content)
 {
-    if (!ft_strncmp(content, "|", 1) && ft_strlen(content) == 1)
-        return (PIPE);
-    else if (!ft_strncmp(content, ">>", 2) && ft_strlen(content) == 2)
-        return (APPEND);
-    else if (!ft_strncmp(content, ">", 1) && ft_strlen(content) == 1)
-        return (REDIRECTION);
-    else if (!ft_strncmp(content, "<<", 2) && ft_strlen(content) == 2)
-        return (HEREDOC);
-    else if (!ft_strncmp(content, "$", 1) && ft_strlen(content) == 1)
-        return (ENV);
-    else if (!ft_strncmp(content, "<", 1) && ft_strlen(content) == 1)
-        return (INFILE);
-    else if (is_parameter(content))
-        return (PARAMETER);
-    else if (!ft_strncmp(content, " ", ft_strlen(content)))
-        return (ARGUMENT);
-    else
-        return (BINARY);
-    return (0);
+	if (!ft_strncmp(content, "|", 1) && ft_strlen(content) == 1)
+		return (PIPE);
+	else if (!ft_strncmp(content, ">>", 2) && ft_strlen(content) == 2)
+		return (APPEND);
+	else if (!ft_strncmp(content, ">", 1) && ft_strlen(content) == 1)
+		return (REDIRECTION);
+	else if (!ft_strncmp(content, "<<", 2) && ft_strlen(content) == 2)
+		return (HEREDOC);
+	else if (!ft_strncmp(content, "$", 1) && ft_strlen(content) == 1)
+		return (ENV);
+	else if (!ft_strncmp(content, "<", 1) && ft_strlen(content) == 1)
+		return (INFILE);
+	else if (is_parameter(content))
+		return (PARAMETER);
+	else if (!ft_strncmp(content, " ", ft_strlen(content)))
+		return (ARGUMENT);
+	else
+		return (BINARY);
+	return (0);
 }
 
 int	if_type(t_list *list)
@@ -96,23 +96,23 @@ int	if_type(t_list *list)
 // element in the list 
 int	read_list(t_input *entry)
 {
-    t_list *temp;
+	t_list	*temp;
 
-    if (!entry->list)
-        return (ERROR_LOOP);
-    temp = entry->list;
-    while (temp)
-    {
-        temp->content = remove_quotes(temp->content);
-        temp->type = read_type(temp->content);
-        if (contains_quotes(temp) == UNCLOSED_QTS)
-            return (ERROR_LOOP);
-        if (temp->type != REDIRECTION && temp->type != PIPE
-            && temp->type != OUTFILE && temp->type != APPEND
-                && temp->type != INFILE)
-            temp->content = remove_quotes(temp->content);
+	if (!entry->list)
+		return (ERROR_LOOP);
+	temp = entry->list;
+	while (temp)
+	{
+		temp->content = remove_quotes(temp->content);
+		temp->type = read_type(temp->content);
+		if (contains_quotes(temp) == UNCLOSED_QTS)
+			return (ERROR_LOOP);
+		if (temp->type != REDIRECTION && temp->type != PIPE
+			&& temp->type != OUTFILE && temp->type != APPEND
+			&& temp->type != INFILE)
+			temp->content = remove_quotes(temp->content);
 		if_type(temp);
-        temp = temp->next;
-    }
-    return (0);
+		temp = temp->next;
+	}
+	return (0);
 }

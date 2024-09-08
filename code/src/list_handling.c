@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:56:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/07 20:45:06 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:44:58 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,18 @@ void	add_to_list(t_list **list, char *content)
 		temp->next = new;
 	}
 }
-int get_size_list(t_list *list)
-{
-    int size = 0;
-    t_list *tmp = list;
 
-    while (tmp)
-    {
-        size++;
-        tmp = tmp->next;
-    }
-    return size;
+int	get_size_list(t_list *list)
+{
+	int		size;
+	t_list	*tmp;
+
+	tmp = list;
+	size = 0;
+	while (tmp)
+	{
+		size++;
+		tmp = tmp->next;
+	}
+	return (size);
 }

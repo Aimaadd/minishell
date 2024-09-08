@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/07 22:23:18 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:47:12 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,29 @@ int	execute(t_input *entry, t_env *env_copy)
 	return (0);
 }
 
-void fill_args(char **args, t_list *list, int list_size)
+void	fill_args(char **args, t_list *list, int list_size)
 {
-    int i = 0;
-    while (list && i < list_size)
-    {
-        args[i] = strdup(list->content);
-        list = list->next;
-        i++;
-    }
-    args[i] = NULL;
+	int	i;
+
+	i = 0;
+	while (list && i < list_size)
+	{
+		args[i] = strdup(list->content);
+		list = list->next;
+		i++;
+	}
+	args[i] = NULL;
 }
 
-char **list_to_array(t_input *entry)
+char	**list_to_array(t_input *entry)
 {
-    int list_size;
-	
+	int		list_size;
+	char	**args;
+
 	list_size = get_size_list(entry->list);
-    char **args = malloc((list_size + 1) * sizeof(char *));
-    if (!args)
-        return NULL;
-    fill_args(args, entry->list, list_size);
-    return args;
+	args = malloc((list_size + 1) * sizeof(char *));
+	if (!args)
+		return (NULL);
+	fill_args(args, entry->list, list_size);
+	return (args);
 }
-
