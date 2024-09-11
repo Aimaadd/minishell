@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:39:00 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/29 22:22:34 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/11 18:58:31 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int	simple_command(t_cmd *cmd)
 		return (1);
 	else if (pid == 0)
 	{
-		printf("file : %s ! \n", cmd->file);
 		if (cmd->file && cmd->type_file == 1)
 		{
 			redirection(cmd->file);

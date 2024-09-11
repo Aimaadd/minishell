@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:36:25 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/29 21:43:28 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:02:17 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,11 @@ int	add_command(t_cmd **command)
 
 int	create_multiple_command(t_cmd **command, int number_command)
 {
-	int		count_command;
-
-	count_command = 0;
-	while (count_command != number_command)
+	while (number_command)
 	{
 		if (add_command(command) == 1)
 			return (1);
-		count_command++;
+		number_command--;
 	}
 	return (0);
 }

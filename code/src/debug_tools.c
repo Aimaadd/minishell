@@ -46,3 +46,28 @@ void	printab(char **str)
 		printf("printab [%d] : %s\n",i,str[i]);
 	return ;
 }
+void	printcmd(t_cmd *cmd)
+{
+	t_cmd	*tmp;
+
+	tmp = cmd;
+	while (tmp)
+	{
+		printf("Command:\n");
+		printf("  File: %s\n", tmp->file);
+		printf("  Type File: %d\n", tmp->type_file);
+		printf("  Args:\n");
+		for (int i = 0; tmp->args && tmp->args[i]; i++)
+		{
+				printf("	[%d]: %s\n", i, tmp->args[i]);
+		}
+		// printf("  Envp:\n");
+		// for (i = 0; tmp->envp && tmp->envp[i]; i++)
+		// {
+		//     printf("    [%d]: %s\n", i, tmp->envp[i]);
+		// }
+		// printf("  Env Copy:\n");
+		// printenv(tmp->env_copy);
+		tmp = tmp->next;
+	}
+}

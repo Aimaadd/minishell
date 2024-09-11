@@ -6,20 +6,20 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:16:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/29 18:29:51 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:00:48 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-static t_data_multiple *init_data_multiple(t_cmd *command)
+static t_data_multiple *init_data_multiple(void)
 {
     t_data_multiple *data;
 
     data = (t_data_multiple *)malloc(sizeof(t_data_multiple));
     if (!data)
         return (NULL);
-    data->number_of_command = get_number_command(command);
+    data->number_of_command = get_number_command(g_ms->cmd);
     data->count_command = 0;
     data->count_pid = 0;
     data->last_fd = -1;
@@ -71,14 +71,14 @@ static void check_fd(t_data_multiple *data, int *fd, t_cmd *tmp_command)
     }
 }
 
-int multiple_command(t_cmd *command)
+int multiple_command(void)
 {
     t_data_multiple *data;
     pid_t *pid;
     t_cmd *tmp_command;
     int fd[2];
 
-    data = init_data_multiple(command);
+    data = init_data_multiple();
     if (!data)
         return (1);
     pid = (pid_t *)malloc(sizeof(pid_t) * data->number_of_command);
@@ -87,7 +87,7 @@ int multiple_command(t_cmd *command)
         free(data);
         return (1);
     }
-    tmp_command = command;
+    tmp_command = g_ms->cmd;
     while (tmp_command)
     {
         if (tmp_command->next)
@@ -99,7 +99,7 @@ int multiple_command(t_cmd *command)
                 return (1);
             }
         }
-        run_child(pid, data, fd, command);
+        run_child(pid, data, fd, g_ms->cmd);
         check_fd(data, fd, tmp_command);
         data->count_command++;
         tmp_command = tmp_command->next;

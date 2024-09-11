@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/29 22:22:47 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/11 18:55:25 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ t_cmd	*create_cmd(t_list *list);
 
 // init_command.c
 int		init_execute(void);
+int		add_args(void);
 
 // command_utils.c
 int		get_number_command(t_cmd *cmd);
@@ -220,7 +221,7 @@ void	ft_exit_status(int status);
 void	free_command(t_cmd *command);
 
 // multiple_command.c
-int		multiple_command(t_cmd *command);
+int		multiple_command(void);
 
 //readline functions
 void	rl_replace_line(const char *text, int clear_undo);
@@ -234,6 +235,7 @@ void	handle_heredoc(char *delim);
 void	printab(char **str);
 void	printenv(t_env *env);
 void	printlist(t_list *list);
+void	printcmd(t_cmd *cmd);
 
 // solo_execute.c 
 char	**fill_array_from_list(t_list *list);

@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/29 22:02:18 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:05:03 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/minishell.h"
 
-void	*setup_execute(void)
+void *setup_execute(void)
 {
-	g_ms->cmd = create_cmd(g_ms->list);
-	if (!g_ms->cmd)
-		return (NULL);
-	return (NULL);
+    g_ms->cmd = create_cmd(g_ms->list);
+    if (!g_ms->cmd)
+        return (NULL);
+    if (add_args())
+        return (NULL);
+    return (NULL);
 }
 
 int	run_execute(t_list *list)
@@ -29,7 +31,7 @@ int	run_execute(t_list *list)
 		simple_command(g_ms->cmd); // to keep
 	else
 	{
-		multiple_command(g_ms->cmd);
+		multiple_command();
 	}
 	if (tmp->type == HEREDOC)
 		handle_heredoc(tmp->next->content);
