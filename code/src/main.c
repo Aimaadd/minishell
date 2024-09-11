@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:41:56 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/29 22:28:13 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:48:40 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	minishell_loop(void)
 	while (1)
 	{
 		g_ms->line = prompt_handler(g_ms->line);
-		input_to_list();
+		input_to_list(); // take this splinput and put it in g_ms->splinput from this i fill the g_ms->cmd->args
 		if (read_list(g_ms->list) == ERROR_LOOP)
 			continue ;
 		execute();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/08/29 22:10:26 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:47:28 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_list	*input_to_list()
 
 	splinput = ft_split(g_ms->line, ' ');
 	g_ms->list = array_to_list(splinput);
+	printab(splinput);
 	free(splinput);
 	return (g_ms->list);
 }
