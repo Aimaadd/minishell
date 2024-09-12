@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 08:54:38 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/11 19:05:03 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:48:09 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	execute(void)
 	setup_execute();
 	if (!g_ms->cmd)
 		return (1);
+	printcmd(g_ms->cmd);
 	g_ms->cmd->args = fill_array_from_list(g_ms->list);
 	// g_ms->cmd->envp = fill_array_from_env(g_ms->cmd->env_copy);
 	g_ms->cmd->env_copy = g_ms->env;

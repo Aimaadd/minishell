@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 20:13:35 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/11 19:47:28 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:49:24 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,45 @@ void	*new_node(t_list **list, char *content)
 	return (new);
 }
 
-//this function will turn a str into a list
-t_list	*input_to_list()
+char	*get_next_token(char **input)
 {
-	char	**splinput;
+	char	*start;
+	char	quote_char;
 
-	splinput = ft_split(g_ms->line, ' ');
-	g_ms->list = array_to_list(splinput);
-	printab(splinput);
-	free(splinput);
-	return (g_ms->list);
+	while (ft_isspace(**input))
+		(*input)++;
+	if (**input == '\'' || **input == '\"')
+	{
+		quote_char = *(*input)++;
+		start = *input;
+		while (**input && **input != quote_char)
+			(*input)++;
+	}
+	else
+	{
+		start = *input;
+		while (**input && !ft_isspace(**input) && **input
+			!= '\'' && **input != '\"')
+			(*input)++;
+	}
+	return (strndup(start, *input - start));
+}
+
+t_list	*input_to_list(char *input)
+{
+	t_list	*list;
+	char	*token;
+
+	list = NULL;
+	while (*input)
+	{
+		token = get_next_token(&input);
+		if (*input == '\'' || *input == '\"')
+			input++;
+		add_to_list(&list, token);
+		free(token);
+	}
+	return (list);
 }
 
 //This function will loop and free the list

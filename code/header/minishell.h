@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 22:18:49 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/11 19:47:54 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:49:39 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ void	ft_unset(char *variable, t_env **copy_env);
 // ft_env.c
 void	ft_env(t_env *env);
 char	*catch_input(char *prompt);
-t_list	*input_to_list(void);
+t_list	*input_to_list(char *input);
 
 // prompt.c
 char	*catch_input(char *prompt);

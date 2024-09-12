@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:29:33 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/11 19:18:08 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:47:54 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,5 @@ int add_args(void)
             return (1);
         tmp_cmd = tmp_cmd->next;
     }
-    printcmd(g_ms->cmd);
     return (0);
 }

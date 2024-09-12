@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:16:59 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/11 19:00:48 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:44:04 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int multiple_command(void)
     pid_t *pid;
     t_cmd *tmp_command;
     int fd[2];
+    int i;
 
     data = init_data_multiple();
     if (!data)
@@ -88,8 +89,11 @@ int multiple_command(void)
         return (1);
     }
     tmp_command = g_ms->cmd;
+    i = 0;
     while (tmp_command)
     {
+        if (tmp_command->args[0] == NULL)
+            return (0);
         if (tmp_command->next)
         {
             if (pipe(fd) == -1)
