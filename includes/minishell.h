@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 16:18:25 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/20 16:18:31 by tbatteux         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:58:55 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <readline/history.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <string.h>
 # include <stdint.h>
 # include "libft.h"
 # include "gc.h"

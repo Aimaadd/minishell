@@ -1,5 +1,5 @@
 NAME = minishell
-CC = gcc
+CC = cc
 SRCSDIR = ./srcs/
 HEADERSDIR = includes/
 CFLAGS = -Wall -Werror -Wextra -I $(HEADERSDIR)
