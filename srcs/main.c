@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 16:28:06 by tbatteux          #+#    #+#             */
-/*   Updated: 2024/09/12 20:05:01 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/13 00:24:27 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	event(void)
 
 static int	init_minishell(char **env)
 {
-	int	rl_event_hook;
-
 	g_ms.status = STATUS_IDLE;
 	g_ms.bad_token = NULL;
 	g_ms.token = NULL;
@@ -32,7 +30,7 @@ static int	init_minishell(char **env)
 	setup_sigactions();
 	if (get_env_copy(env))
 		return (1);
-	rl_event_hook = event();
+	rl_event_hook = event;
 	return (0);
 }
 

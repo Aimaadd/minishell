@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 16:30:48 by tbatteux          #+#    #+#             */
-/*   Updated: 2024/09/12 20:05:19 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/13 00:24:12 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	sigint(int code)
 {
-	int	rl_done;
-
 	(void)code;
 	g_ms.sigint = 1;
 	if (g_ms.status == STATUS_IDLE)
