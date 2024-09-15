@@ -48,6 +48,7 @@ SRCS =  ./srcs/builtins/cd.c \
 		./srcs/executor/fd_manual_pipe.c \
 		./srcs/executor/exec_next_cmd.c \
 		./srcs/executor/exec_next_cmd_helpers.c \
+		./srcs/executor/setup_next_helper.c \
 		./srcs/executor/utils2.c \
 		./srcs/executor/exec_unpiped_builtin.c \
 		./srcs/lexer/bad_token.c \
