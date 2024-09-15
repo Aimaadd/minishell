@@ -39,6 +39,11 @@ int	echo_builtin(int argc, char **argv)
 
 	flag = check_parameter(argv);
 	i = 1 + flag;
+	if (argc < 2)
+	{
+		ft_putstr_fd("\n", STDOUT_FILENO);
+		return (0);
+	}
 	while (i < argc - 1)
 	{
 		ft_putstr_fd(argv[i], STDOUT_FILENO);
