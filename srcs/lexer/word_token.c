@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 16:45:37 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/15 14:17:32 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/15 14:20:36 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,18 @@ static size_t	get_single_quote_len(char **line)
 
 static size_t	get_env_size(char **line)
 {
+	char *ptr;
+	
 	++(*line);
 	if ((**line) == '?')
 	{
 		++(*line);
 		return (get_nb_len(g_ms.old_status));
 	}
-	return (ft_strlen(get_env_from_line(line)));
+	ptr = get_env_from_line(line);
+	if (ptr == NULL)
+		return (0);
+	return (ft_strlen(ptr));
 }
 
 static size_t	get_expanded_size(char *line)
