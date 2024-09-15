@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/09/15 15:58:54 by abentaye         ###   ########.fr        #
+#    Updated: 2024/09/15 17:19:38 by abentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,9 @@ SRCS =  ./srcs/builtins/cd.c \
 		./srcs/executor/fd_manual_pipe.c \
 		./srcs/executor/exec_next_cmd.c \
 		./srcs/executor/exec_next_cmd_helpers.c \
+		./srcs/executor/next_cmd_helpers2.c \
 		./srcs/executor/utils2.c \
+		./srcs/executor/setup_next_helper.c \
 		./srcs/executor/exec_unpiped_builtin.c \
 		./srcs/lexer/bad_token.c \
 		./srcs/lexer/copy_with_expansion.c \

@@ -6,13 +6,13 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 16:38:10 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/15 12:47:21 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:09:55 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	close_all_pipes(t_cmd *cmd, int *pipereadfd)
+void	close_all_pipes(t_cmd *cmd, int *pipereadfd)
 {
 	safe_close(cmd->pipein);
 	safe_close(cmd->pipein + 1);
@@ -32,7 +32,7 @@ static void	init_cmd(t_cmd *cmd)
 
 // rigth_path should return the executable directly if no good path found.
 // -> add gc.h to libft
-static void	child_execution(t_cmd *cmd, int is_last_cmd, int pipereadfd)
+void	child_execution(t_cmd *cmd, int is_last_cmd, int pipereadfd)
 {
 	char	*executable;
 	int		tfree;
@@ -81,22 +81,13 @@ void	exec_next_cmd(t_token *token, int pipereadfd, int depth)
 	if (token == NULL)
 		return ;
 	init_cmd(&cmd);
-	if ((err = setup_next_cmd(&cmd, &token)))
+	err = setup_next_cmd(&cmd, &token);
+	if (err)
 	{
-		if (err == INT_ERROR)
-			return ;
-		close_all_pipes(&cmd, &pipereadfd);
-		print_error("minishell", strerror(errno), cmd.redirin_file);
-		return (exec_next_cmd(token, 0, depth));
+		handle_setup_error(err, &cmd, &pipereadfd, token, depth);
+		return ;
 	}
-	if (cmd.executable != NULL)
-	{
-		g_ms.pids[depth] = fork();
-		if (g_ms.pids[depth] == 0)
-			child_execution(&cmd, token == NULL, pipereadfd);
-	}
-	if (g_ms.pids[depth] == -1)
-		hardfail_exit(errno);
+	handle_fork(&cmd, pipereadfd, depth, token);
 	unsetup_child_pipes(&cmd, &pipereadfd);
 	if (cmd.redirout_type != 0)
 		redirout(&cmd, &pipereadfd, depth);

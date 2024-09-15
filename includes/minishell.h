@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 16:18:25 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/15 15:58:32 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:18:38 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,9 +150,22 @@ void	hardfail_exit(int lerrno);
 void	clean_exit(int err);
 int		is_builtin(char *cmd);
 int		setup_next_cmd(t_cmd *cmd, t_token **token);
-void	loop_setup_next(t_cmd *cmd, t_token **token, int arg_i);
 void	setup_child_pipes(t_cmd *cmd, int is_last_cmd, int *pipereadfd);
 void	unsetup_child_pipes(t_cmd *cmd, int *pipereadfd);
+void	handle_fork(t_cmd *cmd, int pipereadfd, int depth, t_token *token);
+void	handle_fork_error(int depth);
+void	fork_and_execute(t_cmd *cmd, int pipereadfd, int depth, t_token *tkn);
+void	handle_setup_error(int er, t_cmd *cmd, int *pfd, t_token *tkn, int dh);
+void	call_exec_next_cmd(t_token *token, int depth);
+void	close_pipes_and_print_error(t_cmd *cmd, int *pipereadfd);
+void	close_all_pipes(t_cmd *cmd, int *pipereadfd);
+void	child_execution(t_cmd *cmd, int is_last_cmd, int pipereadfd);
+int		process_tokens(t_cmd *cmd, t_token **token);
+int		handle_token(t_cmd *cmd, t_token **token, int *arg_i);
+void	word(t_cmd *cmd, t_token **token, int *i);
+void	redirout(t_cmd *cmd, t_token **token);
+int		d_redirin(t_cmd *cmd, t_token **token);
+int		s_redirin(t_cmd *cmd, t_token **token);
 
 // signals
 void	sigint(int code);
