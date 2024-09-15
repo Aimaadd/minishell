@@ -6,15 +6,15 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 16:35:30 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/15 14:40:15 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/15 15:49:10 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char *get_equal(char *str)
+char	*get_equal(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] && str[i] != '=')

@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/09/15 15:13:10 by abentaye         ###   ########.fr        #
+#    Updated: 2024/09/15 15:58:54 by abentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ O = "\033[38;5;214m"
 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 LIBGCDIR = ./gc/
 LIBGC = ./gc/libgc.a
 RM = rm -f
@@ -44,6 +44,7 @@ SRCS =  ./srcs/builtins/cd.c \
 		./srcs/executor/exec.c \
 		./srcs/executor/utils.c \
 		./srcs/executor/setup_next_cmd.c \
+		./srcs/executor/next_cmd_helpers.c \
 		./srcs/executor/fd_manual_pipe.c \
 		./srcs/executor/exec_next_cmd.c \
 		./srcs/executor/exec_next_cmd_helpers.c \

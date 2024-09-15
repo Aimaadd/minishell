@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 08:36:03 by gmallet           #+#    #+#             */
-/*   Updated: 2024/09/15 13:20:03 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/15 15:16:15 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*get_next_line(void)
 		g_ms.sigint = 0;
 		g_ms.token = NULL;
 		g_ms.status = STATUS_IDLE;
-		line = readline("\033[96mminishell$\033[0m ");
+		line = readline("\033[96mminishell\033[0m$ ");
 		if (g_ms.sigint != 0)
 		{
 			g_ms.old_status = 130;

@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 10:23:04 by gmallet           #+#    #+#             */
-/*   Updated: 2024/09/15 14:28:43 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/15 16:04:07 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ static uint32_t	cpy_old_status(char *str)
 	return ((atoi_buf(str, g_ms.old_status)));
 }
 
-static int	cpy_env(char *env, char **word)
+static void	cpy_env(char *env, char **word)
 {
-	if (env == NULL)
-		return (1);
-	while (*env)
-		*((*word)++) = *(env++);
-	return (OK);
+    if (env == NULL)
+        return ;
+    while (*env)
+        *((*word)++) = *(env++);
+    return ;
 }
 
 int	expand(char **line, char **word)
@@ -57,5 +57,6 @@ int	expand(char **line, char **word)
 		(*word) += cpy_old_status(*word);
 		return (1);
 	}
-	return (!(cpy_env(get_env_from_line(line), word)));
+	cpy_env(get_env_from_line(line), word);
+	return (1);
 }

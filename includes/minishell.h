@@ -6,7 +6,7 @@
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 16:18:25 by abentaye          #+#    #+#             */
-/*   Updated: 2024/09/15 12:25:24 by abentaye         ###   ########.fr       */
+/*   Updated: 2024/09/15 15:58:32 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ void	hardfail_exit(int lerrno);
 void	clean_exit(int err);
 int		is_builtin(char *cmd);
 int		setup_next_cmd(t_cmd *cmd, t_token **token);
+void	loop_setup_next(t_cmd *cmd, t_token **token, int arg_i);
 void	setup_child_pipes(t_cmd *cmd, int is_last_cmd, int *pipereadfd);
 void	unsetup_child_pipes(t_cmd *cmd, int *pipereadfd);
 
