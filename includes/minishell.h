@@ -153,6 +153,13 @@ int		setup_next_cmd(t_cmd *cmd, t_token **token);
 void	loop_setup_next(t_cmd *cmd, t_token **token, int arg_i);
 void	setup_child_pipes(t_cmd *cmd, int is_last_cmd, int *pipereadfd);
 void	unsetup_child_pipes(t_cmd *cmd, int *pipereadfd);
+void	handle_exec_error(t_cmd *cmd, int *pipereadfd, t_token *token, int depth);
+void	fork_and_execute(t_cmd *cmd, t_token *token, int pipereadfd, int depth);
+int		handle_command_execution(t_cmd *cmd, t_token **token, int *pipereadfd, int depth);
+void	handle_pipes_and_redirection(t_cmd *cmd, int *pipereadfd, int depth);
+void	close_all_pipes(t_cmd *cmd, int *pipereadfd);
+void	f_redirout(t_cmd *cmd, int *pipereadfd, int depth);
+void	child_execution(t_cmd *cmd, int is_last_cmd, int pipereadfd);
 
 // signals
 void	sigint(int code);

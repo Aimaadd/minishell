@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-static void	close_all_pipes(t_cmd *cmd, int *pipereadfd)
+void	close_all_pipes(t_cmd *cmd, int *pipereadfd)
 {
 	safe_close(cmd->pipein);
 	safe_close(cmd->pipein + 1);
@@ -21,7 +21,7 @@ static void	close_all_pipes(t_cmd *cmd, int *pipereadfd)
 	safe_close(pipereadfd);
 }
 
-static void	init_cmd(t_cmd *cmd)
+void	init_cmd(t_cmd *cmd)
 {
 	ft_memset(cmd, 0, sizeof(t_cmd));
 	cmd->pipeout[0] = -1;
@@ -32,7 +32,7 @@ static void	init_cmd(t_cmd *cmd)
 
 // rigth_path should return the executable directly if no good path found.
 // -> add gc.h to libft
-static void	child_execution(t_cmd *cmd, int is_last_cmd, int pipereadfd)
+void	child_execution(t_cmd *cmd, int is_last_cmd, int pipereadfd)
 {
 	char	*executable;
 	int		tfree;
@@ -59,7 +59,7 @@ static void	child_execution(t_cmd *cmd, int is_last_cmd, int pipereadfd)
 	clean_exit(err);
 }
 
-static void	redirout(t_cmd *cmd, int *pipereadfd, int depth)
+void	f_redirout(t_cmd *cmd, int *pipereadfd, int depth)
 {
 	int	err;
 
@@ -76,31 +76,15 @@ static void	redirout(t_cmd *cmd, int *pipereadfd, int depth)
 void	exec_next_cmd(t_token *token, int pipereadfd, int depth)
 {
 	t_cmd	cmd;
-	int		err;
 
 	if (token == NULL)
 		return ;
 	init_cmd(&cmd);
-	if ((err = setup_next_cmd(&cmd, &token)))
-	{
-		if (err == INT_ERROR)
-			return ;
-		close_all_pipes(&cmd, &pipereadfd);
-		print_error("minishell", strerror(errno), cmd.redirin_file);
-		return (exec_next_cmd(token, 0, depth));
-	}
-	if (cmd.executable != NULL)
-	{
-		g_ms.pids[depth] = fork();
-		if (g_ms.pids[depth] == 0)
-			child_execution(&cmd, token == NULL, pipereadfd);
-	}
-	if (g_ms.pids[depth] == -1)
-		hardfail_exit(errno);
-	unsetup_child_pipes(&cmd, &pipereadfd);
-	if (cmd.redirout_type != 0)
-		redirout(&cmd, &pipereadfd, depth);
-	if (token == NULL)
+	if (handle_command_execution(&cmd, &token, &pipereadfd, depth) != OK)
 		return ;
-	exec_next_cmd(token, cmd.pipeout[0], depth + 1);
+	if (cmd.executable != NULL)
+		fork_and_execute(&cmd, token, pipereadfd, depth);
+	handle_pipes_and_redirection(&cmd, &pipereadfd, depth);
+	if (token != NULL)
+		exec_next_cmd(token, cmd.pipeout[0], depth + 1);
 }
