@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_next_cmd_helpers.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 09:34:53 by gmallet           #+#    #+#             */
-/*   Updated: 2024/09/15 12:47:28 by abentaye         ###   ########.fr       */
+/*   Created: 2024/09/15 18:39:47 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 18:39:49 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

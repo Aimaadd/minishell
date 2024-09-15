@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 10:23:04 by gmallet           #+#    #+#             */
-/*   Updated: 2024/09/15 16:04:07 by abentaye         ###   ########.fr       */
+/*   Created: 2024/09/15 18:39:59 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 18:40:30 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ static uint32_t	cpy_old_status(char *str)
 
 static void	cpy_env(char *env, char **word)
 {
-    if (env == NULL)
-        return ;
-    while (*env)
-        *((*word)++) = *(env++);
-    return ;
+	if (env == NULL)
+		return ;
+	while (*env)
+		*((*word)++) = *(env++);
+	return ;
 }
 
 int	expand(char **line, char **word)
