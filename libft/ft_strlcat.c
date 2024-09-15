@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 21:53:54 by gmallet           #+#    #+#             */
-/*   Updated: 2023/05/01 21:53:55 by gmallet          ###   ########.fr       */
+/*   Created: 2023/04/05 16:50:49 by abentaye          #+#    #+#             */
+/*   Updated: 2023/04/25 20:11:36 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,26 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	dsti;
-	size_t	srci;
+	size_t	dstlen;
+	size_t	srclen;
+	size_t	i;
+	size_t	j;
 
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	dsti = 0;
-	srci = 0;
-	while (dst[dsti] && dsti < dstsize)
-		dsti++;
-	while (src[srci] && (dsti + srci) < (dstsize - 1))
+	srclen = ft_strlen(src);
+	dstlen = ft_strlen(dst);
+	i = 0;
+	j = dstlen;
+	if (dstlen < dstsize - 1 && dstsize > 0)
 	{
-		dst[dsti + srci] = src[srci];
-		srci++;
+		while (src[i] && dstlen + i < dstsize - 1)
+		{
+			dst[j] = src[i];
+			j++;
+			i++;
+		}
+		dst[j] = 0;
 	}
-	if ((dsti + srci) < dstsize)
-		dst[dsti + srci] = '\0';
-	while (src[srci])
-		srci++;
-	return (dsti + srci);
+	if (dstlen >= dstsize)
+		dstlen = dstsize;
+	return (dstlen + srclen);
 }

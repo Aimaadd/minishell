@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/22 10:23:04 by gmallet           #+#    #+#             */
-/*   Updated: 2023/07/22 10:23:32 by gmallet          ###   ########.fr       */
+/*   Created: 2024/07/22 10:23:04 by gmallet           #+#    #+#             */
+/*   Updated: 2024/09/15 12:47:56 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 static uint32_t	atoi_buf(char *str, unsigned int old_status)
 {

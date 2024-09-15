@@ -1,10 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/04/24 23:13:49 by abentaye          #+#    #+#              #
+#    Updated: 2024/09/15 12:57:41 by abentaye         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -I .
 AR = ar rcs
 RM = rm -f
 
-SRCS = ft_memset.c \
+_SRCS = ft_memset.c \
 	ft_bzero.c \
 	ft_memcpy.c \
 	ft_memmove.c \
@@ -39,36 +51,34 @@ SRCS = ft_memset.c \
 	ft_putendl_fd.c \
 	ft_putnbr_fd.c
 
-SRCS_BONUS = ft_lstnew.c \
-	ft_lstadd_front.c \
-	ft_lstsize.c \
-	ft_lstlast.c \
-	ft_lstadd_back.c \
-	ft_lstdelone.c \
-	ft_lstclear.c \
-	ft_lstiter.c \
-	ft_lstmap.c
+_SRCS_BONUS = 
 
+SRCS = $(addprefix $(SRCSDIR), $(_SRCS))
 OBJS = $(SRCS:.c=.o)
+SRCS_BONUS = $(addprefix $(SRCSDIR), $(_SRCS_BONUS))
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(AR) $@ $^
+	@$(AR) $@ $^
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 clean:
-	$(RM) $(OBJS) $(OBJS_BONUS)
+	@$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME) libft.so
 
 re: fclean all
 
 bonus: $(OBJS) $(OBJS_BONUS)
-	$(AR) $(NAME) $^
+	@$(AR) $(NAME) $^
 
-.PHONY: all clean fclean re bonus
+so:
+	@$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(SRCS_BONUS)
+	gcc -nostartfiles -shared -o libft.so $(OBJS) $(OBJS_BONUS)
+
+.PHONY: all clean fclean re bonus so

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_next_cmd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:38:10 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/20 16:38:11 by tbatteux         ###   ########.fr       */
+/*   Created: 2024/07/20 16:38:10 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:47:21 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 static void	close_all_pipes(t_cmd *cmd, int *pipereadfd)
 {

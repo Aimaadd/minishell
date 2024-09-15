@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 15:57:55 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/17 18:14:23 by gmallet          ###   ########.fr       */
+/*   Created: 2024/07/10 15:57:55 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:46:33 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 void	ft_swp(char **x, char **y)
 {

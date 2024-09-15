@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_env_copy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 15:17:24 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/20 12:27:26 by tbatteux         ###   ########.fr       */
+/*   Created: 2024/07/10 15:17:24 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:46:49 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 char	*new_shlvl(char *str, int nb)
 {

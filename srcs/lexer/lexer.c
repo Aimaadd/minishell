@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:45:06 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/20 16:45:07 by tbatteux         ###   ########.fr       */
+/*   Created: 2024/07/20 16:45:06 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 14:08:33 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 int	set_next_token(char **line, t_token **t)
 {
@@ -57,7 +57,7 @@ int	lex(char *line, t_token **token, t_token **bad_token)
 		last_type = (*token)->type;
 		token = &((*token)->next);
 	}
-	if (last_type != WORD)
+	if (last_type != WORD && last_type != -1)
 		return (set_bad_token(&line, bad_token));
 	return (LEXER_OK);
 }

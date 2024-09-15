@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   interpret.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/22 08:36:03 by gmallet           #+#    #+#             */
-/*   Updated: 2023/07/22 08:36:06 by gmallet          ###   ########.fr       */
+/*   Created: 2024/07/22 08:36:03 by gmallet           #+#    #+#             */
+/*   Updated: 2024/09/15 13:20:03 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 static void	handle_lexer_error(int err)
 {
@@ -39,7 +39,7 @@ static char	*get_next_line(void)
 		g_ms.sigint = 0;
 		g_ms.token = NULL;
 		g_ms.status = STATUS_IDLE;
-		line = readline("minishell$>");
+		line = readline("\033[96mminishell$\033[0m ");
 		if (g_ms.sigint != 0)
 		{
 			g_ms.old_status = 130;

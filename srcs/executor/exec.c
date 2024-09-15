@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:38:02 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/20 16:38:04 by tbatteux         ###   ########.fr       */
+/*   Created: 2024/07/20 16:38:02 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:47:02 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 void	smart_wait_all_childs(int i)
 {

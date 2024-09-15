@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exits.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/22 08:36:09 by gmallet           #+#    #+#             */
-/*   Updated: 2023/07/22 08:36:10 by gmallet          ###   ########.fr       */
+/*   Created: 2024/07/22 08:36:09 by gmallet           #+#    #+#             */
+/*   Updated: 2024/09/15 12:49:34 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	clean_exit(int err)
 {

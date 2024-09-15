@@ -12,20 +12,20 @@ OBJS=$(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(AR) $@ $^
+	@$(AR) $@ $^
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 $(TEST): $(TEST_SRCS) $(NAME)
-	$(CC) $(CFLAGS) $(TEST_SRCS) -L. -l:$(NAME) -o $@
+	@$(CC) $(CFLAGS) $(TEST_SRCS) -L. -l:$(NAME) -o $@
 
 clean:
-	$(RM) $(OBJS)
-	$(RM) $(TEST)
+	@$(RM) $(OBJS)
+	@$(RM) $(TEST)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 

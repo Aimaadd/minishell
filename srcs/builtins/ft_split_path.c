@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:34:16 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/20 16:34:18 by tbatteux         ###   ########.fr       */
+/*   Created: 2024/07/20 16:34:16 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:46:39 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 int	gd_malloc(const char *str, char c)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/11 16:23:30 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/17 19:14:52 by gmallet          ###   ########.fr       */
+/*   Created: 2024/07/11 16:23:30 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:46:28 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 char	**suppr(char **env, char *argv)
 {

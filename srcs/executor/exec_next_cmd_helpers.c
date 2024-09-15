@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_next_cmd_helpers.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/22 09:34:53 by gmallet           #+#    #+#             */
-/*   Updated: 2023/07/22 09:35:00 by gmallet          ###   ########.fr       */
+/*   Created: 2024/07/22 09:34:53 by gmallet           #+#    #+#             */
+/*   Updated: 2024/09/15 12:47:28 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 void	setup_child_pipes(t_cmd *cmd, int is_last_cmd, int *pipereadfd)
 {

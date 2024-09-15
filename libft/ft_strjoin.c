@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 21:53:50 by gmallet           #+#    #+#             */
-/*   Updated: 2023/05/01 21:53:50 by gmallet          ###   ########.fr       */
+/*   Created: 2023/04/18 13:32:50 by abentaye          #+#    #+#             */
+/*   Updated: 2023/04/25 17:00:18 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	s1len;
-	size_t	s2len;
-	size_t	allocsize;
-	char	*ptr;
+	char	*s;
+	size_t	len1;
+	size_t	len2;
+	size_t	lentot;
 
-	s1len = ft_strlen(s1);
-	s2len = ft_strlen(s2);
-	allocsize = s1len + s2len + 1;
-	ptr = (char *)malloc(sizeof(char) * allocsize);
-	if (!ptr)
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	lentot = len1 + len2;
+	s = malloc (sizeof(char) * (len1 + len2 + 1));
+	if (!s)
 		return (NULL);
-	ft_memcpy(ptr, s1, s1len);
-	ft_memcpy(ptr + s1len, s2, s2len);
-	*(ptr + s1len + s2len) = '\0';
-	return (ptr);
+	ft_memcpy(s, s1, len1);
+	ft_memcpy(s + len1, s2, len2);
+	*(s + lentot) = '\0';
+	return (s);
 }

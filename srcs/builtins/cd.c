@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abentaye <abentaye@student.s19.be >        +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 15:29:51 by tbatteux          #+#    #+#             */
-/*   Updated: 2024/09/12 19:58:00 by abentaye         ###   ########.fr       */
+/*   Created: 2024/07/13 15:29:51 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:45:35 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 #include <sys/types.h>
 #include <dirent.h>
 

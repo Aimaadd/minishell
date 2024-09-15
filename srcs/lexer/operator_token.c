@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   operator_token.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:45:14 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/20 16:45:15 by tbatteux         ###   ########.fr       */
+/*   Created: 2024/07/20 16:45:14 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:48:10 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 static enum e_type	redir_out_type(char **line)
 {

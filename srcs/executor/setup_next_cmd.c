@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   setup_next_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/22 09:35:13 by gmallet           #+#    #+#             */
-/*   Updated: 2023/07/22 09:35:14 by gmallet          ###   ########.fr       */
+/*   Created: 2024/07/22 09:35:13 by gmallet           #+#    #+#             */
+/*   Updated: 2024/09/15 12:47:11 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 static void	word(t_cmd *cmd, t_token **token, int *i)
 {
@@ -26,7 +26,7 @@ static void	redirout(t_cmd *cmd, t_token **token)
 	cmd->redirout_file = (*token)->value;
 }
 
-static int d_redirin(t_cmd *cmd, t_token **token)
+static int	d_redirin(t_cmd *cmd, t_token **token)
 {
 	safe_pipe(cmd->pipein);
 	if (fd_m_pipe(STDIN_FILENO, cmd->pipein[1], (*token)->next->value))

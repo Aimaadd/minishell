@@ -3,44 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 21:54:26 by gmallet           #+#    #+#             */
-/*   Updated: 2023/07/12 20:36:33 by gmallet          ###   ########.fr       */
+/*   Created: 2023/04/15 15:49:34 by abentaye          #+#    #+#             */
+/*   Updated: 2023/04/18 12:19:55 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	eq(const char *s1, const char *s2, size_t len)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
 	size_t	i;
+	size_t	j;
 
+	if (*to_find == '\0')
+		return ((char *)str);
 	i = 0;
-	while (i < len && s2[i])
+	while (str[i] && i < len)
 	{
-		if (s1[i] != s2[i])
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-char	*ft_strnstr(const char *big, const char *little, size_t len)
-{
-	size_t	littlelen;
-	size_t	i;
-
-	if (*little == '\0')
-		return ((char *)big);
-	if (len == 0)
-		return (NULL);
-	littlelen = ft_strlen(little);
-	i = 0;
-	while (big[i] && i < len && littlelen <= len - i)
-	{
-		if (eq(big + i, little, len - i))
-			return ((char *)big + i);
+		j = 0;
+		while (to_find[j] && str[i + j] && str [i + j] == to_find[j]
+			&& (i + j) < len)
+			j++;
+		if (to_find[j] == '\0')
+			return ((char *)str + i);
 		i++;
 	}
 	return (NULL);

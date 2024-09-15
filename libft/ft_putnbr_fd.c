@@ -3,36 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 21:53:21 by gmallet           #+#    #+#             */
-/*   Updated: 2023/05/02 15:52:18 by gmallet          ###   ########.fr       */
+/*   Created: 2023/04/25 18:54:30 by abentaye          #+#    #+#             */
+/*   Updated: 2023/04/26 20:17:06 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static unsigned int	fill_number(char *buf, unsigned int nb)
+void	ft_putnbr_fd(int n, int fd)
 {
-	*buf = (nb % 10) + '0';
-	if ((nb / 10) == 0)
-		return (1);
-	return (1 + fill_number(buf - 1, nb / 10));
-}
-
-void	ft_putnbr_fd(int nb, int fd)
-{
-	char			tab[11];
-	unsigned int	nblen;
-
-	if (nb < 0)
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else if (n < 0)
 	{
-		nblen = fill_number(tab + 10, (unsigned int)-nb);
-		tab[10 - (nblen++)] = '-';
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(-n, fd);
+	}
+	else if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd(n % 10 + '0', fd);
 	}
 	else
-	{
-		nblen = fill_number(tab + 10, (unsigned int)nb);
-	}
-	write(fd, tab + 11 - nblen, nblen);
+		ft_putchar_fd(n + '0', fd);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:45:22 by tbatteux          #+#    #+#             */
-/*   Updated: 2024/01/19 01:37:30 by gmallet          ###   ########.fr       */
+/*   Created: 2024/07/20 16:45:22 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:48:15 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 int	ft_isspace(char c)
 {

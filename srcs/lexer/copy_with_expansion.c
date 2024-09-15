@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   copy_with_expansion.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:44:56 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/20 16:44:59 by tbatteux         ###   ########.fr       */
+/*   Created: 2024/07/20 16:44:56 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:47:50 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 static int	cpy_squote(char **line, char **word)
 {

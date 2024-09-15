@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:30:48 by tbatteux          #+#    #+#             */
-/*   Updated: 2024/09/13 00:24:12 by abentaye         ###   ########.fr       */
+/*   Created: 2024/07/20 16:30:48 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 13:18:51 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	sigint(int code)
 {

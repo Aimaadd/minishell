@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 17:39:31 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/17 19:14:24 by gmallet          ###   ########.fr       */
+/*   Created: 2024/07/13 17:39:31 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 13:36:18 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 void	exit_builtin(char **argv)
 {
@@ -18,8 +18,6 @@ void	exit_builtin(char **argv)
 
 	kill_all_childs(SIGKILL);
 	wait_all_childs();
-	gc_clean(&(g_ms.gcan));
-	gc_clean(&(g_ms.gcenv));
 	i = 0;
 	if (argv[1])
 	{
@@ -30,5 +28,7 @@ void	exit_builtin(char **argv)
 		else
 			exit (1);
 	}
+	gc_clean(&(g_ms.gcan));
+	gc_clean(&(g_ms.gcenv));
 	exit(0);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_piped_builtin.c                               :+:      :+:    :+:   */
+/*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:38:17 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/20 16:38:18 by tbatteux         ###   ########.fr       */
+/*   Created: 2024/07/20 16:38:17 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:46:58 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 void	exec_builtin(int argc, char **argv)
 {

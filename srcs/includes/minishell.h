@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:18:25 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/20 16:18:31 by tbatteux         ###   ########.fr       */
+/*   Created: 2024/07/20 16:18:25 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 13:00:59 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <stdint.h>
-# include "libft.h"
-# include "gc.h"
+# include "../libft/libft.h"
+# include "./gc.h"
 
 // TODO create lexer.h
 // ============== LEXER ==============

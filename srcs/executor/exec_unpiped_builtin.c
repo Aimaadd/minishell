@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_unpiped_builtin.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:38:27 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/20 16:38:28 by tbatteux         ###   ########.fr       */
+/*   Created: 2024/07/20 16:38:27 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:47:41 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 static void	setup_cmd(t_cmd *cmd, t_token *token)
 {

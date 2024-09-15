@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:42:09 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/07/22 09:35:56 by gmallet          ###   ########.fr       */
+/*   Created: 2024/07/20 16:42:09 by abentaye          #+#    #+#             */
+/*   Updated: 2024/09/15 12:47:35 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../includes/minishell.h"
 
 int	is_builtin(char *cmd)
 {

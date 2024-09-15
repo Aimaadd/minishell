@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 21:53:01 by gmallet           #+#    #+#             */
-/*   Updated: 2023/05/01 21:53:02 by gmallet          ###   ########.fr       */
+/*   Created: 2023/04/05 15:48:10 by abentaye          #+#    #+#             */
+/*   Updated: 2023/04/25 00:13:17 by abentaye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	*ft_rev_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	while (n--)
-		((char *)dst)[n] = ((char *)src)[n];
-	return (dst);
-}
-
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	if (!len)
-		return (dst);
+	if (!dst && !src)
+		return (NULL);
 	if (dst > src)
-		return (ft_rev_memcpy(dst, src, len));
-	if (dst < src)
-		return (ft_memcpy(dst, src, len));
+	{
+		while (n > 0)
+		{
+			((unsigned char *)dst)[n - 1] = ((unsigned char *)src)[n - 1];
+			n--;
+		}
+	}
+	else
+	{
+		ft_memcpy(dst, src, n);
+	}
 	return (dst);
 }
