@@ -6,7 +6,7 @@
 #    By: abentaye <abentaye@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/10 17:34:01 by abentaye          #+#    #+#              #
-#    Updated: 2024/09/15 13:43:56 by abentaye         ###   ########.fr        #
+#    Updated: 2024/09/15 15:13:10 by abentaye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ O = "\033[38;5;214m"
 NAME = minishell
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LIBGCDIR = ./srcs/gc/
-LIBGC = ./srcs/gc/libgc.a
+LIBGCDIR = ./gc/
+LIBGC = ./gc/libgc.a
 RM = rm -f
 READLIB = $(HOME)/.brew/opt/readline/lib
 READINCL = $(HOME)/.brew/opt/readline/include
