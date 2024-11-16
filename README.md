@@ -40,7 +40,7 @@ This project emphasizes:
 
 ### Prerequisites
 Ensure the following are installed on your system:
-- **GCC** (or any compatible C compiler)
+- **CC** (or any compatible C compiler)
 - **Make**
 
 ### Clone the Repository
